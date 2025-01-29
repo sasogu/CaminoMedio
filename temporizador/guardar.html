@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardar Tiempo y Volumen</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #1e1e1e;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+			text-align: center;
+        }
+        input, button, a {
+            background-color: #2c2c2c;
+            border: 1px solid #555;
+            border-radius: 5px;
+            color: #e0e0e0;
+            padding: 15px;
+            font-size: 18px;
+            text-align: center;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        button:hover, a:hover {
+            background-color: #505050;
+        }
+        .slider-container {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .slider-container label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .slider-container input {
+            width: 100%;
+        }
+        .slider-value {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Configuración</h1>
+ 		<h2>Ajustar tiempo predefinido</h2>
+        <input type="number" id="default-time" placeholder="Ej: 5" min="1" max="60">
+
+        <div class="slider-container">
+            <h2>Ajustar volumen del sonido</h2>
+        <div id="volume-value" class="slider-value">50%</div>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5" oninput="updateVolumeDisplay()">
+           
+        </div>
+
+        <button onclick="saveSettings()">Guardar Configuraciones</button>
+</div>
+		<div>
+        <a href="index.html">Volver al Temporizador</a> </div>
+    </div>
+
+    <script>
+        function setCookie(name, value) {
+            document.cookie = `${name}=${value};path=/;expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+            console.log(`Cookie guardada: ${name}=${value}`);
+        }
+
+        function saveSettings() {
+            const defaultTimeInput = document.getElementById("default-time");
+            const volumeSlider = document.getElementById("volume-slider");
+
+            if (defaultTimeInput.value) {
+                setCookie("defaultTime", defaultTimeInput.value);
+                setCookie("soundVolume", volumeSlider.value);
+                alert(`Configuraciones guardadas:\nTiempo: ${defaultTimeInput.value} minutos\nVolumen: ${(volumeSlider.value * 100).toFixed(0)}%`);
+            } else {
+                alert("Por favor, introduce un tiempo válido antes de guardar.");
+            }
+        }
+
+        function updateVolumeDisplay() {
+            const volumeSlider = document.getElementById("volume-slider");
+            const volumeValue = document.getElementById("volume-value");
+            volumeValue.textContent = `${(volumeSlider.value * 100).toFixed(0)}%`;
+        }
+
+        // Cargar configuraciones guardadas al abrir la página
+        window.onload = function() {
+            const cookies = document.cookie.split("; ");
+
+            const timeCookie = cookies.find(row => row.startsWith("defaultTime="));
+            if (timeCookie) {
+                const savedTime = timeCookie.split("=")[1];
+                document.getElementById("default-time").value = savedTime;
+                console.log(`Tiempo cargado: ${savedTime}`);
+            }
+
+            const volumeCookie = cookies.find(row => row.startsWith("soundVolume="));
+            if (volumeCookie) {
+                const savedVolume = volumeCookie.split("=")[1];
+                const volumeSlider = document.getElementById("volume-slider");
+                const volumeValue = document.getElementById("volume-value");
+
+                volumeSlider.value = savedVolume;
+                volumeValue.textContent = `${(savedVolume * 100).toFixed(0)}%`;
+                console.log(`Volumen cargado: ${savedVolume}`);
+            }
+        };
+    </script>
+</body>
+</html>
+

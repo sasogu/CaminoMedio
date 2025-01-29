@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizador de Meditación</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="timer-container">
+        <div class="logo-container">
+            <img id="logo" src="multimedia/logoblanco.png" alt="Logo del Camino">
+        </div>
+        <h1 id="title">Comunidad Soto Zen Camino Medio</h1>
+
+        <!-- Barra de progreso circular -->
+        <div class="progress-container">
+            <svg class="progress-ring" width="200" height="200" viewBox="0 0 100 100">
+                <defs>
+                    <linearGradient id="ensoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#555" stop-opacity="0.9" />
+                        <stop offset="100%" stop-color="#333" stop-opacity="0.5" />
+                    </linearGradient>
+                </defs>
+                <circle
+                    class="progress-ring__circle"
+                    cx="50"
+                    cy="50"
+                    r="45"
+                    stroke="url(#ensoGradient)"
+                    stroke-width="12"
+                    fill="none"
+                    stroke-linecap="round"
+                ></circle>
+            </svg>
+            <div id="time">00:00</div>
+        </div>
+
+        <input type="number" id="minutes" placeholder="Minutos" min="1" max="60">
+        <button class="start" id="start-button" onclick="startTimer()">Iniciar</button>
+        <button class="stop hidden" id="stop-button" onclick="stopTimer()">Detener</button>
+
+        <!-- Botón para ir a guardar.html -->
+        <a href="guardar.html" id="save-button" class="nav-button">Configurar</a>
+        <br>
+
+        <div id="quote"></div>
+        
+        
+    </div>
+<!-- Botón para ir a guardar.html -->
+<div> <a href="../index.html" id="caminomedio-button" class="nav-button">Volver</a></div>
+    <!-- Sonidos -->
+    <audio id="start-sound" src="multimedia/start.mp3"></audio>
+    <audio id="end-sound" src="multimedia/end.mp3"></audio>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
+
