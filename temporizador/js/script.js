@@ -184,31 +184,34 @@ function initializeProgress() {
         }
         
 // Función para actualizar el tiempo
-        function updateTime() {
-            if (remainingTime > 0) {
-                remainingTime--;
-                const minutes = Math.floor(remainingTime / 60);
-                const seconds = remainingTime % 60;
-                document.getElementById('time').textContent = 
-                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                updateProgress();
-            } else {
-                clearInterval(timer);
-                timer = null;
+function updateTime() {
+    if (remainingTime > 0) {
+        remainingTime--;
+        const minutes = Math.floor(remainingTime / 60);
+        const seconds = remainingTime % 60;
+        document.getElementById('time').textContent = 
+            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        updateProgress();
+    } else {
+        clearInterval(timer);
+        timer = null;
 
-                const endSound = document.getElementById('end-sound');
-                try {
-                    endSound.play().catch(error => {
-                        console.error("Error al reproducir el sonido de finalización:", error);
-                    });
-                } catch (error) {
-                    console.error("Error general al intentar reproducir el sonido:", error);
-                }
+        const endSound = document.getElementById('end-sound');
 
-                const randomPhrase = getRandomPhrase();
-                document.getElementById('quote').textContent = randomPhrase;
-                alert(randomPhrase);
-
+        try {
+            endSound.play().then(() => {
+                // Mostrar el mensaje después de que el sonido comience a reproducirse
+                setTimeout(() => {
+                    const randomPhrase = getRandomPhrase();
+                    document.getElementById('quote').textContent = randomPhrase;
+                    alert(randomPhrase);
+                }, 500); // Retraso de 500ms para dar tiempo al sonido a empezar
+            }).catch(error => {
+                console.error("Error al reproducir el sonido de finalización:", error);
+            });
+        } catch (error) {
+            console.error("Error general al intentar reproducir el sonido:", error);
+        }
                 // Liberar el Wake Lock
                 releaseWakeLock();
 
