@@ -1,4 +1,4 @@
-# **Aplicación Web - [Comunidad Soto Zen Camino Medio](https://www.caminomedio.org){:target="_blank"} (CSZCM)** 
+# **Aplicación Web - [Comunidad Soto Zen Camino Medio](https://www.caminomedio.org)(CSZCM)** 
 
 
 ## 📌 Descripción
