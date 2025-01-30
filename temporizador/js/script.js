@@ -250,7 +250,7 @@ function stopTimer() {
 
 // Activar reducción de brillo progresiva, Wake Lock y pantalla completa al iniciar el temporizador
 document.getElementById("start-button").addEventListener("click", () => {
-    changeBrightness(0.1); // Reduce brillo a 60%
+    changeBrightness(0.2); // Reduce brillo a 60%
     requestWakeLock(); // Mantener pantalla encendida
     startTimer(); // Iniciar el temporizador
 });
