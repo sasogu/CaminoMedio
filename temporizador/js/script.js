@@ -156,6 +156,7 @@ function updateTime() {
         document.getElementById('start-button').classList.remove('hidden');
         document.getElementById('save-button').classList.remove('hidden');
         document.getElementById('stop-button').classList.add('hidden');
+        document.getElementById('caminomedio-button').classList.add('hidden');
 
         // Mostrar nuevamente el input y cargar el tiempo guardado
         const minutesInput = document.getElementById('minutes');
@@ -190,6 +191,7 @@ function startTimer() {
     document.getElementById('start-button').classList.add('hidden');
     document.getElementById('save-button').classList.add('hidden');
     document.getElementById('stop-button').classList.remove('hidden');
+    document.getElementById('caminomedio-button').classList.add('hidden');
 
     // Iniciar el temporizador
     if (!timer) {
@@ -210,6 +212,7 @@ function restoreInitialScreen() {
     document.getElementById('start-button').classList.remove('hidden');
     document.getElementById('save-button').classList.remove('hidden');
     document.getElementById('stop-button').classList.add('hidden');
+    document.getElementById('caminomedio-button').classList.remove('hidden');
     document.getElementById('time').textContent = "00:00";
     initializeProgress(); // Asegurarse de que el Ensō se restaure
     releaseWakeLock(); // Liberar el Wake Lock
