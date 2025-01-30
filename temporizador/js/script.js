@@ -1,4 +1,4 @@
-        // Función para obtener cookies
+// Función para obtener cookies
         function getCookie(name) {
             const nameEQ = name + "=";
             const decodedCookie = decodeURIComponent(document.cookie);
@@ -125,11 +125,11 @@ function initializeProgress() {
 
            
 
-            // Cambiar el logo y ocultar el título
+// Cambiar el logo y ocultar el título
             document.getElementById('logo').src = "multimedia/logopeque.png";
             document.getElementById('title').classList.add('hidden');
 
-            // Ocultar los botones y mostrar "Detener"
+// Ocultar los botones y mostrar "Detener"
             document.getElementById('start-button').classList.add('hidden');
             document.getElementById('save-button').classList.add('hidden');
             document.getElementById('stop-button').classList.remove('hidden');
@@ -156,20 +156,20 @@ function initializeProgress() {
             remainingTime = 0;
             updateProgress();
 
-             // Liberar el Wake Lock
+ // Liberar el Wake Lock
     releaseWakeLock();
 
-    // Restaurar el Ensō completo
+// Restaurar el Ensō completo
     progressCircle.style.strokeDashoffset = "0";
 
-            // Restaurar el logo, el título y los botones
+// Restaurar el logo, el título y los botones
             document.getElementById('logo').src = "multimedia/logoblanco.png";
             document.getElementById('title').classList.remove('hidden');
             document.getElementById('start-button').classList.remove('hidden');
             document.getElementById('save-button').classList.remove('hidden');
             document.getElementById('stop-button').classList.add('hidden');
 
-             // Mostrar nuevamente el input y cargar el tiempo guardado
+// Mostrar nuevamente el input y cargar el tiempo guardado
     const minutesInput = document.getElementById('minutes');
     const savedTime = getCookie("defaultTime");
     if (savedTime) {
@@ -200,7 +200,8 @@ function updateTime() {
 
         try {
             endSound.play().then(() => {
-                // Mostrar el mensaje después de que el sonido comience a reproducirse
+
+// Mostrar el mensaje después de que el sonido comience a reproducirse
                 setTimeout(() => {
                     const randomPhrase = getRandomPhrase();
                     document.getElementById('quote').textContent = randomPhrase;
@@ -212,17 +213,19 @@ function updateTime() {
         } catch (error) {
             console.error("Error general al intentar reproducir el sonido:", error);
         }
-                // Liberar el Wake Lock
+// Liberar el Wake Lock
                 releaseWakeLock();
 
-                // Restaurar el Ensō completo
+// Restaurar el Ensō completo
                 progressCircle.style.strokeDashoffset = "0";
 
-                // Solicitar pantalla completa al cargar la aplicación
+// Función para solicitar pantalla completa
 function requestFullscreen() {
     const body = document.body;
     if (body.requestFullscreen) {
         body.requestFullscreen();
+    } else if (body.mozRequestFullScreen) { // Soporte para Firefox
+        body.mozRequestFullScreen();
     } else if (body.webkitRequestFullscreen) { // Soporte para navegadores Webkit (Safari, etc.)
         body.webkitRequestFullscreen();
     } else if (body.msRequestFullscreen) { // Soporte para IE/Edge
@@ -230,7 +233,7 @@ function requestFullscreen() {
     }
 }
 
-                // Restaurar a la pantalla inicial
+// Restaurar a la pantalla inicial
                 document.getElementById('logo').src = "multimedia/logoblanco.png";
                 document.getElementById('title').classList.remove('hidden');
                 document.getElementById('start-button').classList.remove('hidden');
@@ -239,3 +242,32 @@ function requestFullscreen() {
                 document.getElementById('time').textContent = "00:00";
             }
         }
+// Función para cambiar el brillo de forma progresiva
+function changeBrightness(targetBrightness, duration = 6000) {
+    const stepTime = 50; // Intervalo de actualización (50ms)
+    const steps = duration / stepTime; // Número de pasos
+    let currentBrightness = parseFloat(getComputedStyle(document.body).filter.match(/brightness\((.*?)\)/)?.[1]) || 1;
+    const stepChange = (targetBrightness - currentBrightness) / steps;
+
+    let step = 0;
+    const interval = setInterval(() => {
+        currentBrightness += stepChange;
+        document.body.style.filter = `brightness(${currentBrightness})`;
+
+        step++;
+        if (step >= steps) {
+            clearInterval(interval);
+        }
+    }, stepTime);
+}
+
+// Activar reducción de brillo progresiva y Wake Lock al iniciar el temporizador
+document.getElementById("start-button").addEventListener("click", () => {
+    changeBrightness(0.1); // Reduce brillo a 60%
+});
+
+// Restaurar brillo y liberar Wake Lock al detener el temporizador
+document.getElementById("stop-button").addEventListener("click", () => {
+    changeBrightness(1); // Restaura brillo al 100%
+});
+
