@@ -18,13 +18,17 @@ let wakeLock = null;
 // Función para solicitar el Wake Lock
 async function requestWakeLock() {
     try {
-        wakeLock = await navigator.wakeLock.request('screen');
-        console.log('Wake Lock activado.');
+        if ('wakeLock' in navigator) {
+            wakeLock = await navigator.wakeLock.request('screen');
+            console.log('Wake Lock activado.');
 
-        // Manejo de liberación automática del Wake Lock (opcional)
-        wakeLock.addEventListener('release', () => {
-            console.log('Wake Lock liberado automáticamente.');
-        });
+            // Manejo de liberación automática del Wake Lock (opcional)
+            wakeLock.addEventListener('release', () => {
+                console.log('Wake Lock liberado automáticamente.');
+            });
+        } else {
+            console.error('Wake Lock API no soportada en este navegador.');
+        }
     } catch (err) {
         console.error('Error al activar Wake Lock:', err);
     }
@@ -58,6 +62,28 @@ function changeBrightness(targetBrightness, duration = 6000) {
     }, stepTime);
 }
 
+// Función para solicitar pantalla completa
+function requestFullscreen() {
+    const body = document.body;
+    if (body.requestFullscreen) {
+        body.requestFullscreen().catch(err => {
+            console.error('Error al solicitar pantalla completa:', err);
+        });
+    } else if (body.mozRequestFullScreen) { // Soporte para Firefox
+        body.mozRequestFullScreen().catch(err => {
+            console.error('Error al solicitar pantalla completa:', err);
+        });
+    } else if (body.webkitRequestFullscreen) { // Soporte para navegadores Webkit (Safari, etc.)
+        body.webkitRequestFullscreen().catch(err => {
+            console.error('Error al solicitar pantalla completa:', err);
+        });
+    } else if (body.msRequestFullscreen) { // Soporte para IE/Edge
+        body.msRequestFullscreen().catch(err => {
+            console.error('Error al solicitar pantalla completa:', err);
+        });
+    }
+}
+
 // Configuración inicial del Ensō
 function initializeProgress() {
     const progressCircle = document.querySelector('.progress-ring__circle');
@@ -69,7 +95,7 @@ function initializeProgress() {
     const circumference = 2 * Math.PI * radius;
 
     progressCircle.style.strokeDasharray = `${circumference}`;
-    progressCircle.style.strokeDashoffset = "0"; // Mostrarlo completamente desde el inicio
+    progressCircle.style.strokeDashoffset = `${circumference}`;
     progressCircle.style.stroke = "url(#ensoGradient)"; // Aplicar gradiente Ensō
     progressCircle.style.strokeWidth = "10";
     progressCircle.style.strokeLinecap = "round";
@@ -185,11 +211,11 @@ function startTimer() {
     document.getElementById('title').classList.add('hidden');
     document.getElementById('minutes').classList.add('hidden');
 
-
     // Ocultar los botones y mostrar "Detener"
     document.getElementById('start-button').classList.add('hidden');
     document.getElementById('save-button').classList.add('hidden');
     document.getElementById('stop-button').classList.remove('hidden');
+    document.getElementById('caminomedio-button').classList.add('hidden');
 
     // Iniciar el temporizador
     if (!timer) {
@@ -199,6 +225,7 @@ function startTimer() {
     document.getElementById('start-sound').play();
     document.getElementById('quote').textContent = "";
     requestWakeLock(); // Solicitar el Wake Lock
+    requestFullscreen(); // Solicitar pantalla completa
 }
 
 // Función para restaurar la pantalla inicial
@@ -206,7 +233,6 @@ function restoreInitialScreen() {
     // Restaurar el logo, el título y los botones
     document.getElementById('logo').src = "multimedia/logoblanco.png";
     document.getElementById('title').classList.remove('hidden');
-    document.getElementById('minutes').classList.remove('hidden');
     document.getElementById('start-button').classList.remove('hidden');
     document.getElementById('save-button').classList.remove('hidden');
     document.getElementById('stop-button').classList.add('hidden');
@@ -223,10 +249,10 @@ function stopTimer() {
     updateProgress();
     restoreInitialScreen();
 }
-// cambio
+
 // Activar reducción de brillo progresiva, Wake Lock y pantalla completa al iniciar el temporizador
 document.getElementById("start-button").addEventListener("click", () => {
-    changeBrightness(0.1); // Reduce brillo a 60%
+    changeBrightness(0.6); // Reduce brillo a 60%
     requestWakeLock(); // Mantener pantalla encendida
     startTimer(); // Iniciar el temporizador
 });
