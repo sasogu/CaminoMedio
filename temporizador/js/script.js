@@ -38,6 +38,35 @@ function releaseWakeLock() {
     }
 }
 
+// Función para cambiar el brillo de forma progresiva
+function changeBrightness(targetBrightness, duration = 6000) {
+    const stepTime = 50; // Intervalo de actualización (50ms)
+    const steps = duration / stepTime; // Número de pasos
+    let currentBrightness = parseFloat(getComputedStyle(document.body).filter.match(/brightness\((.*?)\)/)?.[1]) || 1;
+    const stepChange = (targetBrightness - currentBrightness) / steps;
+
+    let step = 0;
+    const interval = setInterval(() => {
+        currentBrightness += stepChange;
+        document.body.style.filter = `brightness(${currentBrightness})`;
+
+        step++;
+        if (step >= steps) {
+            clearInterval(interval);
+        }
+    }, stepTime);
+}
+
+// Activar reducción de brillo progresiva y Wake Lock al iniciar el temporizador
+document.getElementById("start-button").addEventListener("click", () => {
+    changeBrightness(0.1); // Reduce brillo a 60%
+});
+
+// Restaurar brillo y liberar Wake Lock al detener el temporizador
+document.getElementById("stop-button").addEventListener("click", () => {
+    changeBrightness(1); // Restaura brillo al 100%
+});
+
 // Configuración inicial del Ensō
 function initializeProgress() {
     progressCircle.style.strokeDasharray = `${circumference}`;
@@ -213,6 +242,10 @@ function updateTime() {
         } catch (error) {
             console.error("Error general al intentar reproducir el sonido:", error);
         }
+// Restaurar brillo y liberar Wake Lock al detener el temporizador
+
+    changeBrightness(1); // Restaura brillo al 100%
+
 // Liberar el Wake Lock
                 releaseWakeLock();
 
@@ -242,32 +275,4 @@ function requestFullscreen() {
                 document.getElementById('time').textContent = "00:00";
             }
         }
-// Función para cambiar el brillo de forma progresiva
-function changeBrightness(targetBrightness, duration = 6000) {
-    const stepTime = 50; // Intervalo de actualización (50ms)
-    const steps = duration / stepTime; // Número de pasos
-    let currentBrightness = parseFloat(getComputedStyle(document.body).filter.match(/brightness\((.*?)\)/)?.[1]) || 1;
-    const stepChange = (targetBrightness - currentBrightness) / steps;
-
-    let step = 0;
-    const interval = setInterval(() => {
-        currentBrightness += stepChange;
-        document.body.style.filter = `brightness(${currentBrightness})`;
-
-        step++;
-        if (step >= steps) {
-            clearInterval(interval);
-        }
-    }, stepTime);
-}
-
-// Activar reducción de brillo progresiva y Wake Lock al iniciar el temporizador
-document.getElementById("start-button").addEventListener("click", () => {
-    changeBrightness(0.1); // Reduce brillo a 60%
-});
-
-// Restaurar brillo y liberar Wake Lock al detener el temporizador
-document.getElementById("stop-button").addEventListener("click", () => {
-    changeBrightness(1); // Restaura brillo al 100%
-});
 
