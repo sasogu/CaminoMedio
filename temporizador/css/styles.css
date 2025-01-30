@@ -1,14 +1,14 @@
 body {
     font-family: 'Arial', sans-serif;
     text-align: center;
-    background-color: #121212;
+    background-color: #000000;
     color: #e0e0e0;
     margin: 0;
     padding: 0;
 }
 
 .timer-container {
-    margin: 50px auto;
+    margin: 10px auto;
     padding: 20px;
     border-radius: 10px;
     background-color: #1e1e1e;
@@ -103,6 +103,24 @@ a#save-button.hidden {
 }
 
 a#save-button:hover, button:hover {
+    background-color: #505050;
+}
+
+a#caminomedio-button {
+    margin-top: 20px;
+    background-color: #3b3b3a;
+    color: #e0e0e0;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+a#caminomedio-button.hidden {
+    display: none;
+}
+
+a#caminomedio-button:hover, button:hover {
     background-color: #505050;
 }
 
