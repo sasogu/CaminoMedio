@@ -76,10 +76,26 @@ function initializeProgress() {
     progressCircle.style.opacity = "0.9"; // Transparencia ligera
 }
 
+
+// Función para solicitar pantalla completa
+function requestFullscreen() {
+    const body = document.body;
+    if (body.requestFullscreen) {
+        body.requestFullscreen();
+    } else if (body.mozRequestFullScreen) { // Soporte para Firefox
+        body.mozRequestFullScreen();
+    } else if (body.webkitRequestFullscreen) { // Soporte para navegadores Webkit (Safari, etc.)
+        body.webkitRequestFullscreen();
+    } else if (body.msRequestFullscreen) { // Soporte para IE/Edge
+        body.msRequestFullscreen();
+    }
+}
+
 // Cargar configuraciones guardadas al iniciar la página
 window.onload = function() {
     const savedTime = getCookie("defaultTime");
     const savedVolume = getCookie("soundVolume");
+    const savedBrightness = getCookie("screenBrightness");
 
     if (savedTime) {
         document.getElementById("minutes").value = savedTime;
@@ -89,6 +105,10 @@ window.onload = function() {
         const volume = parseFloat(savedVolume);
         const startSound = document.getElementById("start-sound");
         startSound.volume = volume;
+    }
+
+    if (savedBrightness) {
+        document.body.style.opacity = savedBrightness;
     }
 
     initializeProgress(); // Configurar el Ensō para que se muestre completo al inicio
@@ -201,6 +221,7 @@ function startTimer() {
     document.getElementById('start-sound').play();
     document.getElementById('quote').textContent = "";
     requestWakeLock(); // Solicitar el Wake Lock
+    requestFullscreen(); // Solicitar pantalla completa
 }
 
 // Función para restaurar la pantalla inicial
@@ -229,7 +250,7 @@ function stopTimer() {
 
 // Activar reducción de brillo progresiva, Wake Lock y pantalla completa al iniciar el temporizador
 document.getElementById("start-button").addEventListener("click", () => {
-    changeBrightness(0.1); // Reduce brillo a 60%
+    changeBrightness(0.2); // Reduce brillo a 60%
     requestWakeLock(); // Mantener pantalla encendida
     startTimer(); // Iniciar el temporizador
 });
