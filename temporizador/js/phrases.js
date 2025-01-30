@@ -1,4 +1,4 @@
-const phrases = [
+export const phrases = [
     "1. La Vía Suprema no es difícil. Evita sólo la atracción y el rechazo.",
     "2. Cuando no hay amor ni odio, se manifiesta su naturaleza luminosa.",
     "3. Pero si se crea la menor diferencia, un abismo separa la tierra del cielo.",

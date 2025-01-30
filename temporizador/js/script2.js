@@ -69,7 +69,7 @@ function initializeProgress() {
     const circumference = 2 * Math.PI * radius;
 
     progressCircle.style.strokeDasharray = `${circumference}`;
-    progressCircle.style.strokeDashoffset = "0"; // Mostrarlo completamente desde el inicio
+    progressCircle.style.strokeDashoffset = `${circumference}`;
     progressCircle.style.stroke = "url(#ensoGradient)"; // Aplicar gradiente Ensō
     progressCircle.style.strokeWidth = "10";
     progressCircle.style.strokeLinecap = "round";
@@ -183,8 +183,6 @@ function startTimer() {
     // Cambiar el logo y ocultar el título
     document.getElementById('logo').src = "multimedia/logopeque.png";
     document.getElementById('title').classList.add('hidden');
-    document.getElementById('minutes').classList.add('hidden');
-
 
     // Ocultar los botones y mostrar "Detener"
     document.getElementById('start-button').classList.add('hidden');
@@ -206,7 +204,6 @@ function restoreInitialScreen() {
     // Restaurar el logo, el título y los botones
     document.getElementById('logo').src = "multimedia/logoblanco.png";
     document.getElementById('title').classList.remove('hidden');
-    document.getElementById('minutes').classList.remove('hidden');
     document.getElementById('start-button').classList.remove('hidden');
     document.getElementById('save-button').classList.remove('hidden');
     document.getElementById('stop-button').classList.add('hidden');
@@ -226,7 +223,7 @@ function stopTimer() {
 
 // Activar reducción de brillo progresiva, Wake Lock y pantalla completa al iniciar el temporizador
 document.getElementById("start-button").addEventListener("click", () => {
-    changeBrightness(0.1); // Reduce brillo a 60%
+    changeBrightness(0.6); // Reduce brillo a 60%
     requestWakeLock(); // Mantener pantalla encendida
     startTimer(); // Iniciar el temporizador
 });
