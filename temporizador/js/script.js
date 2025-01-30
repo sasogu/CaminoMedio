@@ -103,8 +103,8 @@ window.onload = function() {
 
     if (savedVolume) {
         const volume = parseFloat(savedVolume);
-        const startSound = document.getElementById("start-sound");
-        startSound.volume = volume;
+        document.getElementById("start-sound").volume = volume;
+        document.getElementById("end-sound").volume = volume;  // Asegurar que el volumen también se aplica al sonido final
     }
 
     if (savedBrightness) {
