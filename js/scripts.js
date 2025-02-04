@@ -117,3 +117,38 @@ window.addEventListener('DOMContentLoaded', event => {
     });
     
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function (event) {
+            const url = this.href;
+            const isExternal = !url.includes(window.location.origin);
+
+            if (isExternal) {
+                event.preventDefault();
+                launchFullscreen(url);
+            }
+        });
+    });
+});
+
+// Función para abrir el enlace en una ventana nueva y solicitar fullscreen
+function launchFullscreen(url) {
+    const newWindow = window.open(url, "_blank");
+    if (newWindow) {
+        setTimeout(() => {
+            if (newWindow.document.documentElement.requestFullscreen) {
+                newWindow.document.documentElement.requestFullscreen();
+            } else if (newWindow.document.documentElement.mozRequestFullScreen) {
+                newWindow.document.documentElement.mozRequestFullScreen();
+            } else if (newWindow.document.documentElement.webkitRequestFullscreen) {
+                newWindow.document.documentElement.webkitRequestFullscreen();
+            } else if (newWindow.document.documentElement.msRequestFullscreen) {
+                newWindow.document.documentElement.msRequestFullscreen();
+            }
+        }, 500); // Espera para evitar bloqueos en navegadores
+    } else {
+        alert("Tu navegador bloqueó la apertura en pantalla completa. Permítelo en la configuración.");
+    }
+}
+

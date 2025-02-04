@@ -84,7 +84,7 @@
         }
       ]
     }
-  ]
+  ],
   "handle_links": "preferred",
   "scope_extensions": [
     {"origin": "*.caminomedio.org"},
