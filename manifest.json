@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "scope": "/",
+  "scope": "https://*.caminomedio.org/",
   "name": "CaminoMedio",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "display": "fullscreen",
   "start_url": "/",
   "short_name": "CaminoMedio",
