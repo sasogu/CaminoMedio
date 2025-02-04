@@ -4,7 +4,7 @@
   "name": "CaminoMedio",
   "version": "0.0.2",
   "display": "fullscreen",
-  "start_url": "/app/inicio/",
+  "start_url": "https://caminomedio.org/app/inicio/",
   "short_name": "CaminoMedio",
   "theme_color": "#000",
   "description": "Comunidad Soto Zen Camino Medio",
