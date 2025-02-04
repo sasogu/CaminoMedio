@@ -138,6 +138,22 @@ function stopTimer() {
     document.getElementById('time').textContent = "00:00";
 }
 
+// Función para solicitar pantalla completa
+function requestFullscreen() {
+    const element = document.documentElement; // Cubre toda la pantalla
+
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) { // Firefox
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) { // Chrome, Safari y Opera
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) { // IE/Edge
+        element.msRequestFullscreen();
+    }
+}
+
+// Llamar a la función al iniciar la aplicación
 window.onload = function () {
     const savedVolume = getLocalStorageItem("soundVolume") || "0.5";
     const savedBrightness = getLocalStorageItem("screenBrightness") || "1";
@@ -163,4 +179,5 @@ window.onload = function () {
     if (stopButton) {
         stopButton.addEventListener("click", stopTimer);
     }
+    requestFullscreen();
 };
