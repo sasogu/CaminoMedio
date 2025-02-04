@@ -91,5 +91,29 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     }
+    
+    // Mostrar notificación push para instalar
 
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+    
+        const installButton = document.createElement('button');
+        installButton.textContent = "Instalar Aplicación";
+        installButton.style.cssText = "position: fixed; bottom: 20px; right: 20px; background-color: #76c7c0; padding: 10px; border: none; cursor: pointer;";
+        
+        document.body.appendChild(installButton);
+    
+        installButton.addEventListener('click', () => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(choiceResult => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Usuario instaló la aplicación');
+                }
+                installButton.remove();
+            });
+        });
+    });
+    
 });

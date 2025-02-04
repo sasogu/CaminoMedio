@@ -141,4 +141,16 @@ a#caminomedio-button:hover, button:hover {
 }
 
 
+button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #5aa9a6;
+    transform: scale(1.05);
+}
+
+.progress-ring__circle {
+    transition: stroke-dashoffset 1s linear;
+}
 
