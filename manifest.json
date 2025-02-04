@@ -1,13 +1,14 @@
 {
   "id": "/",
   "scope": "https://*.caminomedio.org/",
+  "handle_links": "preferred",
   "name": "CaminoMedio",
   "version": "0.0.2",
   "display": "fullscreen",
   "start_url": "https://caminomedio.org/app/inicio/",
   "short_name": "CaminoMedio",
   "theme_color": "#000",
-  "description": "Comunidad Soto Zen Camino Medio",
+  "description": "Aplicación de la Comunidad Soto Zen Camino Medio",
   "orientation": "any",
   "background_color": "#000",
   "related_applications": [],
@@ -83,5 +84,11 @@
         }
       ]
     }
+  ]
+  "handle_links": "preferred",
+  "scope_extensions": [
+    {"origin": "*.caminomedio.org"},
+    {"origin": "www.caminomedio.org"},
+    {"origin": "video.caminomedio.org"}
   ]
 }
