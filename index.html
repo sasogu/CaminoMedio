@@ -293,6 +293,12 @@
                 .catch(error => console.error('Error al registrar el Service Worker:', error));
             }
           </script>
+          <script>
+            if (typeof navigator.serviceWorker !== 'undefined') {
+              navigator.serviceWorker.register('js/sw.js')
+            }
+          </script>
+          
           
     </body>
 </html>
