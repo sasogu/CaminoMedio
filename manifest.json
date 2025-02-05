@@ -19,7 +19,7 @@
   },
   "icons": [
     {
-      "src": "assets/img/logoblanco.png",
+      "src": "assets/img/logopeque.png",
       "sizes": "512x512",
       "type": "image/png"
     },
@@ -41,7 +41,7 @@
   ],
   "screenshots": [
     {
-      "src": "assets/img/logoblanco.png",
+      "src": "assets/img/logocompleto.png",
       "sizes": "1617x1012",
       "type": "image/png"
     }
