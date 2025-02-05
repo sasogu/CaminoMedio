@@ -86,6 +86,9 @@ const OFFLINE_URLS = [
     'https://video.caminomedio.org/group/Zazen/',
     'https://www.caminomedio.org/cursos/',
     'https://www.caminomedio.org/dharma-digital/',
+    'https://www.caminomedio.org/forums/forum/general/',
+    'https://www.caminomedio.org/sangha-online/',
+    'https://www.caminomedio.org/dokusan/'
 ];
 
 // Instalación del Service Worker y almacenamiento de contenido externo
