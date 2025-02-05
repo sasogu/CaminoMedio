@@ -117,3 +117,22 @@ window.addEventListener('DOMContentLoaded', event => {
     });
     
 });
+
+// Función para solicitar pantalla completa
+function requestFullscreen() {
+    const element = document.documentElement; // Cubre toda la pantalla
+
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) { // Firefox
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) { // Chrome, Safari y Opera
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) { // IE/Edge
+        element.msRequestFullscreen();
+    }
+}
+
+window.onload = function () {
+requestFullscreen();
+}

@@ -168,6 +168,7 @@ window.onload = function () {
     }
     
     initializeProgress();
+   
     
     // Asegurar que el botón de inicio funcione correctamente
     const startButton = document.getElementById("start-button");
