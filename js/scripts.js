@@ -133,6 +133,12 @@ function requestFullscreen() {
     }
 }
 
+document.addEventListener("fullscreenchange", function () {
+    if (!document.fullscreenElement) {
+        requestFullscreen();
+    }
+});
+
 window.onload = function () {
 requestFullscreen();
 }
