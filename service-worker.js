@@ -79,3 +79,47 @@ self.addEventListener('push', (event) => {
 
     event.waitUntil(self.registration.showNotification(title, options));
 });
+
+// Guardar páginas offline
+const OFFLINE_URLS = [
+    'https://www.caminomedio.org/agenda/', // Reemplaza con tus URLs
+    'https://video.caminomedio.org/group/Zazen/',
+    'https://www.caminomedio.org/cursos/',
+    'https://www.caminomedio.org/dharma-digital/',
+];
+
+// Instalación del Service Worker y almacenamiento de contenido externo
+self.addEventListener('install', (event) => {
+    event.waitUntil(
+        caches.open(CACHE_NAME).then((cache) => {
+            return cache.addAll(OFFLINE_URLS);
+        })
+    );
+});
+
+// Interceptar las solicitudes de red y servir desde la caché cuando sea necesario
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        caches.match(event.request).then((cachedResponse) => {
+            return cachedResponse || fetch(event.request).then((response) => {
+                return caches.open(CACHE_NAME).then((cache) => {
+                    cache.put(event.request, response.clone());
+                    return response;
+                });
+            });
+        }).catch(() => caches.match('offline.html')) // En caso de error, redirige a una página offline
+    );
+});
+
+// Activar el Service Worker y eliminar cachés antiguas
+self.addEventListener('activate', (event) => {
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.filter((name) => name !== CACHE_NAME).map((name) => caches.delete(name))
+            );
+        })
+    );
+});
+
+
