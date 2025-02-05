@@ -3,7 +3,7 @@
   "scope": "https://*.caminomedio.org/",
   "name": "CaminoMedio",
   "version": "0.0.2",
-  "display": "fullscreen",
+  "display": "standalone",
   "start_url": "https://caminomedio.org/app/inicio/",
   "short_name": "CaminoMedio",
   "theme_color": "#000",
