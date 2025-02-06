@@ -170,10 +170,4 @@ function stopTimer() {
     document.getElementById('stop-button').classList.add('hidden');
     document.getElementById('caminomedio-button').classList.remove('hidden');
     document.getElementById('time').textContent = "00:00";
-}
-
-// Agregar evento de clic al botón del temporizador
-document.getElementById('temporizador-button').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevenir la acción por defecto del enlace
-    window.location.href = '/temporizador/index.html'; // Redirigir a la página del temporizador
-});
+};

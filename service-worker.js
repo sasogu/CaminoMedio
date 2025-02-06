@@ -88,14 +88,16 @@ const OFFLINE_URLS = [
     'https://www.caminomedio.org/dharma-digital/',
     'https://www.caminomedio.org/forums/forum/general/',
     'https://www.caminomedio.org/sangha-online/',
-    'https://www.caminomedio.org/dokusan/'
+    'https://www.caminomedio.org/dharma-digital/dokusan/'
 ];
 
 // Instalación del Service Worker y almacenamiento de contenido externo
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            return cache.addAll(OFFLINE_URLS);
+            return cache.addAll(OFFLINE_URLS).catch((error) => {
+                console.error('Error al agregar URLs al caché:', error);
+            });
         })
     );
 });
