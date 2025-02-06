@@ -140,18 +140,18 @@ function stopTimer() {
 
 // Función para solicitar pantalla completa
 function requestFullscreen() {
-    const element = document.documentElement; // Cubre toda la pantalla
-
-    if (element.requestFullscreen) {
-        element.requestFullscreen();
-    } else if (element.mozRequestFullScreen) { // Firefox
-        element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullscreen) { // Chrome, Safari y Opera
-        element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) { // IE/Edge
-        element.msRequestFullscreen();
+    const body = document.body;
+    if (body.requestFullscreen) {
+        body.requestFullscreen();
+    } else if (body.mozRequestFullScreen) { // Soporte para Firefox
+        body.mozRequestFullScreen();
+    } else if (body.webkitRequestFullscreen) { // Soporte para navegadores Webkit (Safari, etc.)
+        body.webkitRequestFullscreen();
+    } else if (body.msRequestFullscreen) { // Soporte para IE/Edge
+        body.msRequestFullscreen();
     }
 }
+
 
 // Llamar a la función al iniciar la aplicación
 window.onload = function () {

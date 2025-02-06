@@ -285,7 +285,7 @@ function stopTimer() {
     // Restaurar el Ensō completo
     progressCircle.style.strokeDashoffset = "0";
 
-    // Restaurar la interfaz
+    // Restaurar la interfazNo. Expediente:00939-02380138
     document.getElementById('logo').src = "multimedia/logoblanco.png";
     document.getElementById('title').classList.remove('hidden');
     document.getElementById('start-button').classList.remove('hidden');
