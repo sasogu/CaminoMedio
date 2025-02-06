@@ -82,8 +82,7 @@ self.addEventListener('push', (event) => {
 
 // Guardar páginas offline
 const OFFLINE_URLS = [
-    'https://www.caminomedio.org/agenda/', // Reemplaza con tus URLs
-    'https://video.caminomedio.org/group/Zazen/?token=k7NkoOJdTw0',
+    'https://www.caminomedio.org/agenda/', // Reemplaza con tus URL
     'https://www.caminomedio.org/cursos/',
     'https://www.caminomedio.org/dharma-digital/',
     'https://www.caminomedio.org/forums/forum/general/',

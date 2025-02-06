@@ -287,9 +287,15 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script>
             if (typeof navigator.serviceWorker !== 'undefined') {
-              navigator.serviceWorker.register('js/sw.js')
+                navigator.serviceWorker.register('js/sw.js')
+                    .then(function(registration) {
+                        console.log('Service Worker registrado con éxito:', registration);
+                    })
+                    .catch(function(error) {
+                        console.error('Error al registrar el Service Worker:', error);
+                    });
             }
-          </script>
+        </script>
           
     </body>
 </html>
