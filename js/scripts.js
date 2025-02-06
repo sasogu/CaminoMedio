@@ -133,16 +133,5 @@ function requestFullscreen() {
         console.error('Pantalla completa no soportada en este navegador.');
         return Promise.reject('Pantalla completa no soportada en este navegador.');
     }
-}
-
-// Agregar evento de clic al botón del temporizador
-document.getElementById('temporizador-button').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevenir la acción por defecto del enlace
-    requestFullscreen().then(() => {
-        window.location.href = 'temporizador/'; // Redirigir a la página del temporizador
-    }).catch(err => {
-        console.error('Error al solicitar pantalla completa:', err);
-        window.location.href = 'temporizador/index.html'; // Redirigir a la página del temporizador incluso si falla la solicitud de pantalla completa
-    });
-});
+};
 
