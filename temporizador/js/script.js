@@ -28,6 +28,31 @@ function releaseWakeLock() {
     }
 }
 
+// Función para solicitar pantalla completa
+function requestFullscreen() {
+    const body = document.body;
+    if (body.requestFullscreen) {
+        body.requestFullscreen().catch(err => {
+            console.error('Error al solicitar pantalla completa:', err);
+        });
+    } else if (body.mozRequestFullScreen) { // Soporte para Firefox
+        body.mozRequestFullScreen().catch(err => {
+            console.error('Error al solicitar pantalla completa:', err);
+        });
+    } else if (body.webkitRequestFullscreen) { // Soporte para navegadores Webkit (Safari, etc.)
+        body.webkitRequestFullscreen().catch(err => {
+            console.error('Error al solicitar pantalla completa:', err);
+        });
+    } else if (body.msRequestFullscreen) { // Soporte para IE/Edge
+        body.msRequestFullscreen().catch(err => {
+            console.error('Error al solicitar pantalla completa:', err);
+        });
+    } else {
+        console.error('Pantalla completa no soportada en este navegador.');
+    }
+}
+
+// Configuración inicial del Ensō
 function initializeProgress() {
     const progressCircle = document.querySelector('.progress-ring__circle');
     if (!progressCircle) return;
@@ -40,6 +65,37 @@ function initializeProgress() {
     progressCircle.style.strokeLinecap = "round";
     progressCircle.style.opacity = "0.9";
 }
+
+// Llamar a la función al iniciar la aplicación
+window.onload = function () {
+    const savedVolume = getLocalStorageItem("soundVolume") || "0.5";
+    const savedBrightness = getLocalStorageItem("screenBrightness") || "1";
+    const savedTime = getLocalStorageItem("defaultTime");
+    
+    document.getElementById('start-sound').volume = parseFloat(savedVolume);
+    document.getElementById('end-sound').volume = parseFloat(savedVolume);
+    document.body.style.opacity = savedBrightness;
+    
+    if (savedTime) {
+        document.getElementById("minutes").value = savedTime;
+    }
+    
+    initializeProgress();
+   
+    
+    // Asegurar que el botón de inicio funcione correctamente
+    const startButton = document.getElementById("start-button");
+    if (startButton) {
+        startButton.addEventListener("click", startTimer);
+    }
+
+        const stopButton = document.getElementById("stop-button");
+    if (stopButton) {
+        stopButton.addEventListener("click", stopTimer);
+    }
+    requestFullscreen();
+};
+
 
 let timer;
 let remainingTime = 0;
@@ -137,48 +193,3 @@ function stopTimer() {
     document.getElementById('caminomedio-button').classList.remove('hidden');
     document.getElementById('time').textContent = "00:00";
 }
-
-// Función para solicitar pantalla completa
-function requestFullscreen() {
-    const body = document.body;
-    if (body.requestFullscreen) {
-        body.requestFullscreen();
-    } else if (body.mozRequestFullScreen) { // Soporte para Firefox
-        body.mozRequestFullScreen();
-    } else if (body.webkitRequestFullscreen) { // Soporte para navegadores Webkit (Safari, etc.)
-        body.webkitRequestFullscreen();
-    } else if (body.msRequestFullscreen) { // Soporte para IE/Edge
-        body.msRequestFullscreen();
-    }
-}
-
-
-// Llamar a la función al iniciar la aplicación
-window.onload = function () {
-    const savedVolume = getLocalStorageItem("soundVolume") || "0.5";
-    const savedBrightness = getLocalStorageItem("screenBrightness") || "1";
-    const savedTime = getLocalStorageItem("defaultTime");
-    
-    document.getElementById('start-sound').volume = parseFloat(savedVolume);
-    document.getElementById('end-sound').volume = parseFloat(savedVolume);
-    document.body.style.opacity = savedBrightness;
-    
-    if (savedTime) {
-        document.getElementById("minutes").value = savedTime;
-    }
-    
-    initializeProgress();
-   
-    
-    // Asegurar que el botón de inicio funcione correctamente
-    const startButton = document.getElementById("start-button");
-    if (startButton) {
-        startButton.addEventListener("click", startTimer);
-    }
-
-        const stopButton = document.getElementById("stop-button");
-    if (stopButton) {
-        stopButton.addEventListener("click", stopTimer);
-    }
-    requestFullscreen();
-};
