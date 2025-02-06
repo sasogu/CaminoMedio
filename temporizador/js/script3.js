@@ -66,23 +66,16 @@ function changeBrightness(targetBrightness, duration = 6000) {
 function requestFullscreen() {
     const body = document.body;
     if (body.requestFullscreen) {
-        body.requestFullscreen().catch(err => {
-            console.error('Error al solicitar pantalla completa:', err);
-        });
+        return body.requestFullscreen();
     } else if (body.mozRequestFullScreen) { // Soporte para Firefox
-        body.mozRequestFullScreen().catch(err => {
-            console.error('Error al solicitar pantalla completa:', err);
-        });
+        return body.mozRequestFullScreen();
     } else if (body.webkitRequestFullscreen) { // Soporte para navegadores Webkit (Safari, etc.)
-        body.webkitRequestFullscreen().catch(err => {
-            console.error('Error al solicitar pantalla completa:', err);
-        });
+        return body.webkitRequestFullscreen();
     } else if (body.msRequestFullscreen) { // Soporte para IE/Edge
-        body.msRequestFullscreen().catch(err => {
-            console.error('Error al solicitar pantalla completa:', err);
-        });
+        return body.msRequestFullscreen();
     } else {
         console.error('Pantalla completa no soportada en este navegador.');
+        return Promise.reject('Pantalla completa no soportada en este navegador.');
     }
 }
 
@@ -240,6 +233,7 @@ function restoreInitialScreen() {
     document.getElementById('start-button').classList.remove('hidden');
     document.getElementById('save-button').classList.remove('hidden');
     document.getElementById('stop-button').classList.add('hidden');
+    document.getElementById('caminomedio-button').classList.remove('hidden'); // Asegúrate de que el botón se muestre
     document.getElementById('time').textContent = "00:00";
     initializeProgress(); // Asegurarse de que el Ensō se restaure
     releaseWakeLock(); // Liberar el Wake Lock
@@ -247,11 +241,22 @@ function restoreInitialScreen() {
 
 // Función para detener el temporizador
 function stopTimer() {
-    clearInterval(timer);
-    timer = null;
+    if (timer) {
+        clearInterval(timer);
+        timer = null;
+    }
     remainingTime = 0;
-    updateProgress();
-    restoreInitialScreen();
+    document.getElementById('time').textContent = "00:00";
+    releaseWakeLock();
+    initializeProgress();
+    document.getElementById('logo').src = "multimedia/logoblanco.png";
+    document.getElementById('title').classList.remove('hidden');
+    document.getElementById('minutes').classList.remove('hidden');
+    document.getElementById('start-button').classList.remove('hidden');
+    document.getElementById('save-button').classList.remove('hidden');
+    document.getElementById('stop-button').classList.add('hidden');
+    document.getElementById('caminomedio-button').classList.remove('hidden'); // Asegúrate de que el botón se muestre
+    document.getElementById('time').textContent = "00:00";
 }
 
 // Activar reducción de brillo progresiva, Wake Lock y pantalla completa al iniciar el temporizador

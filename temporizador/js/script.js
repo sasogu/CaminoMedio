@@ -28,29 +28,7 @@ function releaseWakeLock() {
     }
 }
 
-// Función para solicitar pantalla completa
-function requestFullscreen() {
-    const body = document.body;
-    if (body.requestFullscreen) {
-        body.requestFullscreen().catch(err => {
-            console.error('Error al solicitar pantalla completa:', err);
-        });
-    } else if (body.mozRequestFullScreen) { // Soporte para Firefox
-        body.mozRequestFullScreen().catch(err => {
-            console.error('Error al solicitar pantalla completa:', err);
-        });
-    } else if (body.webkitRequestFullscreen) { // Soporte para navegadores Webkit (Safari, etc.)
-        body.webkitRequestFullscreen().catch(err => {
-            console.error('Error al solicitar pantalla completa:', err);
-        });
-    } else if (body.msRequestFullscreen) { // Soporte para IE/Edge
-        body.msRequestFullscreen().catch(err => {
-            console.error('Error al solicitar pantalla completa:', err);
-        });
-    } else {
-        console.error('Pantalla completa no soportada en este navegador.');
-    }
-}
+
 
 // Configuración inicial del Ensō
 function initializeProgress() {
@@ -93,7 +71,7 @@ window.onload = function () {
     if (stopButton) {
         stopButton.addEventListener("click", stopTimer);
     }
-    requestFullscreen();
+   
 };
 
 
@@ -193,3 +171,9 @@ function stopTimer() {
     document.getElementById('caminomedio-button').classList.remove('hidden');
     document.getElementById('time').textContent = "00:00";
 }
+
+// Agregar evento de clic al botón del temporizador
+document.getElementById('temporizador-button').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevenir la acción por defecto del enlace
+    window.location.href = '/temporizador/index.html'; // Redirigir a la página del temporizador
+});
