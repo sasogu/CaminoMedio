@@ -120,25 +120,28 @@ window.addEventListener('DOMContentLoaded', event => {
 
 // Función para solicitar pantalla completa
 function requestFullscreen() {
-    const element = document.documentElement; // Cubre toda la pantalla
-
-    if (element.requestFullscreen) {
-        element.requestFullscreen();
-    } else if (element.mozRequestFullScreen) { // Firefox
-        element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullscreen) { // Chrome, Safari y Opera
-        element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) { // IE/Edge
-        element.msRequestFullscreen();
+    const body = document.body;
+    if (body.requestFullscreen) {
+        return body.requestFullscreen();
+    } else if (body.mozRequestFullScreen) { // Soporte para Firefox
+        return body.mozRequestFullScreen();
+    } else if (body.webkitRequestFullscreen) { // Soporte para navegadores Webkit (Safari, etc.)
+        return body.webkitRequestFullscreen();
+    } else if (body.msRequestFullscreen) { // Soporte para IE/Edge
+        return body.msRequestFullscreen();
+    } else {
+        console.error('Pantalla completa no soportada en este navegador.');
+        return Promise.reject('Pantalla completa no soportada en este navegador.');
     }
 }
 
-document.addEventListener("fullscreenchange", function () {
-    if (!document.fullscreenElement) {
-        requestFullscreen();
-    }
+// Agregar evento de clic al botón del temporizador
+document.getElementById('temporizador-button').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevenir la acción por defecto del enlace
+    requestFullscreen().then(() => {
+        window.location.href = 'temporizador/'; // Redirigir a la página del temporizador
+    }).catch(err => {
+        console.error('Error al solicitar pantalla completa:', err);
+        window.location.href = 'temporizador/'; // Redirigir a la página del temporizador incluso si falla la solicitud de pantalla completa
+    });
 });
-
-window.onload = function () {
-requestFullscreen();
-}
