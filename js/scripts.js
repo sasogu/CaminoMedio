@@ -118,20 +118,5 @@ window.addEventListener('DOMContentLoaded', event => {
     
 });
 
-// Función para solicitar pantalla completa
-function requestFullscreen() {
-    const body = document.body;
-    if (body.requestFullscreen) {
-        return body.requestFullscreen();
-    } else if (body.mozRequestFullScreen) { // Soporte para Firefox
-        return body.mozRequestFullScreen();
-    } else if (body.webkitRequestFullscreen) { // Soporte para navegadores Webkit (Safari, etc.)
-        return body.webkitRequestFullscreen();
-    } else if (body.msRequestFullscreen) { // Soporte para IE/Edge
-        return body.msRequestFullscreen();
-    } else {
-        console.error('Pantalla completa no soportada en este navegador.');
-        return Promise.reject('Pantalla completa no soportada en este navegador.');
-    }
-};
+
 
