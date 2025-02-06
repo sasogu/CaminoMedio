@@ -101,18 +101,31 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// Interceptar las solicitudes de red y servir desde la caché cuando sea necesario
+// Interceptar solicitudes de red
 self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            return cachedResponse || fetch(event.request).then((response) => {
-                return caches.open(CACHE_NAME).then((cache) => {
-                    cache.put(event.request, response.clone());
-                    return response;
+    if (event.request.url.startsWith(self.location.origin)) {
+        // Manejar solicitudes internas
+        event.respondWith(
+            caches.match(event.request).then((response) => {
+                return response || fetch(event.request).then((fetchResponse) => {
+                    return caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, fetchResponse.clone());
+                        return fetchResponse;
+                    });
                 });
-            });
-        }).catch(() => caches.match('index.html')) // En caso de error, redirige a una página offline
-    );
+            }).catch(() => caches.match('index.html')) // En caso de error, redirige a una página offline
+        );
+    } else {
+        // Manejar solicitudes externas
+        event.respondWith(
+            fetch(event.request).then((response) => {
+                return response;
+            }).catch(() => {
+                // Opcional: Manejar errores para solicitudes externas
+                console.error('Error al obtener recurso externo:', event.request.url);
+            })
+        );
+    }
 });
 
 // Activar el Service Worker y eliminar cachés antiguas
@@ -125,5 +138,3 @@ self.addEventListener('activate', (event) => {
         })
     );
 });
-
-
