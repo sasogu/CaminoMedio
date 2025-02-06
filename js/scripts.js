@@ -142,6 +142,7 @@ document.getElementById('temporizador-button').addEventListener('click', functio
         window.location.href = 'temporizador/'; // Redirigir a la página del temporizador
     }).catch(err => {
         console.error('Error al solicitar pantalla completa:', err);
-        window.location.href = 'temporizador/'; // Redirigir a la página del temporizador incluso si falla la solicitud de pantalla completa
+        window.location.href = 'temporizador/index.html'; // Redirigir a la página del temporizador incluso si falla la solicitud de pantalla completa
     });
 });
+
