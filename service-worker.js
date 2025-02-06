@@ -112,7 +112,7 @@ self.addEventListener('fetch', (event) => {
                     return response;
                 });
             });
-        }).catch(() => caches.match('offline.html')) // En caso de error, redirige a una página offline
+        }).catch(() => caches.match('index.html')) // En caso de error, redirige a una página offline
     );
 });
 
