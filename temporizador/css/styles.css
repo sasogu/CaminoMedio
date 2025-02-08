@@ -154,3 +154,15 @@ button:hover {
     transition: stroke-dashoffset 1s linear;
 }
 
+#quote a {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #76c7c0;
+    text-decoration: none;
+}
+
+#quote a:hover {
+    text-decoration: underline;
+}
+

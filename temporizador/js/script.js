@@ -100,6 +100,7 @@ function updateProgress() {
     progressCircle.style.strokeDashoffset = offset;
 }
 
+
 function updateTime() {
     if (remainingTime > 0) {
         remainingTime--;
@@ -112,15 +113,25 @@ function updateTime() {
         clearInterval(timer);
         timer = null;
         playSound(document.getElementById('end-sound'));
+
         setTimeout(() => {
             const randomPhrase = getRandomPhrase();
-            document.getElementById('quote').textContent = randomPhrase;
-            alert(randomPhrase);
+            
+            // Mostrar frase y enlace en el HTML
+            const quoteElement = document.getElementById('quote');
+            quoteElement.innerHTML = `${randomPhrase.text} <br> <a href="${randomPhrase.link}" target="_blank">Ver más</a>`;
+            
+            // Seguir mostrando la frase en el alert (opcional)
+            alert(randomPhrase.text);
+
         }, 500);
+        
         releaseWakeLock();
         initializeProgress();
     }
 }
+
+
 
 function startTimer() {
     const minutesInput = document.getElementById('minutes');
@@ -171,4 +182,3 @@ function stopTimer() {
     document.getElementById('caminomedio-button').classList.remove('hidden');
     document.getElementById('time').textContent = "00:00";
 };
-
