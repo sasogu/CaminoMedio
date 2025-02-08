@@ -11201,3 +11201,15 @@ body {
 .footer {
   padding: 5rem 0;
 }
+
+.chinese {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.pinyin {
+  font-style: italic;
+  color: #555;
+}
+.translation {
+  margin-bottom: 20px;
+}
