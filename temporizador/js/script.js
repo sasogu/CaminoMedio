@@ -171,3 +171,4 @@ function stopTimer() {
     document.getElementById('caminomedio-button').classList.remove('hidden');
     document.getElementById('time').textContent = "00:00";
 };
+
