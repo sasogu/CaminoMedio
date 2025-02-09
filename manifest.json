@@ -9,7 +9,7 @@
   "short_name": "CaminoMedio",
   "theme_color": "#000",
   "description": "Aplicación de la Comunidad Soto Zen Camino Medio",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "related_applications": [],
   "prefer_related_applications": false,
