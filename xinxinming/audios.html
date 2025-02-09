@@ -18,6 +18,46 @@
         rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../css/styles.css" rel="stylesheet" />
+    <style>
+    audio {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 10px;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    li {
+        background-color: #fff0;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    li:hover {
+        background-color: #990000;
+    }
+    .active {
+        background-color: #76c7c0;
+        color: #121212;
+        font-weight: bold;
+    }
+    button {
+        background-color: #76c7c0;
+        color: #121212;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #5aa6a0;
+    }
+    </style>
 </head>
 
 <body id="page-top">
@@ -56,9 +96,14 @@
         <body>
         
             <h2></h2>
-            <audio id="audioPlayer" controls></audio>
-            <ul id="playlist"></ul>
         
+           <br>
+           <div> <button id="toggleLoop">Reproducción Automática: Activada</button></div>
+            <br>
+            <audio id="audioPlayer" controls></audio>
+            <br>
+            <ul id="playlist"></ul>
+            <br>
             <script>
                 // Lista de URLs de archivos MP3
                 const audioFiles = [
@@ -74,48 +119,69 @@
                 ];
         
                 const playlist = document.getElementById('playlist');
-                const audioPlayer = document.getElementById('audioPlayer');
-                let currentTrackIndex = 0;
-        
-                // Función para extraer el nombre del archivo desde la URL
-                function getFileName(url) {
-                    return decodeURIComponent(url.substring(url.lastIndexOf('/') + 1))
-                        .replace(/-/g, ' ') // Reemplaza guiones por espacios
-                        .replace('.mp3', ''); // Elimina la extensión
+        const audioPlayer = document.getElementById('audioPlayer');
+        const toggleLoopButton = document.getElementById('toggleLoop');
+        let currentTrackIndex = 0;
+        let autoPlayEnabled = true;
+
+        // Función para extraer el nombre del archivo desde la URL
+        function getFileName(url) {
+            return decodeURIComponent(url.substring(url.lastIndexOf('/') + 1))
+                .replace(/-/g, ' ') // Reemplaza guiones por espacios
+                .replace('.mp3', ''); // Elimina la extensión
+        }
+
+        // Generar la lista de reproducción
+        audioFiles.forEach((url, index) => {
+            let listItem = document.createElement('li');
+            listItem.textContent = getFileName(url);
+            listItem.style.cursor = "pointer";
+
+            listItem.onclick = function() {
+                playTrack(index);
+            };
+
+            playlist.appendChild(listItem);
+        });
+
+        // Función para reproducir una pista y resaltar la actual
+        function playTrack(index) {
+            currentTrackIndex = index;
+            audioPlayer.src = audioFiles[currentTrackIndex];
+            audioPlayer.play();
+            highlightCurrentTrack();
+        }
+
+        // Función para resaltar la pista en la lista
+        function highlightCurrentTrack() {
+            const items = playlist.getElementsByTagName('li');
+            for (let i = 0; i < items.length; i++) {
+                items[i].classList.remove('active');
+            }
+            items[currentTrackIndex].classList.add('active');
+        }
+
+        // Evento para avanzar a la siguiente pista cuando termina
+        audioPlayer.addEventListener("ended", function() {
+            if (autoPlayEnabled) {
+                currentTrackIndex++;
+                if (currentTrackIndex >= audioFiles.length) {
+                    currentTrackIndex = 0; // Vuelve a la primera pista al llegar al final
                 }
-        
-                // Generar la lista de reproducción
-                audioFiles.forEach((url, index) => {
-                    let listItem = document.createElement('li');
-                    listItem.textContent = getFileName(url);
-                    listItem.style.cursor = "pointer";
-        
-                    listItem.onclick = function() {
-                        playTrack(index);
-                    };
-        
-                    playlist.appendChild(listItem);
-                });
-        
-                // Función para reproducir una pista por índice
-                function playTrack(index) {
-                    currentTrackIndex = index;
-                    audioPlayer.src = audioFiles[currentTrackIndex];
-                    audioPlayer.play();
-                }
-        
-                // Evento para avanzar a la siguiente pista cuando termina
-                audioPlayer.addEventListener("ended", function() {
-                    currentTrackIndex++;
-                    if (currentTrackIndex >= audioFiles.length) {
-                        currentTrackIndex = 0; // Vuelve a la primera pista al llegar al final
-                    }
-                    playTrack(currentTrackIndex);
-                });
-        
-                // Cargar la primera pista sin reproducir automáticamente
-                playTrack(0);
-            </script>
+                playTrack(currentTrackIndex);
+            }
+        });
+
+        // Botón para activar/desactivar la reproducción automática
+        toggleLoopButton.addEventListener("click", function() {
+            autoPlayEnabled = !autoPlayEnabled;
+            toggleLoopButton.textContent = `Reproducción Automática: ${autoPlayEnabled ? "Activada" : "Desactivada"}`;
+        });
+
+        // Cargar la primera pista sin reproducir automáticamente
+        playTrack(0);
+    </script>
+
         
        
       
