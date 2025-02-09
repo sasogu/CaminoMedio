@@ -46,41 +46,81 @@
     <div class="container">
         <br>
         
-            <h2>Reproductor MP3</h2>
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Reproductor MP3 desde URL</title>
+        </head>
+        <body>
+        
+            <h2></h2>
             <audio id="audioPlayer" controls></audio>
             <ul id="playlist"></ul>
         
             <script>
-                // Cargar lista de MP3 desde PHP
-                fetch('list_files.php')
-                    .then(response => response.json())
-                    .then(files => {
-                        const playlist = document.getElementById('playlist');
-                        const audioPlayer = document.getElementById('audioPlayer');
+                // Lista de URLs de archivos MP3
+                const audioFiles = [
+                    "https://www.daizansoriano.com/wp-content/uploads/2024/01/1.-La-Via-Suprema-no-es-dificil.mp3",
+                    "https://www.daizansoriano.com/wp-content/uploads/2024/01/2.-Cuando-no-hay-amor-ni-odio.mp3",
+                    "https://www.daizansoriano.com/wp-content/uploads/2024/03/3.-Pero-si-se-crea-la-menor-diferencia.mp3",
+                    "https://www.daizansoriano.com/wp-content/uploads/2024/03/4.-Para-que-se-declare-ante-los-ojos.mp3",
+                    "https://www.daizansoriano.com/wp-content/uploads/2024/03/5.-La-lucha-entre-el-deseo-y-el-rechazo.mp3",
+                    "https://www.daizansoriano.com/wp-content/uploads/2024/03/6.-Al-no-comprender-el-sentido-profundo.mp3",
+                    "https://www.daizansoriano.com/wp-content/uploads/2024/03/7.-Perfecta-como-el-espacio-inmenso.mp3",
+                    "https://www.daizansoriano.com/wp-content/uploads/2024/03/8.-A-causa-del-apego-y-el-rechazo.mp3",
+                    "https://www.daizansoriano.com/wp-content/uploads/2024/03/9.-No-hay-que-correr-detras-de-los-fenomenos.mp3"
+                ];
         
-                        files.forEach((file, index) => {
-                            let listItem = document.createElement('li');
-                            listItem.textContent = file;
-                            listItem.style.cursor = "pointer";
+                const playlist = document.getElementById('playlist');
+                const audioPlayer = document.getElementById('audioPlayer');
+                let currentTrackIndex = 0;
         
-                            listItem.onclick = function() {
-                                audioPlayer.src = 'mp3/' + file;
-                                audioPlayer.play();
-                            };
+                // Función para extraer el nombre del archivo desde la URL
+                function getFileName(url) {
+                    return decodeURIComponent(url.substring(url.lastIndexOf('/') + 1))
+                        .replace(/-/g, ' ') // Reemplaza guiones por espacios
+                        .replace('.mp3', ''); // Elimina la extensión
+                }
         
-                            playlist.appendChild(listItem);
+                // Generar la lista de reproducción
+                audioFiles.forEach((url, index) => {
+                    let listItem = document.createElement('li');
+                    listItem.textContent = getFileName(url);
+                    listItem.style.cursor = "pointer";
         
-                            // Autoreproducir el primer archivo
-                            if (index === 0) {
-                                audioPlayer.src = 'mp3/' + file;
-                            }
-                        });
-                    })
-                    .catch(error => console.error('Error cargando la lista de MP3:', error));
-            </script> 
+                    listItem.onclick = function() {
+                        playTrack(index);
+                    };
+        
+                    playlist.appendChild(listItem);
+                });
+        
+                // Función para reproducir una pista por índice
+                function playTrack(index) {
+                    currentTrackIndex = index;
+                    audioPlayer.src = audioFiles[currentTrackIndex];
+                    audioPlayer.play();
+                }
+        
+                // Evento para avanzar a la siguiente pista cuando termina
+                audioPlayer.addEventListener("ended", function() {
+                    currentTrackIndex++;
+                    if (currentTrackIndex >= audioFiles.length) {
+                        currentTrackIndex = 0; // Vuelve a la primera pista al llegar al final
+                    }
+                    playTrack(currentTrackIndex);
+                });
+        
+                // Cargar la primera pista sin reproducir automáticamente
+                playTrack(0);
+            </script>
+        
+       
+      
 
-
-
+</div>
     </div>
         <!-- Signup-->
         <section class="signup-section" id="signup">
