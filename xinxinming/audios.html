@@ -19,65 +19,73 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../css/styles.css" rel="stylesheet" />
     <style>
-    audio {
-        width: 100%;
-        max-width: 400px;
-        margin-bottom: 10px;
-    }
-    ul {
-        list-style: none;
-        padding: 0;
-    }
-    li {
-        background-color: #fff0;
-        margin: 5px 0;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-    li:hover {
-        background-color: #990000;
-    }
-    .active {
-        background-color: #76c7c0;
-        color: #121212;
-        font-weight: bold;
-    }
-    button {
-        background-color: #76c7c0;
-        color: #121212;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-        font-size: 16px;
-    }
-    button:hover {
-        background-color: #5aa6a0;
-    }
+        audio {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff0;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        li:hover {
+            background-color: #c2c0c0;
+        }
+
+        .active {
+            background-color: #76c7c0;
+            color: #121212;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #76c7c0;
+            color: #121212;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #5aa6a0;
+        }
     </style>
 </head>
 
 <body id="page-top">
-        <!-- Navigation-->
-        <div id="navbar-container">
-            <!-- Incluir el script para cargar el navbar -->
-            <script src="loadNavbar.js"></script>
-              
-               </div>
+    <!-- Navigation-->
+    <div id="navbar-container">
+        <!-- Incluir el script para cargar el navbar -->
+        <script src="loadNavbar.js"></script>
+
+    </div>
     <!-- Masthead-->
     <header class="masthead">
         <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
             <div class="d-flex justify-content-center">
                 <div class="text-center">
-                    <h1 class="mx-auto my-0 text-uppercase">Xin Xin Ming</h1>
-                    <h2 class="text-white-50 mx-auto mt-2 mb-5">El Xin Xin Ming expresa la esencia de la práctica y
-                        realización de del Chan.
-                        Con un lenguaje directo y profundo, el texto señala la importancia de la no-dualidad y la
-                        armonización de la mente más allá de los extremos conceptuales,
-                        .</h2>
+                    <h1 class="mx-auto my-0 text-uppercase">Audios</h1>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">
+                        Esta Audioteca es un proyecto de la Comunidad Soto Zen Camino Medio (CSZCM) que ofrece
+                        grabaciones del texto Xin Xin Ming. Esta audioteca proporciona versiones narradas del texto,
+                        acompañadas de los comentarios del maestro Soto Zen Daizan Soriano, para facilitar su
+                        comprensión y profundización en la práctica. Su objetivo es hacer accesible esta enseñanza a
+                        través de un formato auditivo,
+                        permitiendo su estudio en cualquier momento y lugar.</h2>
                 </div>
             </div>
         </div>
@@ -85,20 +93,22 @@
 
     <div class="container">
         <br>
-        
+
         <!DOCTYPE html>
         <html lang="es">
+
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Reproductor MP3 desde URL</title>
         </head>
+
         <body>
-        
+
             <h2></h2>
-        
-           <br>
-           <div> <button id="toggleLoop">Reproducción Automática: Activada</button></div>
+
+            <br>
+            <div> <button id="toggleLoop">Reproducción Automática: Activada</button></div>
             <br>
             <audio id="audioPlayer" controls></audio>
             <br>
@@ -117,166 +127,165 @@
                     "mp3/8.-A-causa-del-apego-y-el-rechazo.mp3",
                     "mp3/9.-No-hay-que-correr-detras-de-los-fenomenos.mp3"
                 ];
-        
+
                 const playlist = document.getElementById('playlist');
-        const audioPlayer = document.getElementById('audioPlayer');
-        const toggleLoopButton = document.getElementById('toggleLoop');
-        let currentTrackIndex = 0;
-        let autoPlayEnabled = true;
+                const audioPlayer = document.getElementById('audioPlayer');
+                const toggleLoopButton = document.getElementById('toggleLoop');
+                let currentTrackIndex = 0;
+                let autoPlayEnabled = true;
 
-        // Función para extraer el nombre del archivo desde la URL
-        function getFileName(url) {
-            return decodeURIComponent(url.substring(url.lastIndexOf('/') + 1))
-                .replace(/-/g, ' ') // Reemplaza guiones por espacios
-                .replace('.mp3', ''); // Elimina la extensión
-        }
-
-        // Generar la lista de reproducción
-        audioFiles.forEach((url, index) => {
-            let listItem = document.createElement('li');
-            listItem.textContent = getFileName(url);
-            listItem.style.cursor = "pointer";
-
-            listItem.onclick = function() {
-                playTrack(index);
-            };
-
-            playlist.appendChild(listItem);
-        });
-
-        // Función para reproducir una pista y resaltar la actual
-        function playTrack(index) {
-            currentTrackIndex = index;
-            audioPlayer.src = audioFiles[currentTrackIndex];
-            audioPlayer.play();
-            highlightCurrentTrack();
-        }
-
-        // Función para resaltar la pista en la lista
-        function highlightCurrentTrack() {
-            const items = playlist.getElementsByTagName('li');
-            for (let i = 0; i < items.length; i++) {
-                items[i].classList.remove('active');
-            }
-            items[currentTrackIndex].classList.add('active');
-        }
-
-        // Evento para avanzar a la siguiente pista cuando termina
-        audioPlayer.addEventListener("ended", function() {
-            if (autoPlayEnabled) {
-                currentTrackIndex++;
-                if (currentTrackIndex >= audioFiles.length) {
-                    currentTrackIndex = 0; // Vuelve a la primera pista al llegar al final
+                // Función para extraer el nombre del archivo desde la URL
+                function getFileName(url) {
+                    return decodeURIComponent(url.substring(url.lastIndexOf('/') + 1))
+                        .replace(/-/g, ' ') // Reemplaza guiones por espacios
+                        .replace('.mp3', ''); // Elimina la extensión
                 }
-                playTrack(currentTrackIndex);
-            }
-        });
 
-        // Botón para activar/desactivar la reproducción automática
-        toggleLoopButton.addEventListener("click", function() {
-            autoPlayEnabled = !autoPlayEnabled;
-            toggleLoopButton.textContent = `Reproducción Automática: ${autoPlayEnabled ? "Activada" : "Desactivada"}`;
-        });
+                // Generar la lista de reproducción
+                audioFiles.forEach((url, index) => {
+                    let listItem = document.createElement('li');
+                    listItem.textContent = getFileName(url);
+                    listItem.style.cursor = "pointer";
 
-        // Cargar la primera pista sin reproducir automáticamente
-        playTrack(0);
-    </script>
+                    listItem.onclick = function () {
+                        playTrack(index);
+                    };
 
-        
-       
-      
+                    playlist.appendChild(listItem);
+                });
 
-</div>
+                // Función para reproducir una pista y resaltar la actual
+                function playTrack(index) {
+                    currentTrackIndex = index;
+                    audioPlayer.src = audioFiles[currentTrackIndex];
+                    audioPlayer.play();
+                    highlightCurrentTrack();
+                }
+
+                // Función para resaltar la pista en la lista
+                function highlightCurrentTrack() {
+                    const items = playlist.getElementsByTagName('li');
+                    for (let i = 0; i < items.length; i++) {
+                        items[i].classList.remove('active');
+                    }
+                    items[currentTrackIndex].classList.add('active');
+                }
+
+                // Evento para avanzar a la siguiente pista cuando termina
+                audioPlayer.addEventListener("ended", function () {
+                    if (autoPlayEnabled) {
+                        currentTrackIndex++;
+                        if (currentTrackIndex >= audioFiles.length) {
+                            currentTrackIndex = 0; // Vuelve a la primera pista al llegar al final
+                        }
+                        playTrack(currentTrackIndex);
+                    }
+                });
+
+                // Botón para activar/desactivar la reproducción automática
+                toggleLoopButton.addEventListener("click", function () {
+                    autoPlayEnabled = !autoPlayEnabled;
+                    toggleLoopButton.textContent = `Reproducción Automática: ${autoPlayEnabled ? "Activada" : "Desactivada"}`;
+                });
+
+                // Cargar la primera pista sin reproducir automáticamente
+                playTrack(0);
+            </script>
+
+
+
+
+
     </div>
-        <!-- Signup-->
-        <section class="signup-section" id="signup">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-md-10 col-lg-8 mx-auto text-center">
-                        <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                        <h2 class="text-white mb-5">Suscríbete</h2>
-                        <form method="post" action="https://lista.caminomedio.org/subscription/form"
-                            class="listmonk-form">
-                            <div>
+    </div>
+    <!-- Signup-->
+    <section class="signup-section" id="signup">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-md-10 col-lg-8 mx-auto text-center">
+                    <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+                    <h2 class="text-white mb-5">Suscríbete</h2>
+                    <form method="post" action="https://lista.caminomedio.org/subscription/form" class="listmonk-form">
+                        <div>
 
-                                <input type="hidden" name="nonce" />
-                                <p><input type="text" name="name" placeholder="Nombre y apellidos" /></p>
-                                <p><input type="email" name="email" required placeholder="Correo electrónico" /></p>
-                                <p>
-                                    <input id="4f58a" type="checkbox" name="l" checked
-                                        value="4f58af49-72db-46d4-b64b-ff1930ec3c60" />
-                                    <label for="4f58a"><a href="https://www.caminomedio.org/politica-de-privacidad/">He
-                                            leído y acepto los términos y condiciones</a></label><br />
-                                </p>
-                                <div class="captcha">
-                                    <div class="h-captcha" data-sitekey="ce52d808-d5d6-476a-9de8-e3cca0ce9a24"></div>
-                                    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
-                                </div>
-
-                                <p><input type="submit" value="Suscribirse"
-                                        class="wp-block-button__link wp-element-button" /></p>
+                            <input type="hidden" name="nonce" />
+                            <p><input type="text" name="name" placeholder="Nombre y apellidos" /></p>
+                            <p><input type="email" name="email" required placeholder="Correo electrónico" /></p>
+                            <p>
+                                <input id="4f58a" type="checkbox" name="l" checked
+                                    value="4f58af49-72db-46d4-b64b-ff1930ec3c60" />
+                                <label for="4f58a"><a href="https://www.caminomedio.org/politica-de-privacidad/">He
+                                        leído y acepto los términos y condiciones</a></label><br />
+                            </p>
+                            <div class="captcha">
+                                <div class="h-captcha" data-sitekey="ce52d808-d5d6-476a-9de8-e3cca0ce9a24"></div>
+                                <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
                             </div>
-                        </form>
-                    </div>
+
+                            <p><input type="submit" value="Suscribirse"
+                                    class="wp-block-button__link wp-element-button" /></p>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </section>
-        <!-- Contact-->
-        <section class="contact-section bg-black">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-envelope text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Email</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"><a
-                                        href="mailto:info.caminomedio@gmail.com">info.caminomedio@gmail.com </a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Teléfono</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"><a href="tel:+34616305406">+34616305406</a></div>
-                            </div>
+        </div>
+    </section>
+    <!-- Contact-->
+    <section class="contact-section bg-black">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-envelope text-primary mb-2"></i>
+                            <h4 class="text-uppercase m-0">Email</h4>
+                            <hr class="my-4 mx-auto" />
+                            <div class="small text-black-50"><a
+                                    href="mailto:info.caminomedio@gmail.com">info.caminomedio@gmail.com </a></div>
                         </div>
                     </div>
                 </div>
-                <div class="social d-flex justify-content-center">
-                    <a class="mx-2" href="https://chat.whatsapp.com/IoojVw6I0eUJRa9VxjrXRr"><i
-                            class="fab fa-whatsapp"></i></a>
-                    <a class="mx-2" href="https://t.me/caminomedio"><i class="fab fa-telegram"></i></a>
-                    <a class="mx-2" href="https://www.instagram.com/camino.medio/"><i class="fab fa-instagram"></i></a>
-                    <a class="mx-2" href="https://www.facebook.com/profile.php?id=61571262761827"><i
-                            class="fab fa-facebook-f"></i></a>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                            <h4 class="text-uppercase m-0">Teléfono</h4>
+                            <hr class="my-4 mx-auto" />
+                            <div class="small text-black-50"><a href="tel:+34616305406">+34616305406</a></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-        <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50">
-            <div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025</div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="../js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        <script>
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('../service-worker.js')
-                    .then(() => console.log('Service Worker registrado correctamente'))
-                    .catch(error => console.error('Error al registrar el Service Worker:', error));
-            }
-        </script>
+            <div class="social d-flex justify-content-center">
+                <a class="mx-2" href="https://chat.whatsapp.com/IoojVw6I0eUJRa9VxjrXRr"><i
+                        class="fab fa-whatsapp"></i></a>
+                <a class="mx-2" href="https://t.me/caminomedio"><i class="fab fa-telegram"></i></a>
+                <a class="mx-2" href="https://www.instagram.com/camino.medio/"><i class="fab fa-instagram"></i></a>
+                <a class="mx-2" href="https://www.facebook.com/profile.php?id=61571262761827"><i
+                        class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="footer bg-black small text-center text-white-50">
+        <div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025</div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="../js/scripts.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('../service-worker.js')
+                .then(() => console.log('Service Worker registrado correctamente'))
+                .catch(error => console.error('Error al registrar el Service Worker:', error));
+        }
+    </script>
 
 </body>
 
