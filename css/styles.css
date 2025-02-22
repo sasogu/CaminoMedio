@@ -11218,3 +11218,9 @@ body {
   justify-content: space-between;
   margin-top: 20px;
 } 
+
+.responsive-image {
+  width: 550px; /* Ajusta el ancho según sea necesario */
+  height: 400px; /* Ajusta la altura según sea necesario */
+  object-fit: contain; /* Mantiene la proporción de la imagen y la ajusta dentro del contenedor */
+}
