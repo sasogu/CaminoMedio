@@ -63,9 +63,9 @@ window.addEventListener('DOMContentLoaded', event => {
                     newWorker.addEventListener('statechange', () => {
                         if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
                             // Notificar al usuario solo si ya hay un controlador
-                            if (confirm("Hay una nueva versión disponible. ¿Deseas actualizar?")) {
+                            // if (confirm("Hay una nueva versión disponible. ¿Deseas actualizar?")) {
                                 window.location.reload();
-                            }
+                           //  }
                         }
                     });
                 });
@@ -73,9 +73,9 @@ window.addEventListener('DOMContentLoaded', event => {
                 // Verificar si hay una actualización manualmente
                 navigator.serviceWorker.addEventListener('controllerchange', () => {
                     console.log("Nueva versión del Service Worker activa.");
-                    if (confirm("Se ha instalado una nueva versión. ¿Actualizar ahora?")) {
+                  //   if (confirm("Se ha instalado una nueva versión. ¿Actualizar ahora?")) {
                         window.location.reload();
-                    }
+                  //   }
                 });
             })
             .catch((error) => {
