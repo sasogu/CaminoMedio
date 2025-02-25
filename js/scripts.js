@@ -62,7 +62,7 @@ window.addEventListener('DOMContentLoaded', event => {
                     const newWorker = registration.installing;
                     newWorker.addEventListener('statechange', () => {
                         if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            // Notificar al usuario
+                            // Notificar al usuario solo si ya hay un controlador
                             if (confirm("Hay una nueva versión disponible. ¿Deseas actualizar?")) {
                                 window.location.reload();
                             }
@@ -84,13 +84,13 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
     // Solicitar permiso para notificaciones push
-    if ('Notification' in window && Notification.permission !== 'granted') {
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                console.log("Permiso para notificaciones concedido.");
-            }
-        });
-    }
+    // if ('Notification' in window && Notification.permission !== 'granted') {
+     //    Notification.requestPermission().then(permission => {
+     //        if (permission === 'granted') {
+      //           console.log("Permiso para notificaciones concedido.");
+     //        }
+      //   });
+     //}
     
     // Mostrar notificación push para instalar
 
