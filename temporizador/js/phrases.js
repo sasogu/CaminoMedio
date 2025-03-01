@@ -13,7 +13,7 @@
         { text: "12. Aferrarse a los extremos, impide realizar la unidad.", link: "https://www.daizansoriano.com/12" },
         { text: "13. Si no alcanzas la unidad, te perderás en ambos extremos.", link: "https://www.daizansoriano.com/13" },
         { text: "14. Al rechazar la existencia, se pierde su verdadera naturaleza, al aferrarse al vacío, se niega su auténtico significado.", link: "https://www.daizansoriano.com/14" },
-        { text: "15. Cuantas más palabras y pensamientos, más lejos estamos de nuestra armonía intrinseca.", link: "https://www.daizansoriano.com/15" },
+        { text: "15. Cuantas más palabras y pensamientos, más lejos estamos de nuestra armonía intrínseca.", link: "https://www.daizansoriano.com/15" },
         { text: "16. Cuando cesan las palabras y el sobrepensamiento, no hay lugar donde no haya claridad.", link: "https://www.daizansoriano.com/16" },
         { text: "17. Volver al origen es alcanzar la esencia, seguir las apariencias es alejarse de la realización.", link: "https://www.daizansoriano.com/17" },
         { text: "18. Cuando la luz se dirige hacia el interior, en un instante, se trasciende el vacío ilusorio.", link: "https://www.daizansoriano.com/18" },
