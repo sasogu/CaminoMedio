@@ -161,6 +161,18 @@ function startTimer() {
         timer = setInterval(updateTime, 1000);
     }
     playSound(document.getElementById('start-sound'));
+
+    // Precargar el sonido final en silencio
+    const endSound = document.getElementById('end-sound');
+    endSound.volume = 0;
+    endSound.play().then(() => {
+        endSound.pause();
+        endSound.currentTime = 0;
+        endSound.volume = parseFloat(getLocalStorageItem("soundVolume") || "0.5");
+    }).catch(error => {
+        console.error("Error al precargar sonido:", error);
+    });
+
     requestWakeLock();
 }
 
