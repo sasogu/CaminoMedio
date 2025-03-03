@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pwa-cszcm-v4';
+const CACHE_NAME = 'pwa-cszcm-v5';
 const urlsToCache = [
     './',
     './index.html',
@@ -20,7 +20,28 @@ const urlsToCache = [
     './temporizador/multimedia/start.mp3',
     './temporizador/multimedia/end.mp3',
     './temporizador/multimedia/logoblanco.png',
-    './temporizador/multimedia/logopeque.png'
+    './temporizador/multimedia/logopeque.png',
+
+    // Xinxinming
+    './xinxinming/index.html',
+    './xinxinming/audios.html',
+    './xinxinming/traduccion.html',
+    './xinxinming/comentarios.html',
+    './xinxinming/comentarios/comentarios1.html',
+    './xinxinming/comentarios/comentarios2.html',
+    './xinxinming/comentarios/comentarios3.html',
+    './xinxinming/comentarios/comentarios4.html',
+    './xinxinming/comentarios/comentarios5.html',
+    './xinxinming/comentarios/comentarios6.html',
+    './xinxinming/comentarios/comentarios7.html',
+    './xinxinming/comentarios/comentarios8.html',
+    './xinxinming/comentarios/comentarios9.html',
+    './xinxinming/comentarios/comentarios10.html',
+    './xinxinming/comentarios/comentarios11.html',
+    './xinxinming/comentarios/comentarios12.html',
+    './xinxinming/comentarios/comentarios13.html',
+    './xinxinming/comentarios/comentarios14.html',
+    './xinxinming/comentarios/comentarios15.html'
 ];
 
 // Instalar el Service Worker y almacenar en caché los archivos
