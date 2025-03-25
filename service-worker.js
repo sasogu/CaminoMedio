@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pwa-cszcm-v6';
+const CACHE_NAME = 'pwa-cszcm-v7';
 const urlsToCache = [
     './',
     './index.html',
