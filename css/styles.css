@@ -11224,3 +11224,32 @@ body {
   height: auto; /* Ajusta la altura según sea necesario */
   object-fit: contain; /* Mantiene la proporción de la imagen y la ajusta dentro del contenedor */
 }
+
+
+
+
+
+
+/* Submenús visibles al hacer hover */
+@media (min-width: 992px) {
+  .navbar .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
+  .navbar .dropdown-toggle::after {
+    transition: transform 0.2s;
+  }
+  .navbar .dropdown:hover .dropdown-toggle::after {
+    transform: rotate(180deg);
+  }
+}
+.navbar-collapse {
+
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.navbar-nav .nav-link {
+  color: #212529;
+}
+
