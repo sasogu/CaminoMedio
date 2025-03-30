@@ -146,7 +146,7 @@
                         <h1 class="mx-auto my-0 text-uppercase">Camino Medio</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">Somos una comunidad comprometida con la práctica y el estudio del budismo Soto Zen. 
                             La práctica compartida en comunidad nos enriquece e inspira, contribuyendo a una sociedad más armoniosa y consciente.</h2>
-                        <a class="btn btn-primary" href="#botones">Adelante</a>
+                            <a class="btn btn-primary" id="fullscreen-button" href="#botones">Adelante</a>
                     </div>
                 </div>
             </div>
@@ -434,7 +434,25 @@
             });
     }
 </script>
-
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const fullscreenButton = document.getElementById("fullscreen-button");
+    
+        fullscreenButton.addEventListener("click", function (event) {
+            event.preventDefault(); // Evitar el comportamiento predeterminado del enlace
+    
+            // Solicitar pantalla completa para el documento
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Para navegadores basados en WebKit
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // Para IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+        });
+    });
+    </script>
+    
 <script>document.addEventListener("DOMContentLoaded",function(){const t=document.querySelector(".navbar-toggler");document.querySelectorAll(".nav-item.dropdown").forEach(function(e){const n=e.querySelector(".nav-link"),o=e.querySelector(".dropdown-menu");n.addEventListener("click",function(n){const r=window.getComputedStyle(t).display!=="none";r&&(n.preventDefault(),document.querySelectorAll(".dropdown-menu.show").forEach(t=>t.classList.remove("show")),o.classList.add("show"))})}),document.querySelector(".navbar-collapse").addEventListener("hidden.bs.collapse",function(){document.querySelectorAll(".dropdown-menu.show").forEach(t=>t.classList.remove("show"))})});</script>
 </body>
 </html>
