@@ -1,9 +1,9 @@
 {
   "id": "/",
-  "scope": "https://*.caminomedio.org/",
+  "scope": "https://caminomedio.org/",
   "handle_links": "preferred",
   "name": "CaminoMedio",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "display": "fullscreen",
   "start_url": "https://caminomedio.org/app/inicio/",
   "short_name": "CaminoMedio",
