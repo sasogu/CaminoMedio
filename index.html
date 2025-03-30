@@ -439,19 +439,24 @@
         const fullscreenButton = document.getElementById("fullscreen-button");
     
         fullscreenButton.addEventListener("click", function (event) {
-            event.preventDefault(); // Evitar el comportamiento predeterminado del enlace
-    
             // Solicitar pantalla completa para el documento
             if (document.documentElement.requestFullscreen) {
                 document.documentElement.requestFullscreen();
-            } else if (document.documentElement.webkitRequestFullscreen) { // Para navegadores basados en WebKit
+            } else if (document.documentElement.webkitRequestFullscreen) { // Para navegadores WebKit
                 document.documentElement.webkitRequestFullscreen();
-            } else if (document.documentElement.msRequestFullscreen) { // Para IE/Edge
+            } else if (document.documentElement.msRequestFullscreen) { // Para IE/Edge antiguos
                 document.documentElement.msRequestFullscreen();
+            }
+    
+            // Navegar suavemente a la sección con id="botones"
+            const target = document.querySelector("#botones");
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
             }
         });
     });
     </script>
+    
     
 <script>document.addEventListener("DOMContentLoaded",function(){const t=document.querySelector(".navbar-toggler");document.querySelectorAll(".nav-item.dropdown").forEach(function(e){const n=e.querySelector(".nav-link"),o=e.querySelector(".dropdown-menu");n.addEventListener("click",function(n){const r=window.getComputedStyle(t).display!=="none";r&&(n.preventDefault(),document.querySelectorAll(".dropdown-menu.show").forEach(t=>t.classList.remove("show")),o.classList.add("show"))})}),document.querySelector(".navbar-collapse").addEventListener("hidden.bs.collapse",function(){document.querySelectorAll(".dropdown-menu.show").forEach(t=>t.classList.remove("show"))})});</script>
 </body>
