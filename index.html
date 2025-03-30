@@ -423,6 +423,17 @@
     });
   });
 </script>
+<script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+        navigator.serviceWorker.register('js/sw.js')
+            .then(function(registration) {
+                console.log('Service Worker registrado con éxito:', registration);
+            })
+            .catch(function(error) {
+                console.error('Error al registrar el Service Worker:', error);
+            });
+    }
+</script>
 
 <script>document.addEventListener("DOMContentLoaded",function(){const t=document.querySelector(".navbar-toggler");document.querySelectorAll(".nav-item.dropdown").forEach(function(e){const n=e.querySelector(".nav-link"),o=e.querySelector(".dropdown-menu");n.addEventListener("click",function(n){const r=window.getComputedStyle(t).display!=="none";r&&(n.preventDefault(),document.querySelectorAll(".dropdown-menu.show").forEach(t=>t.classList.remove("show")),o.classList.add("show"))})}),document.querySelector(".navbar-collapse").addEventListener("hidden.bs.collapse",function(){document.querySelectorAll(".dropdown-menu.show").forEach(t=>t.classList.remove("show"))})});</script>
 </body>
