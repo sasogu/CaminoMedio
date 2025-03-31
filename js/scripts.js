@@ -51,37 +51,6 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
-    // Registrar el Service Worker y manejar actualizaciones
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-            .then((registration) => {
-                console.log('Service Worker registrado con éxito:', registration.scope);
-
-                // Verificar actualizaciones
-                registration.addEventListener('updatefound', () => {
-                    const newWorker = registration.installing;
-                    newWorker.addEventListener('statechange', () => {
-                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            // Notificar al usuario solo si ya hay un controlador
-                            // if (confirm("Hay una nueva versión disponible. ¿Deseas actualizar?")) {
-                                window.location.reload();
-                           //  }
-                        }
-                    });
-                });
-
-                // Verificar si hay una actualización manualmente
-                navigator.serviceWorker.addEventListener('controllerchange', () => {
-                    console.log("Nueva versión del Service Worker activa.");
-                  //   if (confirm("Se ha instalado una nueva versión. ¿Actualizar ahora?")) {
-                        window.location.reload();
-                  //   }
-                });
-            })
-            .catch((error) => {
-                console.error('Error al registrar el Service Worker:', error);
-            });
-    }
 
     // Solicitar permiso para notificaciones push
     // if ('Notification' in window && Notification.permission !== 'granted') {
