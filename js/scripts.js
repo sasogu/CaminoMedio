@@ -52,6 +52,8 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 
+
+
     // Solicitar permiso para notificaciones push
     // if ('Notification' in window && Notification.permission !== 'granted') {
      //    Notification.requestPermission().then(permission => {
