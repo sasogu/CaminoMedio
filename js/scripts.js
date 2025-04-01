@@ -51,8 +51,34 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
-
-
+//Forzar actualización del Service Worker
+    // Si el navegador soporta Service Workers
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('./service-worker.js')
+                .then(function (registration) {
+                    console.log('Service Worker registrado con éxito:', registration.scope);
+    
+                    // Escucha si hay un nuevo SW en espera
+                    registration.onupdatefound = function () {
+                        const newWorker = registration.installing;
+                        newWorker.onstatechange = function () {
+                            if (newWorker.state === 'installed') {
+                                if (navigator.serviceWorker.controller) {
+                                    // Hay un SW nuevo listo para activarse
+                                    console.log('Nueva versión disponible. Recargando...');
+                                    newWorker.postMessage({ type: 'CHECK_UPDATE' });
+                                    window.location.reload(); // 🔁 fuerza recarga con la nueva caché
+                                }
+                            }
+                        };
+                    };
+                }).catch(function (error) {
+                    console.error('Error al registrar el Service Worker:', error);
+                });
+        });
+    }
+    
 
     // Solicitar permiso para notificaciones push
     // if ('Notification' in window && Notification.permission !== 'granted') {
