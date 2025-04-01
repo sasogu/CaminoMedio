@@ -1,0 +1,52 @@
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 20px;
+  }
+  
+  .dark-mode {
+    background-color: #121212;
+    color: #eee;
+  }
+  
+  button {
+    margin: 5px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    background-color: #dbeafe;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .dark-mode button {
+    background-color: #333;
+    color: #eee;
+  }
+  
+  table {
+    margin-top: 10px;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    text-align: left;
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .botonera {
+    margin: 10px 0;
+  }
+  

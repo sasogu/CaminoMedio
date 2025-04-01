@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estadísticas</title>
+  <link rel="stylesheet" href="css/estilos.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <h1>Estadísticas 🧘</h1>
+
+  <div id="estadisticas"></div>
+
+  <div class="botonera">
+    <button onclick="toggleModoOscuro()">🌙 Modo oscuro</button>
+    <button onclick="cambiarSemana(-1)">← Semana anterior</button>
+    <button onclick="resetSemana()">Semana actual</button>
+    <button onclick="cambiarSemana(1)">Semana siguiente →</button>
+    <button onclick="exportarHistorialCSV()">⬇️ Exportar CSV</button>
+    <button onclick="exportarPDF()">📄 Descargar PDF</button>
+    <button onclick="document.getElementById('importarCSV').click()">📤 Importar CSV</button>
+  </div>
+
+  <canvas id="graficoHistorial" width="400" height="200"></canvas>
+  <p id="resumenSemana"></p>
+
+  <input type="file" id="importarCSV" accept=".csv" style="display:none" />
+  <img id="logoPDF" src="../assets/img/logoblanco.png" style="display:none;" crossorigin="anonymous">
+
+  <script type="module">
+    import * as Estadisticas from './js/estadisticas.js';
+  
+    // Llamar a las funciones desde el objeto `Estadisticas`
+    Estadisticas.mostrarEstadisticas();
+    
+  
+    // Asignar funciones a botones
+    document.querySelector('button[onclick="toggleModoOscuro()"]').onclick = Estadisticas.toggleModoOscuro;
+    document.querySelector('button[onclick="cambiarSemana(-1)"]').onclick = () => Estadisticas.cambiarSemana(-1);
+    document.querySelector('button[onclick="resetSemana()"]').onclick = Estadisticas.resetSemana;
+    document.querySelector('button[onclick="cambiarSemana(1)"]').onclick = () => Estadisticas.cambiarSemana(1);
+    document.querySelector('button[onclick="exportarHistorialCSV()"]').onclick = Estadisticas.exportarHistorialCSV;
+    document.querySelector('button[onclick="exportarPDF()"]').onclick = Estadisticas.exportarPDF;
+  </script>
+  <div> <a href="index.html" id="caminomedio-button" class="nav-button">Volver</a></div>
+</body>
+</html>

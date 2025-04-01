@@ -1,5 +1,6 @@
 import { phrases } from './phrases.js';
 
+import { registrarFin } from './estadisticas.js';
 // Función para obtener valores desde localStorage
 function getLocalStorageItem(key) {
     return localStorage.getItem(key) || null;
@@ -112,7 +113,12 @@ function updateTime() {
     } else {
         clearInterval(timer);
         timer = null;
+
+      
+
         playSound(document.getElementById('end-sound'));
+// Guardar el tiempo en las estadísticas
+registrarFin(initialTime);
 
         setTimeout(() => {
             const randomPhrase = getRandomPhrase();
