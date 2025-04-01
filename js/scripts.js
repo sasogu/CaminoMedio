@@ -58,8 +58,8 @@ window.addEventListener('DOMContentLoaded', event => {
             navigator.serviceWorker.register('./service-worker.js').then(registration => {
                 console.log('SW registrado:', registration);
     
+                // Si ya hay un nuevo SW esperando
                 if (registration.waiting) {
-                    // Si ya hay un nuevo SW esperando
                     registration.waiting.postMessage({ type: 'SKIP_WAITING' });
                     window.location.reload();
                 }
@@ -69,7 +69,6 @@ window.addEventListener('DOMContentLoaded', event => {
                     newSW.addEventListener('statechange', () => {
                         if (newSW.state === 'installed') {
                             if (navigator.serviceWorker.controller) {
-                                console.log('Hay una nueva versión disponible.');
                                 newSW.postMessage({ type: 'SKIP_WAITING' });
                                 window.location.reload();
                             }
@@ -80,12 +79,12 @@ window.addEventListener('DOMContentLoaded', event => {
                 console.error('Error registrando el SW:', error);
             });
     
-            // Escucha cuando el nuevo SW toma el control
             navigator.serviceWorker.addEventListener('controllerchange', () => {
                 console.log('Nuevo SW activado');
             });
         });
     }
+    
     
     
 

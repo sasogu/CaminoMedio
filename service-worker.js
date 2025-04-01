@@ -79,15 +79,20 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-    console.log('SW: Activación forzada por mensaje SKIP_WAITING');
-  }
-  if (event.data && event.data.type === 'CHECK_UPDATE') {
-    self.skipWaiting();
-    console.log('SW: Verificación de actualización solicitada.');
+  if (!event.data) return;
+
+  switch (event.data.type) {
+    case 'SKIP_WAITING':
+      console.log('SW: Activación forzada por mensaje SKIP_WAITING');
+      self.skipWaiting();
+      break;
+    case 'CHECK_UPDATE':
+      console.log('SW: Verificación de actualización solicitada.');
+      self.skipWaiting();
+      break;
   }
 });
+
 
 // Interceptar solicitudes y servir archivos desde la caché o la red
 self.addEventListener('fetch', (event) => {
@@ -114,9 +119,3 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
-// Escuchar cambios en la caché y notificar a la página sobre nuevas versiones
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'CHECK_UPDATE') {
-    self.skipWaiting();
-  }
-});
