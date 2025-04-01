@@ -51,41 +51,33 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
-//Forzar instalación y actualización del Service Worker
+//Forzar actualización del Service Worker
     // Si el navegador soporta Service Workers
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./service-worker.js').then(registration => {
-                console.log('SW registrado:', registration);
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('./service-worker.js')
+                .then(function (registration) {
+                    console.log('Service Worker registrado con éxito:', registration.scope);
     
-                // Si ya hay un nuevo SW esperando
-                if (registration.waiting) {
-                    registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-                    window.location.reload();
-                }
-    
-                registration.addEventListener('updatefound', () => {
-                    const newSW = registration.installing;
-                    newSW.addEventListener('statechange', () => {
-                        if (newSW.state === 'installed') {
-                            if (navigator.serviceWorker.controller) {
-                                newSW.postMessage({ type: 'SKIP_WAITING' });
-                                window.location.reload();
+                    // Escucha si hay un nuevo SW en espera
+                    registration.onupdatefound = function () {
+                        const newWorker = registration.installing;
+                        newWorker.onstatechange = function () {
+                            if (newWorker.state === 'installed') {
+                                if (navigator.serviceWorker.controller) {
+                                    // Hay un SW nuevo listo para activarse
+                                    console.log('Nueva versión disponible. Recargando...');
+                                    newWorker.postMessage({ type: 'CHECK_UPDATE' });
+                                    window.location.reload(); // 🔁 fuerza recarga con la nueva caché
+                                }
                             }
-                        }
-                    });
+                        };
+                    };
+                }).catch(function (error) {
+                    console.error('Error al registrar el Service Worker:', error);
                 });
-            }).catch(error => {
-                console.error('Error registrando el SW:', error);
-            });
-    
-            navigator.serviceWorker.addEventListener('controllerchange', () => {
-                console.log('Nuevo SW activado');
-            });
         });
     }
-    
-    
     
 
     // Solicitar permiso para notificaciones push

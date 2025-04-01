@@ -2,7 +2,7 @@
 
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
-const CACHE_NAME = "pwa-cszcm-v7.1.6";
+const CACHE_NAME = "pwa-cszcm-v7.1.5";
 const OFFLINE_URLS = 
 [
   './',
@@ -78,22 +78,6 @@ self.addEventListener('activate', (event) => {
   self.clients.claim(); // Asegurar que el SW se active inmediatamente en todos los clientes
 });
 
-self.addEventListener('message', (event) => {
-  if (!event.data) return;
-
-  switch (event.data.type) {
-    case 'SKIP_WAITING':
-      console.log('SW: Activación forzada por mensaje SKIP_WAITING');
-      self.skipWaiting();
-      break;
-    case 'CHECK_UPDATE':
-      console.log('SW: Verificación de actualización solicitada.');
-      self.skipWaiting();
-      break;
-  }
-});
-
-
 // Interceptar solicitudes y servir archivos desde la caché o la red
 self.addEventListener('fetch', (event) => {
   if (event.request.url.startsWith(self.location.origin)) {
@@ -119,3 +103,9 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
+// Escuchar cambios en la caché y notificar a la página sobre nuevas versiones
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'CHECK_UPDATE') {
+    self.skipWaiting();
+  }
+});
