@@ -355,23 +355,7 @@
 
 <script>
       
-            //añadido por Daizan quiero cambios!!
-            if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-        navigator.serviceWorker.register('./service-worker.js')
-            .then(function (registration) {
-                console.log('Service Worker registrado con éxito:', registration.scope);
-
-                // Forzar comprobación de actualización
-                if (navigator.serviceWorker.controller) {
-                    navigator.serviceWorker.controller.postMessage({ type: 'CHECK_UPDATE' });
-                }
-
-            }).catch(function (error) {
-                console.error('Error al registrar el Service Worker:', error);
-            });
-    });
-}
+    
 
 </script>
 
