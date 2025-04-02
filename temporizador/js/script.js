@@ -200,3 +200,21 @@ function stopTimer() {
     document.getElementById('caminomedio-button').classList.remove('hidden');
     document.getElementById('time').textContent = "00:00";
 };
+
+// Obtener referencias a los elementos
+const inputMinutes = document.getElementById('minutes');
+const timeDisplay = document.getElementById('time');
+
+// Actualizar el contenido de #time cuando el usuario introduce un valor
+inputMinutes.addEventListener('input', () => {
+    const minutes = parseInt(inputMinutes.value, 10) || 0; // Asegurarse de que sea un número
+    const formattedTime = `${minutes.toString().padStart(2, '0')}:00`; // Formatear como MM:SS
+    timeDisplay.textContent = formattedTime; // Actualizar el contenido de #time
+});
+
+// Iniciar el temporizador al presionar Enter
+inputMinutes.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') { // Verificar si la tecla presionada es Enter
+        startTimer(); // Llamar a la función para iniciar el temporizador
+    }
+});

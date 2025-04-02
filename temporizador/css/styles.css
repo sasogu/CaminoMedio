@@ -3,15 +3,19 @@ body {
     text-align: center;
     background-color: #000000;
     color: #e0e0e0;
-    margin: 0;
     padding: 0;
+    overflow-y: auto; /* Permitir desplazamiento vertical */
+    overflow-x: hidden; /* Evitar desplazamiento horizontal */
+    margin: 0; /* Eliminar márgenes predeterminados */
+    
+    box-sizing: border-box;
 }
 
 .timer-container {
     margin: 10px auto;
     padding: 20px;
     border-radius: 10px;
-    background-color: #1e1e1e;
+    background-color: #000000;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     max-width: 400px;
 }
@@ -40,13 +44,13 @@ h1 {
 
 .progress-container {
     display: flex;
-    justify-content: center; /* Centra el Ensō horizontalmente */
-    align-items: center; /* Centra el Ensō verticalmente */
-    flex-direction: column; /* Asegura que el texto esté debajo del SVG */
-    margin: 20px auto; /* Espaciado vertical automático */
-    position: relative;
-    width: 200px;
-    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%; /* Asegura que el contenedor ocupe todo el ancho */
+    max-width: 60px; /* Tamaño máximo opcional */
+    margin: 0 auto; /* Centra el contenedor */
+    position: relative; /* Para posicionar el tiempo en el centro */
 }
 
 .progress-ring {
@@ -58,21 +62,12 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 24px;
+    font-size: 84px;
     font-weight: bold;
     color: #e0e0e0;
 }
 
 
-#time {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 34px;
-    font-weight: bold;
-    color: #e0e0e0;
-}
 
 input, button, a {
     background-color: #2c2c2c;
