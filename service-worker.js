@@ -2,7 +2,7 @@
 
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
-const CACHE_NAME = "pwa-cszcm-v7.2.0";
+const CACHE_NAME = "pwa-cszcm-v7.2.1";
 const OFFLINE_URLS = 
 [
   '/app/inicio/',
@@ -15,17 +15,20 @@ const OFFLINE_URLS =
   '/app/inicio/assets/img/logoblanco.png',
   '/app/inicio/assets/img/logopeque.png',
   '/app/inicio/temporizador/css/styles.css',
+  '/app/inicio/temporizador/css/estilos.css',
   '/app/inicio/temporizador/guardar.html',
   '/app/inicio/temporizador/index.html',
   '/app/inicio/temporizador/js/guardar.js',
   '/app/inicio/temporizador/js/phrases.js',
   '/app/inicio/temporizador/js/script.js',
+  '/app/inicio/temporizador/js/estadisticas.js',
   '/app/inicio/temporizador/multimedia/end.mp3',
   '/app/inicio/temporizador/multimedia/logoblanco.png',
   '/app/inicio/temporizador/multimedia/logopeque.png',
   '/app/inicio/temporizador/multimedia/start.mp3',
   '/app/inicio/xinxinming/audios.html',
   '/app/inicio/xinxinming/comentarios.html',
+  '/app/inicio/xinxinming/estadisticas.html',
   '/app/inicio/xinxinming/comentarios/comentarios1.html',
   '/app/inicio/xinxinming/comentarios/comentarios2.html',
   '/app/inicio/xinxinming/comentarios/comentarios3.html',
