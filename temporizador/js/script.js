@@ -55,9 +55,14 @@ window.onload = function () {
     document.getElementById('end-sound').volume = parseFloat(savedVolume);
     document.body.style.opacity = savedBrightness;
     
-    if (savedTime) {
-        document.getElementById("minutes").value = savedTime;
-    }
+  
+
+        // Mostrar el tiempo guardado en el campo y en el círculo
+        if (savedTime) {
+            document.getElementById("minutes").value = savedTime;
+            const formattedTime = `${savedTime.toString().padStart(2, '0')}:00`;
+            document.getElementById("time").textContent = formattedTime;
+        }
     
     initializeProgress();
    

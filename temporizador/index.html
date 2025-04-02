@@ -8,11 +8,7 @@
 </head>
 <body>
     <div class="timer-container">
-        <div class="logo-container">
-            <img id="logo" src="multimedia/logoblanco.png" alt="Logo del Camino">
-        </div>
-        <h1 id="title">Comunidad Soto Zen Camino Medio</h1>
-
+       
         <!-- Barra de progreso circular -->
         <div class="progress-container">
             <svg class="progress-ring" width="400" height="400" viewBox="0 0 100 100">
@@ -36,16 +32,24 @@
             <div id="time">00:00</div>
         </div>
 
-        <input type="number" id="minutes" placeholder="Minutos" min="1" max="60">
+        <input type="number" id="minutes" placeholder="Introduce minutos" min="1" max="60">
         <button class="start" id="start-button" onclick="startTimer()">Iniciar</button>
         <button class="stop hidden" id="stop-button" onclick="stopTimer()">Detener</button>
+        <br>
+        <br>
+         <!-- LOGO-->
+        
+        <div class="logo-container">
+            <img id="logo" src="multimedia/logoblanco.png" alt="Logo del Camino">
+        </div>
+        <h1 id="title">Comunidad Soto Zen Camino Medio</h1>
 
         <!-- Botón para ir a guardar.html -->
        
         <div> <a href="estadisticas.html" id="caminomedio-button" class="nav-button">Estadísticas</a></div>
-        <a href="guardar.html" id="save-button" class="nav-button">Configurar</a>
+        <a href="guardar.html" id="save-button" class="button">Configurar</a>
         <br>
-        <div> <a href="../index.html" id="caminomedio-button" class="nav-button">Volver</a></div>
+        <div> <a href="../index.html" id="caminomedio-button" class="button">Volver</a></div>
         <div id="quote"></div>
         
         

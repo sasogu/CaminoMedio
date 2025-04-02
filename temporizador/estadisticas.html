@@ -11,20 +11,26 @@
 <body>
   <h1>Estadísticas 🧘</h1>
 
+  <canvas id="graficoHistorial" width="400" height="200"></canvas>
+  <p id="resumenSemana"></p>
+  <br>
+
   <div id="estadisticas"></div>
+  <br>
+  <br>
 
   <div class="botonera">
+    
+    <button onclick="cambiarSemana(-1)">← Anterior</button>
+    <button onclick="resetSemana()">Actual</button>
+    <button onclick="cambiarSemana(1)">Siguiente →</button>
     <button onclick="toggleModoOscuro()">🌙 Modo oscuro</button>
-    <button onclick="cambiarSemana(-1)">← Semana anterior</button>
-    <button onclick="resetSemana()">Semana actual</button>
-    <button onclick="cambiarSemana(1)">Semana siguiente →</button>
     <button onclick="exportarHistorialCSV()">⬇️ Exportar CSV</button>
-    <button onclick="exportarPDF()">📄 Descargar PDF</button>
+   <button onclick="exportarPDF()">📄 Descargar PDF</button>
     <button onclick="document.getElementById('importarCSV').click()">📤 Importar CSV</button>
   </div>
 
-  <canvas id="graficoHistorial" width="400" height="200"></canvas>
-  <p id="resumenSemana"></p>
+
 
   <input type="file" id="importarCSV" accept=".csv" style="display:none" />
   <img id="logoPDF" src="../assets/img/logoblanco.png" style="display:none;" crossorigin="anonymous">
