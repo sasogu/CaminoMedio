@@ -50,3 +50,25 @@ body {
     margin: 10px 0;
   }
   
+  a#caminomedio-button {
+    margin-top: 20px;
+    background-color: #83837f;
+    color: #e0e0e0;
+    text-decoration: none;
+    
+    display: inline-block;
+    font-size: 20px; /* Aumenta el tamaño del texto */
+padding: 20px 40px; /* Aumenta el espacio interno */
+width: auto; /* Permite que el ancho se ajuste automáticamente */
+height: auto; /* Permite que la altura se ajuste automáticamente */
+border-radius: 10px; /* Bordes redondeados */
+}
+
+
+a#caminomedio-button.hidden {
+    display: none;
+}
+
+a#caminomedio-button:hover, button:hover {
+    background-color: #505050;
+}
