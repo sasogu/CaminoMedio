@@ -166,7 +166,7 @@ function startTimer() {
     document.getElementById('save-button').classList.add('hidden');
     document.getElementById('stop-button').classList.remove('hidden');
     document.getElementById('caminomedio-button').classList.add('hidden');
-   
+    document.getElementById('estadisticas-button').classList.add('hidden');
 
     if (!timer) {
         timer = setInterval(updateTime, 1000);
@@ -203,6 +203,7 @@ function stopTimer() {
     document.getElementById('save-button').classList.remove('hidden');
     document.getElementById('stop-button').classList.add('hidden');
     document.getElementById('caminomedio-button').classList.remove('hidden');
+    document.getElementById('estadisticas-button').classList.remove('hidden');
     document.getElementById('time').textContent = "00:00";
 };
 

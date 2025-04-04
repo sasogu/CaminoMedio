@@ -102,6 +102,24 @@ a#save-button:hover, button:hover {
     background-color: #505050;
 }
 
+a#estadisticas-button {
+    margin-top: 20px;
+    background-color: #3b3b3a;
+    color: #e0e0e0;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+a#estadisticas-button.hidden {
+    display: none;
+}
+
+a#estadisticas-button:hover, button:hover {
+    background-color: #505050;
+}
+
 a#caminomedio-button {
     margin-top: 20px;
     background-color: #3b3b3a;
