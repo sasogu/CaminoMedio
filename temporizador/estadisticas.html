@@ -26,7 +26,7 @@
     <button onclick="cambiarSemana(1)">Siguiente →</button>
     <button onclick="toggleModoOscuro()">🌙 Modo oscuro</button>
     <button onclick="exportarHistorialCSV()">⬇️ Exportar CSV</button>
-   <button onclick="exportarPDF()">📄 Descargar PDF</button>
+   <!-- <button onclick="exportarPDF()">📄 Descargar PDF</button>-->
     <button onclick="document.getElementById('importarCSV').click()">📤 Importar CSV</button>
   </div>
 
@@ -48,7 +48,7 @@
     document.querySelector('button[onclick="resetSemana()"]').onclick = Estadisticas.resetSemana;
     document.querySelector('button[onclick="cambiarSemana(1)"]').onclick = () => Estadisticas.cambiarSemana(1);
     document.querySelector('button[onclick="exportarHistorialCSV()"]').onclick = Estadisticas.exportarHistorialCSV;
-    document.querySelector('button[onclick="exportarPDF()"]').onclick = Estadisticas.exportarPDF;
+   // document.querySelector('button[onclick="exportarPDF()"]').onclick = Estadisticas.exportarPDF;
   </script>
   <div> <a href="index.html" id="caminomedio-button" class="nav-button">Volver</a></div>
 </body>
