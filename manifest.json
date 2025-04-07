@@ -3,7 +3,8 @@
   "scope": "/app/inicio/",
   "handle_links": "preferred",
   "name": "CaminoMedio",
-  "display": "fullscreen",
+  "display": "standalone",
+  "lang": "es-ES",
   "start_url": "/app/inicio/",
   "short_name": "CaminoMedio",
   "theme_color": "#000",
@@ -58,7 +59,7 @@
       "name": "CaminoMedio",
       "short_name": "CaminoMedio",
       "description": "Comunidad Soto Zen Camino Medio",
-      "url": "/",
+      "url": "app/inicio/xinxinming",
       "icons": [{ "src": "/app/inicio/assets/icons/192x192.png", "sizes": "192x192" }]
     }
   ]
