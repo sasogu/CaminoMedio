@@ -32,7 +32,7 @@
         { text: "31. El Dharma lo abarca todo, no es fácil ni difícil.", link: "../xinxinming/comentarios/comentarios7.html#01" },
         { text: "32. La visión limitada, la duda y la desconfianza; Generan unas veces indecisión y otras apresuramiento.", link: "../xinxinming/comentarios/comentarios7.html#02" },
         { text: "33. Si te aferras, pierdes la ecuanimidad, inevitablemente te desvías del camino.", link: "../xinxinming/comentarios/comentarios7.html#03" },
-        { text: "34. Si lo sueltas,vuelve a su propia naturaleza, su esencia no va ni viene.", link: "../xinxinming/comentarios/comentarios7.html#04" },
+        { text: "34. Si lo sueltas, vuelve a su propia naturaleza, su esencia no va ni viene.", link: "../xinxinming/comentarios/comentarios7.html#04" },
         { text: "35. Cuando confiamos en la naturaleza de las cosas, hay armonía y se extinguen las aflicciones.", link: "../xinxinming/comentarios/comentarios7.html#05" },
         { text: "36. Aferrarse a los pensamientos aleja de la realidad, la mente se oscurece y se hunde en lo indeseable.", link: "../xinxinming/comentarios/comentarios8.html#01" },
         { text: "37. No es bueno agotar la energía vital, ¿Para qué huir, para qué seguir buscando?", link: "../xinxinming/comentarios/comentarios8.html#02" },
