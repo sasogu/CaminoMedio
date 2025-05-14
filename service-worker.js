@@ -2,7 +2,7 @@
 
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
-const CACHE_NAME = "pwa-cszcm-v7.2.9";
+const CACHE_NAME = "pwa-cszcm-v7.2.10";
 const OFFLINE_URLS = 
 [
   '/app/inicio/',
