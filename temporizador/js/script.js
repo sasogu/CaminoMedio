@@ -119,11 +119,16 @@ function updateTime() {
         clearInterval(timer);
         timer = null;
 
-      
+        // Cambiar el fondo del div a blanco
+        const backgroundDiv = document.querySelector('.background-white');
+        if (backgroundDiv) {
+            backgroundDiv.style.backgroundColor = "#ffffff"; // Cambiar a blanco
+        }
 
         playSound(document.getElementById('end-sound'));
-// Guardar el tiempo en las estadísticas
-registrarFin(initialTime);
+
+        // Guardar el tiempo en las estadísticas
+        registrarFin(initialTime);
 
         setTimeout(() => {
             const randomPhrase = getRandomPhrase();
@@ -205,6 +210,12 @@ function stopTimer() {
     document.getElementById('caminomedio-button').classList.remove('hidden');
     document.getElementById('estadisticas-button').classList.remove('hidden');
     document.getElementById('time').textContent = "00:00";
+
+    // Restaurar el color original del div
+    const backgroundDiv = document.querySelector('.background-white');
+    if (backgroundDiv) {
+        backgroundDiv.style.backgroundColor = ""; // Restaurar al color predeterminado
+    }
 };
 
 // Obtener referencias a los elementos
