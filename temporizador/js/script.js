@@ -268,3 +268,6 @@ inputMinutes.addEventListener('keydown', (event) => {
         startTimer(); // Llamar a la función para iniciar el temporizador
     }
 });
+
+window.startTimer = startTimer;
+window.stopTimer = stopTimer;

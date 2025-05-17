@@ -260,3 +260,7 @@ button:hover {
     border: 2px solid #64a19d;
     border-radius: 5px;
 }
+
+.hidden {
+    display: none;
+}
