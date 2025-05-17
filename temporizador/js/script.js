@@ -173,6 +173,11 @@ function startTimer() {
     document.getElementById('caminomedio-button').classList.add('hidden');
     document.getElementById('estadisticas-button').classList.add('hidden');
 
+    // Ocultar los botones de sumar y restar tiempo
+    document.getElementById('increase-time').classList.add('hidden');
+    document.getElementById('decrease-time').classList.add('hidden');
+
+
     if (!timer) {
         timer = setInterval(updateTime, 1000);
     }
@@ -211,6 +216,11 @@ function stopTimer() {
     document.getElementById('estadisticas-button').classList.remove('hidden');
     document.getElementById('time').textContent = "00:00";
 
+    // Mostrar los botones de sumar y restar tiempo
+    document.getElementById('increase-time').classList.remove('hidden');
+    document.getElementById('decrease-time').classList.remove('hidden');
+
+
     // Restaurar el color original del div
     const backgroundDiv = document.querySelector('.background-white');
     if (backgroundDiv) {
@@ -231,7 +241,15 @@ function adjustTime(amount) {
     }
 
     minutesInput.value = currentMinutes;
+
+    // Actualizar el tiempo mostrado en el temporizador
+    const timeDisplay = document.getElementById('time');
+    const formattedTime = `${currentMinutes.toString().padStart(2, '0')}:00`;
+    timeDisplay.textContent = formattedTime;
 }
+
+// Hacer que la función esté disponible globalmente
+window.adjustTime = adjustTime;
 
 // Obtener referencias a los elementos
 const inputMinutes = document.getElementById('minutes');

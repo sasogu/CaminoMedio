@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    
-   
+
     <div class="timer-container">
         <div class="background-white">
         <!-- Barra de progreso circular -->
@@ -36,11 +35,11 @@
         </div>
 
         <div class="time-controls">
-            <button class="time-button" id="decrease-time" onclick="adjustTime(-10)">
+            <button class="time-button" id="decrease-time" onclick="adjustTime(-10)" aria-label="Restar 10 minutos">
                 <i class="fas fa-minus-circle"></i> <!-- Icono de restar -->
             </button>
             <input type="number" id="minutes" placeholder="Introduce minutos" min="1" max="60">
-            <button class="time-button" id="increase-time" onclick="adjustTime(10)">
+            <button class="time-button" id="increase-time" onclick="adjustTime(10)" aria-label="Sumar 10 minutos">
                 <i class="fas fa-plus-circle"></i> <!-- Icono de sumar -->
             </button>
         </div>
@@ -64,7 +63,9 @@
         <div id="quote"></div>
         
     </div>
-    </div>
+    
+</div>
+
 
 <!-- Botón para ir a guardar.html -->
 
