@@ -2,18 +2,22 @@
 
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
-const CACHE_NAME = "pwa-cszcm-v7.2.10";
-const OFFLINE_URLS = 
-[
+const CACHE_NAME = "pwa-cszcm-v7.2.11";
+const OFFLINE_URLS = [
+  // Páginas principales
   '/app/inicio/',
   '/app/inicio/index.html',
   '/app/inicio/css/styles.css',
   '/app/inicio/js/scripts.js',
   '/app/inicio/manifest.json',
+
+  // Imágenes
   '/app/inicio/assets/img/bg-masthead.jpg',
   '/app/inicio/assets/img/bg-signup.jpg',
   '/app/inicio/assets/img/logoblanco.png',
   '/app/inicio/assets/img/logopeque.png',
+
+  // Temporizador
   '/app/inicio/temporizador/css/styles.css',
   '/app/inicio/temporizador/css/estilos.css',
   '/app/inicio/temporizador/guardar.html',
@@ -26,6 +30,8 @@ const OFFLINE_URLS =
   '/app/inicio/temporizador/multimedia/logoblanco.png',
   '/app/inicio/temporizador/multimedia/logopeque.png',
   '/app/inicio/temporizador/multimedia/start.mp3',
+
+  // Xinxinming
   '/app/inicio/xinxinming/audios.html',
   '/app/inicio/xinxinming/comentarios.html',
   '/app/inicio/xinxinming/estadisticas.html',
@@ -46,10 +52,8 @@ const OFFLINE_URLS =
   '/app/inicio/xinxinming/comentarios/comentarios15.html',
   '/app/inicio/xinxinming/index.html',
   '/app/inicio/xinxinming/traduccion.html'
-
-
-
 ];
+
 
 // Instalar el Service Worker y almacenar en caché los archivos
 self.addEventListener('install', (event) => {
