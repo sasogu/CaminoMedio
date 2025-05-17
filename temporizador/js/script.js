@@ -218,6 +218,21 @@ function stopTimer() {
     }
 };
 
+function adjustTime(amount) {
+    const minutesInput = document.getElementById('minutes');
+    let currentMinutes = parseInt(minutesInput.value) || 0; // Si está vacío, usar 0
+    currentMinutes += amount;
+
+    // Asegurarse de que el valor esté dentro de los límites (1 a 60 minutos)
+    if (currentMinutes < 1) {
+        currentMinutes = 1;
+    } else if (currentMinutes > 60) {
+        currentMinutes = 60;
+    }
+
+    minutesInput.value = currentMinutes;
+}
+
 // Obtener referencias a los elementos
 const inputMinutes = document.getElementById('minutes');
 const timeDisplay = document.getElementById('time');

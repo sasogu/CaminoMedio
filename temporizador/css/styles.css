@@ -224,3 +224,39 @@ button:hover {
 .background-white {
     transition: background-color 0.5s ease;
 }
+
+.time-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Espacio entre los botones y el input */
+    margin: 20px 0;
+}
+
+.time-button {
+    background-color: #64a19d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.time-button:hover {
+    background-color: #558985;
+}
+
+#minutes {
+    width: 80px;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 5px;
+    border: 2px solid #64a19d;
+    border-radius: 5px;
+}
