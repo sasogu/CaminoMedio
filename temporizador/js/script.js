@@ -127,10 +127,10 @@ function updateTime() {
             backgroundDiv.style.backgroundColor = isWhite ? "#000000" : "#ffffff";
             isWhite = !isWhite;
             flashes++;
-            if (flashes >= 6) { // 6 cambios = 3 segundos (500ms cada uno)
+            if (flashes >= 9) {
                 clearInterval(flashInterval);
-                backgroundDiv.style.backgroundColor = "#ffffff"; // Deja el fondo blanco
-
+                // Fuerza el fondo a blanco
+                backgroundDiv.style.backgroundColor = "#ffffff";
                 // Mostrar frase final
                 setTimeout(() => {
                     const randomPhrase = getRandomPhrase();
@@ -204,7 +204,6 @@ function stopTimer() {
         timer = null;
     }
     remainingTime = 0;
-    document.getElementById('time').textContent = "00:00";
     releaseWakeLock();
     initializeProgress();
     document.getElementById('logo').src = "multimedia/logoblanco.png";
@@ -215,19 +214,24 @@ function stopTimer() {
     document.getElementById('stop-button').classList.add('hidden');
     document.getElementById('caminomedio-button').classList.remove('hidden');
     document.getElementById('estadisticas-button').classList.remove('hidden');
-    document.getElementById('time').textContent = "00:00";
 
     // Mostrar los botones de sumar y restar tiempo
     document.getElementById('increase-time').classList.remove('hidden');
     document.getElementById('decrease-time').classList.remove('hidden');
-
 
     // Restaurar el color original del div
     const backgroundDiv = document.querySelector('.background-white');
     if (backgroundDiv) {
         backgroundDiv.style.backgroundColor = ""; // Restaurar al color predeterminado
     }
-};
+
+    // Restaurar el tiempo inicial en el Ensō y en el display
+    const minutes = Math.floor(initialTime / 60);
+    const seconds = initialTime % 60;
+    document.getElementById('time').textContent = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    updateProgress();
+}
 
 function adjustTime(amount) {
     const minutesInput = document.getElementById('minutes');
@@ -246,7 +250,7 @@ function adjustTime(amount) {
     // Actualizar el tiempo mostrado en el temporizador
     const timeDisplay = document.getElementById('time');
     const formattedTime = `${currentMinutes.toString().padStart(2, '0')}:00`;
-    timeDisplay.textContent = formattedTime;
+    timeDisplay.textContent = formattedTime; // Actualizar el contenido de #time
 }
 
 // Hacer que la función esté disponible globalmente
