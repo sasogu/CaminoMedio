@@ -119,29 +119,30 @@ function updateTime() {
         clearInterval(timer);
         timer = null;
 
-        // Cambiar el fondo del div a blanco
-        const backgroundDiv = document.querySelector('.background-white');
-        if (backgroundDiv) {
-            backgroundDiv.style.backgroundColor = "#ffffff"; // Cambiar a blanco
-        }
+        // Parpadeo de fondo durante 3 segundos
+        const backgroundDiv = document.querySelector('.background-white') || document.body;
+        let flashes = 0;
+        let isWhite = true;
+        const flashInterval = setInterval(() => {
+            backgroundDiv.style.backgroundColor = isWhite ? "#000000" : "#ffffff";
+            isWhite = !isWhite;
+            flashes++;
+            if (flashes >= 6) { // 6 cambios = 3 segundos (500ms cada uno)
+                clearInterval(flashInterval);
+                backgroundDiv.style.backgroundColor = "#ffffff"; // Deja el fondo blanco
+
+                // Mostrar frase final
+                setTimeout(() => {
+                    const randomPhrase = getRandomPhrase();
+                    const quoteElement = document.getElementById('quote');
+                    quoteElement.innerHTML = `${randomPhrase.text} <br> <a href="${randomPhrase.link}" target="_blank">Ver más</a>`;
+                    alert(randomPhrase.text);
+                }, 100);
+            }
+        }, 500);
 
         playSound(document.getElementById('end-sound'));
-
-        // Guardar el tiempo en las estadísticas
         registrarFin(initialTime);
-
-        setTimeout(() => {
-            const randomPhrase = getRandomPhrase();
-            
-            // Mostrar frase y enlace en el HTML
-            const quoteElement = document.getElementById('quote');
-            quoteElement.innerHTML = `${randomPhrase.text} <br> <a href="${randomPhrase.link}" target="_blank">Ver más</a>`;
-            
-            // Seguir mostrando la frase en el alert (opcional)
-            alert(randomPhrase.text);
-
-        }, 500);
-        
         releaseWakeLock();
         initializeProgress();
     }
