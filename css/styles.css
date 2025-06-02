@@ -11253,3 +11253,35 @@ body {
   color: #212529;
 }
 
+// External Loader Styles
+  #external-loader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: white;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loader-overlay {
+    text-align: center;
+    font-family: sans-serif;
+    color: #333;
+  }
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 1em;
+    border: 5px solid #ccc;
+    border-top-color: #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
