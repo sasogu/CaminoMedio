@@ -162,7 +162,12 @@
     <div class="row g-3">
         <div class="col-6 col-md-6 d-flex">
             <a href="https://calendario.caminomedio.org/calendar.html?date=2025-06-02&language=es&skin=flat&tab=agenda&tabs=month&tabs=week&tabs=day&tabs=agenda&target=_blank&title=Calendario%20de%20la%20CSZCM&url=https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Fical%2F7a47e1975b9af64cdb596cc7c637eb873ed8d3e9482dcc3e867b6143e0d760d5%2540group.calendar.google.com%2Fpublic%2Fbasic.ics" class="btn btn-lg btn-primary w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-calendar-alt me-2"></i> Agenda de Actividades
+                <i class="fas fa-calendar-alt me-2"></i> Agenda
+            </a>
+        </div>
+                <div class="col-6 col-md-6 d-flex">
+            <a href="https://www.caminomedio.org/agenda/" class="btn btn-lg btn-primary w-100 py-3 d-flex align-items-center justify-content-center">
+                <i class="fas fa-people-group me-2"></i> Actividades
             </a>
         </div>
         <div class="col-6 col-md-6 d-flex">
@@ -198,6 +203,12 @@
         <div class="col-6 col-md-6 d-flex">
             <a href="https://www.caminomedio.org/sangha-online/" class="btn btn-lg btn-light w-100 py-3 d-flex align-items-center justify-content-center">
                 <i class="fas fa-globe me-2"></i> Sangha Online
+            </a>
+        </div>
+        <div class="col-6 col-md-6 d-flex">
+            <a href="https://www.caminomedio.org/circulo-de-practica-estudio/tu-membresia/" class="btn btn-lg btn-light w-100 py-3 d-flex align-items-center justify-content-center">
+                <i class="fas fa-users me-2" style="color: #ff6600;"></i>Miembros
+                
             </a>
         </div>
     </div>
@@ -343,7 +354,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025 <br>Versión 7.2.21</div></footer>
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025 <br>Versión 7.2.22</div></footer>
 
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
@@ -432,14 +443,20 @@
     document.querySelectorAll("a").forEach(link => {
       const url = link.getAttribute("href");
 
-      if (url && !url.startsWith(location.origin) && !url.startsWith("#") && !url.startsWith("mailto:") && !url.startsWith("tel:")) {
+      if (
+        url &&
+        !url.startsWith(location.origin) &&
+        !url.startsWith("#") &&
+        !url.startsWith("mailto:") &&
+        !url.startsWith("tel:")
+      ) {
         link.addEventListener("click", (e) => {
-          e.preventDefault(); // Detiene la navegación por defecto
-          loader.style.display = "flex"; // Muestra la pantalla de carga
-          
+          e.preventDefault();
+          loader.style.display = "flex";
           setTimeout(() => {
-            window.location.href = url; // Redirige después de una breve pausa
-          }, 500); // Puedes ajustar el tiempo si quieres que se vea la pantalla de carga
+            window.open(url, "_blank"); // Abre en nueva pestaña
+            loader.style.display = "none"; // Oculta el loader después
+          }, 500);
         });
       }
     });
