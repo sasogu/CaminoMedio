@@ -10,12 +10,42 @@
         <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
         <link rel="manifest" href="manifest.json">
         <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/solid.js"></script>
+ <!-- Google fonts-->
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Varela+Round" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round"></noscript>
+<!-- Core theme CSS (includes Bootstrap)-->
+ <style>
+.masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.masthead h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.masthead h2 {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2rem;
+}
+.masthead .btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+</style>
+
+        <link rel="preload" href="css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="css/styles.css"></noscript>
+
     
 <style>@media (max-width: 991.98px) {.dropdown-menu{display:none;} .dropdown-menu.show{display:block;position:relative;float:none;margin-top:0;}}</style>
 <meta property="og:title" content="Comunidad Soto Zen Camino Medio" />
@@ -161,7 +191,7 @@
     <!-- Botones de acceso rápido -->
     <br>
     <div class="row gx-0 justify-content-center" id="botones">
-        <div class="col-lg-6"><img class="img-fluid" src="assets/img/himalayas.jpg" alt="Montañas Himalayas - Camino Medio" /></div>
+        <div class="col-lg-6"><img class="img-fluid" src="assets/img/himalayas.jpg" alt="Montañas Himalayas - Camino Medio" loading="lazy" /></div>
     <br>
     <section class="container text-center mt-4" >
     <div class="row g-3">
@@ -225,7 +255,7 @@
         <!-- About-->
         <section class="about-section text-center" id="agenda">
             <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/oryoki.jpg" alt="Práctica de Oryoki - Camino Medio" /></div>
+                <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/oryoki.jpg" alt="Práctica de Oryoki - Camino Medio" loading="lazy" /></div>
                 <div class="col-xl-4 col-lg-5">
                     <div class="featured-text text-center text-lg-left">
                         <h2 class="text-white mb-4">Actividades</h2>
@@ -246,7 +276,7 @@
             <div class="container px-4 px-lg-5">
                 <!-- Featured Project Row-->
                 <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/zazen.jpg" alt="Práctica de Zazen Online - Camino Medio" /></div>
+                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/zazen.jpg" alt="Práctica de Zazen Online - Camino Medio" loading="lazy" /></div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
                             <h4>Zazen Online</h4>
@@ -260,7 +290,7 @@
                 </div>
                 <!-- Project One Row-->
                 <div class="row gx-0 mb-5 mb-lg-0 justify-content-center" id="temporizador">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/temporizador.jpg" alt="Temporizador de meditación zen" class="img-fluid" style="width: 100%; height: 100%;" /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/temporizador.jpg" alt="Temporizador de meditación zen" class="img-fluid" style="width: 100%; height: 100%;" loading="lazy" /></div>
                         <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -275,7 +305,7 @@
                 </div>
                 <!-- Project Two Row-->
                 <div class="row gx-0 justify-content-center" id="cursos">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/mudra.jpg" alt="Mudra en meditación zen" /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/mudra.jpg" alt="Mudra en meditación zen" class="img-fluid" loading="lazy" /></div>
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -293,7 +323,7 @@
                 <br>
                 <!-- Project One Row-->
                 <div class="row gx-0 mb-5 mb-lg-0 justify-content-center" id="dokusan">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/beach.jpg" alt="Meditación en la playa - Camino Medio" /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/beach.jpg" alt="Meditación en la playa - Camino Medio" class="img-fluid" loading="lazy" /></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -308,7 +338,7 @@
                 </div>
                 <!-- Project Two Row-->
                 <div class="row gx-0 justify-content-center" id="dharma-digital">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/himalayas.jpg" alt="Montañas Himalayas - Camino Medio" /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/himalayas.jpg" alt="Montañas Himalayas - Camino Medio" class="img-fluid" loading="lazy" /></div>
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -359,7 +389,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025 <br>Versión 7.2.27</div></footer>
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025 <br>Versión 7.2.28</div></footer>
 
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
@@ -438,7 +468,7 @@
     
 <script>document.addEventListener("DOMContentLoaded",function(){const t=document.querySelector(".navbar-toggler");document.querySelectorAll(".nav-item.dropdown").forEach(function(e){const n=e.querySelector(".nav-link"),o=e.querySelector(".dropdown-menu");n.addEventListener("click",function(n){const r=window.getComputedStyle(t).display!=="none";r&&(n.preventDefault(),document.querySelectorAll(".dropdown-menu.show").forEach(t=>t.classList.remove("show")),o.classList.add("show"))})}),document.querySelector(".navbar-collapse").addEventListener("hidden.bs.collapse",function(){document.querySelectorAll(".dropdown-menu.show").forEach(t=>t.classList.remove("show"))})});</script>
 <div id="external-loader" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; color: #333; z-index: 9999; justify-content: center; align-items: center; font-size: 1.5em; flex-direction: column;">
-  <img src="assets/img/logonegro.png" alt="Logo negro Camino Medio" style="height: 60px; margin-bottom: 20px;">
+  <img src="assets/img/logonegro.png" alt="Logo negro Camino Medio" style="height: 60px; margin-bottom: 20px;" loading="lazy">
   Cargando...
 </div>
 <script>
