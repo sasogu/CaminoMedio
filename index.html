@@ -389,7 +389,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025 <br>Versión 7.2.28</div></footer>
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025 <br>Versión 7.2.29</div></footer>
 
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
@@ -478,9 +478,11 @@
     document.querySelectorAll("a").forEach(link => {
       const url = link.getAttribute("href");
 
+      // Solo mostrar loader en enlaces externos
       if (
         url &&
         !url.startsWith(location.origin) &&
+        !url.startsWith("/") && // Permite rutas relativas internas
         !url.startsWith("#") &&
         !url.startsWith("mailto:") &&
         !url.startsWith("tel:")
@@ -490,7 +492,7 @@
           loader.style.display = "flex";
           setTimeout(() => {
             window.open(url, "_blank"); // Abre en nueva pestaña
-            loader.style.display = "none"; // Oculta el loader después
+            loader.style.display = "none";
           }, 500);
         });
       }
