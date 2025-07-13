@@ -10,7 +10,7 @@
         <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
         <link rel="manifest" href="manifest.json">
         <!-- Font Awesome icons (free version)-->
-        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/solid.js"></script>
+          <script defer src="https://use.fontawesome.com/releases/v6.5.2/js/all.js"></script>
  <!-- Google fonts-->
        <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -167,13 +167,6 @@
   </div>
 </nav>
 
-                  
-
-                </div>
-                
-                
-            </div>
-        
         <!-- Masthead-->
         <header class="masthead">
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
@@ -398,75 +391,40 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
 <script>
-      
-    
+document.addEventListener("DOMContentLoaded", function () {
+  const toggler = document.querySelector(".navbar-toggler");
 
-</script>
+  document.querySelectorAll(".nav-item.dropdown").forEach(function (dropdown) {
+    const toggle = dropdown.querySelector(".nav-link");
+    const menu = dropdown.querySelector(".dropdown-menu");
 
+    toggle.addEventListener("click", function (e) {
+      const isMobile = window.getComputedStyle(toggler).display !== "none";
+      if (isMobile) {
+        e.preventDefault();
+        const isOpen = menu.classList.contains("show");
 
+        // Cerrar todos los submenús primero
+        document.querySelectorAll(".dropdown-menu.show").forEach(m => m.classList.remove("show"));
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
-<script>// Menú desplegable
-  document.addEventListener("DOMContentLoaded", function () {
-    const toggler = document.querySelector(".navbar-toggler");
-
-    document.querySelectorAll(".nav-item.dropdown").forEach(function (dropdown) {
-      const toggle = dropdown.querySelector(".nav-link");
-      const menu = dropdown.querySelector(".dropdown-menu");
-
-      toggle.addEventListener("click", function (e) {
-        const isMobile = window.getComputedStyle(toggler).display !== "none";
-        if (isMobile) {
-          e.preventDefault();
-          const isOpen = menu.classList.contains("show");
-
-          // Cerrar todos los submenús primero
-          document.querySelectorAll(".dropdown-menu.show").forEach(m => m.classList.remove("show"));
-
-          // Alternar el submenú actual
-          if (!isOpen) {
-            menu.classList.add("show");
-          }
+        // Alternar el submenú actual
+        if (!isOpen) {
+          menu.classList.add("show");
         }
-      });
-    });
-
-    // Al colapsar el menú general, cerrar todos los submenús
-    document.querySelector(".navbar-collapse").addEventListener("hidden.bs.collapse", function () {
-      document.querySelectorAll(".dropdown-menu.show").forEach(m => m.classList.remove("show"));
+      }
     });
   });
-</script>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const fullscreenButton = document.getElementById("fullscreen-button");
-    
-        fullscreenButton.addEventListener("click", function (event) {
-            // Solicitar pantalla completa para el documento
-            if (document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
-            } else if (document.documentElement.webkitRequestFullscreen) { // Para navegadores WebKit
-                document.documentElement.webkitRequestFullscreen();
-            } else if (document.documentElement.msRequestFullscreen) { // Para IE/Edge antiguos
-                document.documentElement.msRequestFullscreen();
-            }
-    
-            // Navegar suavemente a la sección con id="botones"
-            const target = document.querySelector("#botones");
-            if (target) {
-                target.scrollIntoView({ behavior: "smooth" });
-            }
-        });
-    });
-    </script>
-    
-    
-<script>document.addEventListener("DOMContentLoaded",function(){const t=document.querySelector(".navbar-toggler");document.querySelectorAll(".nav-item.dropdown").forEach(function(e){const n=e.querySelector(".nav-link"),o=e.querySelector(".dropdown-menu");n.addEventListener("click",function(n){const r=window.getComputedStyle(t).display!=="none";r&&(n.preventDefault(),document.querySelectorAll(".dropdown-menu.show").forEach(t=>t.classList.remove("show")),o.classList.add("show"))})}),document.querySelector(".navbar-collapse").addEventListener("hidden.bs.collapse",function(){document.querySelectorAll(".dropdown-menu.show").forEach(t=>t.classList.remove("show"))})});</script>
+  // Al colapsar el menú general, cerrar todos los submenús
+  document.querySelector(".navbar-collapse").addEventListener("hidden.bs.collapse", function () {
+    document.querySelectorAll(".dropdown-menu.show").forEach(m => m.classList.remove("show"));
+  });
+});
+</script>
 <div id="external-loader" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; color: #333; z-index: 9999; justify-content: center; align-items: center; font-size: 1.5em; flex-direction: column;">
   <img src="assets/img/logonegro.png" alt="Logo negro Camino Medio" style="height: 60px; margin-bottom: 20px;" loading="lazy">
   Cargando...
@@ -474,6 +432,11 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const loader = document.getElementById("external-loader");
+    
+    if (!loader) {
+      console.error("External loader element not found");
+      return;
+    }
 
     document.querySelectorAll("a").forEach(link => {
       const url = link.getAttribute("href");
@@ -491,8 +454,13 @@
           e.preventDefault();
           loader.style.display = "flex";
           setTimeout(() => {
-            window.open(url, "_blank"); // Abre en nueva pestaña
-            loader.style.display = "none";
+            try {
+              window.open(url, "_blank"); // Abre en nueva pestaña
+            } catch (error) {
+              console.error("Error opening external link:", error);
+            } finally {
+              loader.style.display = "none";
+            }
           }, 500);
         });
       }
