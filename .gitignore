@@ -1,0 +1,191 @@
+# Archivos y directorios a ignorar por Git
+
+# ===============================
+# CLAVES Y CONFIGURACIÓN SENSIBLE
+# ===============================
+
+# Variables de entorno con credenciales
+.env
+.env.local
+.env.production
+.env.staging
+
+# Dependencias de Node.js
+alertas/node_modules/
+node_modules/
+.env.staging
+
+# Configuración específica de OneSignal con claves reales
+alertas/js/onesignal-config.js.local
+alertas/.env
+alertas/.env.local
+
+# Respaldos de archivos de configuración
+*.backup
+*.bak
+config.local.*
+
+# ===============================
+# ARCHIVOS DEL SISTEMA
+# ===============================
+
+# MacOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# ===============================
+# EDITORES Y IDEs
+# ===============================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+
+# ===============================
+# NODE.JS Y NPM
+# ===============================
+
+# Dependencias
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Archivos de distribución
+dist/
+build/
+
+# ===============================
+# LOGS Y TEMPORALES
+# ===============================
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos temporales
+tmp/
+temp/
+*.tmp
+*.temp
+
+# ===============================
+# CERTIFICADOS Y CLAVES
+# ===============================
+
+# Certificados SSL
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Claves SSH
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+
+# ===============================
+# BASE DE DATOS
+# ===============================
+
+# SQLite
+*.sqlite
+*.sqlite3
+*.db
+
+# ===============================
+# CACHE Y ARCHIVOS COMPILADOS
+# ===============================
+
+# Cache de navegadores
+.cache/
+
+# Archivos minificados (mantener solo originales)
+*.min.js.map
+*.min.css.map
+
+# ===============================
+# ESPECÍFICO DEL PROYECTO
+# ===============================
+
+# Archivos de audio temporales o de prueba
+alertas/sounds/temp_*
+alertas/sounds/test_*
+
+# Estadísticas y datos de usuario (si se guardan localmente)
+alertas/data/
+stats/
+
+# Respaldos de base de datos
+*.sql.backup
+*.dump
+
+# ===============================
+# HERRAMIENTAS DE DESARROLLO
+# ===============================
+
+# Coverage reports
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# ESLint cache
+.eslintcache
+
+# ===============================
+# NOTAS IMPORTANTES
+# ===============================
+# 
+# ARCHIVOS PROTEGIDOS:
+# - .env files contienen credenciales de OneSignal
+# - Nunca subir REST API Keys de OneSignal
+# - App IDs son seguros, pero mejor mantener privados
+# 
+# SI ACCIDENTALMENTE SUBES CREDENCIALES:
+# 1. Regenerar claves en OneSignal Dashboard
+# 2. Actualizar archivos locales
+# 3. Hacer git commit con nuevas claves protegidas
+#
