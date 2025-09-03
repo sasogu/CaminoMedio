@@ -31,14 +31,16 @@
                     stroke-linecap="round"
                 ></circle>
             </svg>
-            <div id="time">00:00</div>
+            <div id="time" aria-live="polite" aria-atomic="true">00:00</div>
         </div>
 
         <div class="time-controls">
             <button class="time-button" id="decrease-time" onclick="adjustTime(-10)" aria-label="Restar 10 minutos">
                 <i class="fas fa-minus-circle"></i> <!-- Icono de restar -->
             </button>
-            <input type="number" id="minutes" placeholder="Introduce minutos" min="1" max="60">
+            <label for="minutes" class="visually-hidden">Minutos</label>
+            <input type="number" id="minutes" placeholder="Introduce minutos" min="1" max="60" inputmode="numeric" aria-describedby="minutes-help">
+            <span id="minutes-help" class="visually-hidden">Introduce minutos entre 1 y 60</span>
             <button class="time-button" id="increase-time" onclick="adjustTime(10)" aria-label="Sumar 10 minutos">
                 <i class="fas fa-plus-circle"></i> <!-- Icono de sumar -->
             </button>
@@ -70,8 +72,8 @@
 <!-- Botón para ir a guardar.html -->
 
     <!-- Sonidos -->
-    <audio id="start-sound" src="multimedia/start.mp3"></audio>
-    <audio id="end-sound" src="multimedia/end.mp3"></audio>
+    <audio id="start-sound" src="multimedia/start.mp3" preload="auto"></audio>
+    <audio id="end-sound" src="multimedia/end.mp3" preload="auto"></audio>
 
    
     <script type="module" src="js/script.js"></script>
@@ -104,6 +106,16 @@
         });
     </script>
 
+    <style>
+      .visually-hidden {
+        position: absolute !important;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+      /* clase utilitaria para etiquetas ocultas accesibles */
+    </style>
+
 </body>
 </html>
-

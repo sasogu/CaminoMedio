@@ -1,7 +1,5 @@
 // This is the "Offline page" service worker
 
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
-
 const CACHE_NAME = "pwa-cszcm-v7.2.30";
 const OFFLINE_URLS = [
   // Páginas principales
