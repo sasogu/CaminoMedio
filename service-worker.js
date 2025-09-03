@@ -12,10 +12,7 @@ const OFFLINE_URLS = [
   '/app/inicio/manifest.json',
 
   // Imágenes
-  '/app/inicio/assets/img/bg-masthead.jpg',
-  '/app/inicio/assets/img/bg-signup.jpg',
-  '/app/inicio/assets/img/logoblanco.png',
-  '/app/inicio/assets/img/logopeque.png',
+  // (limpiado) Imágenes de tema no presentes en el repositorio actual
 
   // Temporizador
   '/app/inicio/temporizador/css/styles.css',
@@ -34,7 +31,8 @@ const OFFLINE_URLS = [
   // Xinxinming
   '/app/inicio/xinxinming/audios.html',
   '/app/inicio/xinxinming/comentarios.html',
-  '/app/inicio/xinxinming/estadisticas.html',
+  // (limpiado) Ruta inexistente en xinxinming
+  // '/app/inicio/xinxinming/estadisticas.html',
   '/app/inicio/xinxinming/comentarios/comentarios1.html',
   '/app/inicio/xinxinming/comentarios/comentarios2.html',
   '/app/inicio/xinxinming/comentarios/comentarios3.html',
@@ -97,7 +95,7 @@ self.addEventListener('fetch', (event) => {
             return fetchResponse;
           });
         });
-      }).catch(() => caches.match('./index.html')) // En caso de error, redirige a una página offline
+      }).catch(() => caches.match(self.registration.scope + 'index.html')) // Fallback robusto dentro del scope
     );
   } else {
     // Manejar solicitudes externas

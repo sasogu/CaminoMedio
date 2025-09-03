@@ -71,7 +71,7 @@
 
         <!-- Comunidad -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="comunidadDropdown" role="button">
+          <a class="nav-link dropdown-toggle" href="#" id="comunidadDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             🧘 Comunidad
           </a>
           <ul class="dropdown-menu" aria-labelledby="comunidadDropdown">
@@ -88,7 +88,7 @@
 
         <!-- Actividades -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="actividadesDropdown" role="button">
+          <a class="nav-link dropdown-toggle" href="#" id="actividadesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             📆 Actividades
           </a>
           <ul class="dropdown-menu" aria-labelledby="actividadesDropdown">
@@ -134,7 +134,7 @@ const OFFLINE_URLS = [
 
         <!-- Sangha Online -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="sanghaDropdown" role="button">
+          <a class="nav-link dropdown-toggle" href="#" id="sanghaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             🌐 Sangha Online
           </a>
           <ul class="dropdown-menu" aria-labelledby="sanghaDropdown">
@@ -149,7 +149,7 @@ const OFFLINE_URLS = [
 
         <!-- Miembros -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="miembrosDropdown" role="button">
+          <a class="nav-link dropdown-toggle" href="#" id="miembrosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             👤 Miembros
           </a>
           <ul class="dropdown-menu" aria-labelledby="miembrosDropdown">
@@ -409,6 +409,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const isMobile = window.getComputedStyle(toggler).display !== "none";
       if (isMobile) {
         e.preventDefault();
+        e.stopImmediatePropagation(); // Evita el handler de Bootstrap en móvil
         const isOpen = menu.classList.contains("show");
 
         // Cerrar todos los submenús primero
@@ -458,7 +459,7 @@ document.addEventListener("DOMContentLoaded", function () {
           loader.style.display = "flex";
           setTimeout(() => {
             try {
-              window.open(url, "_blank"); // Abre en nueva pestaña
+              window.open(url, "_blank", "noopener,noreferrer"); // Abre seguro en nueva pestaña
             } catch (error) {
               console.error("Error opening external link:", error);
             } finally {

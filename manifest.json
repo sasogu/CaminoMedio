@@ -1,5 +1,5 @@
 {
-  "id": "/",
+  "id": "/app/inicio/",
   "scope": "/app/inicio/",
   "handle_links": "preferred",
   "name": "CaminoMedio",
@@ -59,7 +59,7 @@
       "name": "CaminoMedio",
       "short_name": "CaminoMedio",
       "description": "Comunidad Soto Zen Camino Medio",
-      "url": "app/inicio/xinxinming",
+      "url": "/app/inicio/xinxinming",
       "icons": [{ "src": "/app/inicio/assets/icons/192x192.png", "sizes": "192x192" }]
     }
   ]
