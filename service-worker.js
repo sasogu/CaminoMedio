@@ -1,6 +1,7 @@
 // PWA Service Worker (scope auto-resolves relative to script location)
 
-const CACHE_NAME = "pwa-cszcm-v7.3.38";
+const SW_VERSION = "0.3.39";
+const CACHE_NAME = "pwa-cszcm-v0.3.39";
 // Precarga mínima necesaria para arrancar offline (rutas relativas al scope)
 const OFFLINE_URLS = [
   // Núcleo app
@@ -168,7 +169,15 @@ function staleWhileRevalidate(request) {
 
 // Escuchar cambios en la caché y notificar a la página sobre nuevas versiones
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'CHECK_UPDATE') {
+  if (!event.data) return;
+  if (event.data.type === 'CHECK_UPDATE') {
     self.skipWaiting();
+  }
+  if (event.data.type === 'GET_VERSION') {
+    try {
+      event.source && event.source.postMessage({ type: 'VERSION', value: SW_VERSION });
+    } catch (e) {
+      // ignore
+    }
   }
 });

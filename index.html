@@ -1,497 +1,113 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Comunidad Soto Zen Camino Medio: actividades, cursos, retiros y práctica de budismo zen en España. Únete a nuestra sangha y profundiza en la meditación y el Dharma." />
-        <meta name="author" content="Daizan Soriano" />
-        <title>Comunidad Soto Zen Camino Medio - Budismo Zen en España</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
-        <link rel="manifest" href="manifest.json">
-        <meta name="theme-color" content="#000000">
-        <!-- Font Awesome icons (free version)-->
-          <link rel="preconnect" href="https://use.fontawesome.com" crossorigin>
-          <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-          <script defer src="https://use.fontawesome.com/releases/v6.5.2/js/all.js" integrity="sha384-QvGJBgkqeVjFCXW39Q3psy0yEymI5WTMC5V+6LnvmNIeDfvGo1AI/j0AlTrID9lQ" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
- <!-- Google fonts-->
-       <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap">
- <!-- Core theme CSS (includes Bootstrap)-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/overrides.css">
-
-    
-<!-- moved responsive dropdown CSS to css/styles.css -->
-<meta property="og:title" content="Comunidad Soto Zen Camino Medio" />
-<meta property="og:description" content="Actividades, cursos y retiros de budismo zen en España." />
-<meta property="og:image" content="./assets/img/logocompleto.png" />
-<meta property="og:url" content="./" />
-<meta property="og:site_name" content="Comunidad Soto Zen Camino Medio" />
-<meta property="og:locale" content="es_ES" />
-<meta name="twitter:card" content="summary_large_image" />
-<link rel="canonical" href="./" />
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Camino Medio • Comunidad Soto Zen</title>
+  <meta name="description" content="Comunidad Soto Zen Camino Medio: práctica, estudio y vida sencilla.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta property="og:title" content="Comunidad Soto Zen Camino Medio">
+  <meta property="og:description" content="Práctica de zazen, estudio y vida sencilla.">
+  <meta property="og:url" content="./">
+  <meta property="og:image" content="./assets/img/logonegro.png">
+  <link rel="canonical" href="./">
+  <script defer src="https://use.fontawesome.com/releases/v6.5.2/js/all.js" crossorigin="anonymous"></script>
+  <style>
+    :root{--bg:#fff;--ink:#111;--muted:#6b7280;--ring:#e5e7eb;--pill:#f8f9fa;--pill-b:#e6e7ea;--pill-h:#f1f3f5;--max:840px}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-text-size-adjust:100%}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:24px}
+    header{padding:56px 0 24px;text-align:center}
+    .logo{display:flex;align-items:center;justify-content:center;color:var(--ink)}
+    .logo-img{height:70px;width:auto;display:block;margin:0 auto}
+    h1{font-size:24px;letter-spacing:.04em;margin:12px 0 4px}
+    .nowrap{white-space:nowrap}
+    p.lead{color:var(--muted);margin:0}
+    main{padding:24px 0 16px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media (min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
+    .pill{display:flex;align-items:center;justify-content:center;padding:16px 14px;border:1px solid var(--pill-b);background:var(--pill);border-radius:12px;transition:background-color .15s ease, transform .12s ease, box-shadow .15s ease, border-color .15s ease;min-height:56px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.04);gap:12px}
+    .pill:hover{background:var(--pill-h);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+    .pill:active{transform:translateY(0);box-shadow:0 2px 6px rgba(0,0,0,.06)}
+    .pill:focus-visible{outline:none;border-color:#cbd5e1;box-shadow:0 0 0 3px rgba(148,163,184,.35), 0 2px 6px rgba(0,0,0,.06)}
+    .pill i{margin:0;transition:transform .12s ease, opacity .15s ease; flex-shrink:0}
+    .pill:hover i{transform:translateY(-1px)}
+    footer .small + .small{margin-top:12px}
+    footer{padding:32px 0 16px;text-align:center;color:var(--muted);border-top:1px solid var(--ring);margin-top:32px}
+    .small{font-size:.92rem}
+  </style>
 </head>
-    <body id="page-top">
-<!-- Navigation-->
-        
-<nav id="mainNav" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#" aria-label="Inicio - Comunidad Soto Zen Camino Medio">
-      <img id="site-logo" src="assets/img/logocompleto.png" alt="Logo Comunidad Soto Zen Camino Medio" class="img-fluid" style="height: 40px; width: auto;" />
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span> Menú
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ms-auto">
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo" aria-label="Camino Medio">
+        <img class="logo-img" src="assets/img/logonegro.png" alt="Camino Medio">
+      </div>
+      <h1>Comunidad Soto Zen <span class="nowrap">Camino Medio</span></h1>
+      <p class="lead">Práctica y Estudio en Comunidad</p>
+    </header>
 
-        <!-- Comunidad -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="comunidadDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            🧘 Comunidad
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="comunidadDropdown">
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/linaje-y-transmision/">Linaje y transmisión</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/inicio/quienes-somos/">¿Quiénes somos?</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/alicante/">Dojo Alicante</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/elche/">Dojo Elche</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/murcia/">Dojo Murcia</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/inicio/financiacion/">Financiación</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/contribucion-libre/">Contribución libre</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/inicio/compromiso-etico-de-la-comunidad-soto-zen-camino-medio/">Compromiso ético</a></li>
-          </ul>
-        </li>
+    <main>
+      <div class="grid" aria-label="Accesos">
+        <a class="pill" href="https://www.caminomedio.org/agenda/"><i class="fas fa-calendar-alt" aria-hidden="true"></i>Agenda</a>
+        <a class="pill" href="https://www.caminomedio.org/proximas-actividades/"><i class="fas fa-people-group" aria-hidden="true"></i>Actividades</a>
+        <a class="pill" href="https://video.caminomedio.org/group/Zazen/?token=k7NkoOJdTw0"><i class="fas fa-spa" aria-hidden="true"></i>Zazen Online</a>
+        <a class="pill" href="temporizador/"><i class="fas fa-clock" aria-hidden="true"></i>Temporizador</a>
+        <a class="pill" href="https://www.caminomedio.org/dharma-digital/dokusan/"><i class="fas fa-user" aria-hidden="true"></i>Dokusan</a>
+        <a class="pill" href="https://www.caminomedio.org/cursos/"><i class="fas fa-book" aria-hidden="true"></i>Cursos</a>
+        <a class="pill" href="https://www.caminomedio.org/dharma-digital/"><i class="fas fa-blog" aria-hidden="true"></i>Blog</a>
+        <a class="pill" href="https://www.caminomedio.org/forums/forum/general/"><i class="fas fa-comments" aria-hidden="true"></i>Foro</a>
+        <a class="pill" href="https://www.caminomedio.org/sangha-online/"><i class="fas fa-globe" aria-hidden="true"></i>Sangha Online</a>
+        <a class="pill" href="https://www.caminomedio.org/biblioteca/"><i class="fas fa-book-open" aria-hidden="true"></i>Biblioteca</a>
+        <a class="pill" href="https://caminomedio.org/app/trivial/"><i class="fas fa-circle-question" aria-hidden="true"></i>¿Cuánto sabes?</a>
+        <a class="pill" href="https://www.caminomedio.org/circulo-de-practica-estudio/tu-membresia/"><i class="fas fa-users" aria-hidden="true"></i>Miembros</a>
+      </div>
+    </main>
 
-        <!-- Actividades -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="actividadesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            📆 Actividades
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="actividadesDropdown">
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/agenda/">Próximas actividades</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/retiros-urbanos/">Retiros Urbanos</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/sesshin-retiros-intensivos/">Sesshin</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/category/archivo/">Archivo</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/politica-de-cancelacion-de-actividades/">Política de Cancelación</a></li>
-          </ul>
-        </li>
-
-          <!-- Cursos -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="cursosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              🎓 Cursos
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="cursosDropdown">
-              <li><a class="dropdown-item" href="https://www.caminomedio.org/cursos/">Todos los cursos</a></li>
-              <li><a class="dropdown-item" href="https://www.caminomedio.org/cursos/mis-cursos/">Mis cursos</a></li>
-              <li><a class="dropdown-item" href="https://www.caminomedio.org/cursos/curso-completo/">Curso completado</a></li>
-            </ul>
-          </li>
-
-        <!-- Dharma Digital -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dharmaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            📚 Dharma Digital
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="dharmaDropdown">
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/circulo-de-practica-estudio">Círculo de Práctica-Estudio</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/programa-de-practica-estudio/">Recorrido de Práctica-Estudio</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/biblioteca/">Biblioteca</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/audioteca/">Audioteca</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/dharma-digital/dokusan/">Dokusan</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/dharma-digital/">Blog</a></li>
-          </ul>
-        </li>
-
-      
-
-        <!-- Sangha Online -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="sanghaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            🌐 Sangha Online
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="sanghaDropdown">
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/sangha-online/">Espacio de encuentro</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/forums/forum/general/">Foro</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/practica-online/">Práctica Online</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/zazenonline/">Zazen Online</a></li>
-            <li><a class="dropdown-item" href="https://caminomedio.org/app/inicio/temporizador/">Temporizador</a></li>
-            <li><a class="dropdown-item" href="https://caminomedio.org/nextcloud/apps/photos/public/fO3HYPrQ0cVDRkhgtHarOS2sdxRJs2hh">Galería de Fotos</a></li>
-          </ul>
-        </li>
-
-        <!-- Miembros -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="miembrosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            👤 Miembros
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="miembrosDropdown">
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/circulo-de-practica-estudio/unete/">Inscripción</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/circulo-de-practica-estudio/tu-membresia/">Tu membresía</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/circulo-de-practica-estudio/modifica-tu-perfil/">Modifica tu perfil</a></li>
-            <li><a class="dropdown-item" href="https://www.caminomedio.org/circulo-de-practica-estudio/tu-membresia/?rcp_action=lostpassword">Recuperar contraseña</a></li>
-          </ul>
-        </li>
-
-        <!-- Acceso directo -->
-        <li class="nav-item">
-          <a class="nav-link" href="https://www.caminomedio.org/cszcm">🔒 Acceder</a>
-        </li>
-
-      </ul>
-    </div>
+    <footer>
+      <div class="small">
+        <a href="mailto:info.caminomedio@gmail.com" aria-label="Enviar correo a info.caminomedio@gmail.com">info.caminomedio@gmail.com</a>
+        ·
+        <a href="tel:+34616305406" aria-label="Llamar al +34 616 305 406">+34 616 305 406</a>
+      </div>
+      <div class="small">PWA v<span id="sw-version">—</span></div>
+    </footer>
   </div>
-</nav>
 
-        <!-- Masthead-->
-        <script>
-          // Ajustar logo según tema guardado (negro en claro, blanco en oscuro)
-          (function(){
-            document.addEventListener('DOMContentLoaded', function(){
-              try {
-                var pref = localStorage.getItem('modoOscuro');
-                var oscuro = (pref === '1');
-                var logo = document.getElementById('logo');
-                if (logo) {
-                  logo.src = oscuro ? 'assets/img/logoblanco.png' : 'assets/img/logonegro.png';
-                }
-              } catch(e) {}
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js', { scope: './' })
+          .then((reg) => {
+            // Listen for version response
+            navigator.serviceWorker.addEventListener('message', (e) => {
+              if (e.data && e.data.type === 'VERSION') {
+                const el = document.getElementById('sw-version');
+                if (el) el.textContent = e.data.value;
+              }
             });
-          })();
-        </script>
- 
-
-    <!-- Botones de acceso rápido -->
-    <br>
-    <div class="row gx-0 justify-content-center" id="botones">
-        <div class="col-lg-6 d-flex justify-content-center">
-            <div class="uniform-frame">
-                <img src="assets/img/himalayas.jpg" alt="Montañas Himalayas - Camino Medio" loading="lazy" width="1280" height="853" />
-            </div>
-        </div>
-    <br>
-    <section class="container text-center mt-4" >
-    <div class="row g-3">
-        <div class="col-6 col-md-6 d-flex">
-            <a href="https://www.caminomedio.org/agenda/" class="btn btn-lg btn-quiet w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-calendar-alt me-2"></i> Agenda
-            </a>
-        </div>
-                <div class="col-6 col-md-6 d-flex">
-            <a href="https://www.caminomedio.org/proximas-actividades/" class="btn btn-lg btn-quiet w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-people-group me-2"></i> Actividades
-            </a>
-        </div>
-        <div class="col-6 col-md-6 d-flex">
-            <a href="https://video.caminomedio.org/group/Zazen/?token=k7NkoOJdTw0" class="btn btn-lg btn-quiet w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-spa me-2"></i> Zazen Online
-            </a>
-        </div>
-        <div class="col-6 col-md-6 d-flex">
-            <a id="temporizador-button" href="temporizador/" class="btn btn-lg btn-quiet w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-clock me-2"></i> Medidor de tiempo
-            </a>
-        </div>
-        <div class="col-6 col-md-6 d-flex">
-            <a href="https://www.caminomedio.org/dharma-digital/dokusan/" class="btn btn-lg btn-quiet w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-users me-2"></i> Dokusan Online
-            </a>
-        </div>
-        <div class="col-6 col-md-6 d-flex">
-            <a href="https://www.caminomedio.org/cursos/" class="btn btn-lg btn-quiet w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-book me-2"></i> Cursos
-            </a>
-        </div>
-        <div class="col-6 col-md-6 d-flex">
-            <a href="https://www.caminomedio.org/dharma-digital/" class="btn btn-lg btn-quiet w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-blog me-2"></i> Blog
-            </a>
-        </div>
-        <div class="col-6 col-md-6 d-flex">
-            <a href="https://www.caminomedio.org/forums/forum/general/" class="btn btn-lg btn-quiet w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-comments me-2"></i> Foro
-            </a>
-        </div>
-        <div class="col-6 col-md-6 d-flex">
-            <a href="https://caminomedio.org/app/trivial/" class="btn btn-lg btn-quiet w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-circle-question me-2"></i>¿Cuánto sabes de budismo?
-            </a>
-        </div>
-        <div class="col-6 col-md-6 d-flex">
-            <a href="https://www.caminomedio.org/biblioteca/" class="btn btn-lg btn-quiet w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-book-open me-2"></i>Biblioteca
-            </a>
-        </div>
-        <div class="col-6 col-md-6 d-flex">
-            <a href="https://www.caminomedio.org/sangha-online/" class="btn btn-lg btn-quiet w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-globe me-2"></i> Sangha Online
-            </a>
-        </div>
-        <div class="col-6 col-md-6 d-flex">
-            <a href="https://www.caminomedio.org/circulo-de-practica-estudio/tu-membresia/" class="btn btn-lg btn-quiet w-100 py-3 d-flex align-items-center justify-content-center">
-                <i class="fas fa-users me-2"></i>Miembros
-                
-            </a>
-        </div>
-
-    </div>
-    <br>
-</section>
-
-
-    
-        <!-- About-->
-        <section class="about-section text-center" id="agenda">
-            <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                <div class="col-xl-8 col-lg-7 d-flex justify-content-center"><div class="uniform-frame mb-3 mb-lg-0"><img src="assets/img/oryoki.jpg" alt="Práctica de Oryoki - Camino Medio" loading="lazy" width="1920" height="1530" /></div></div>
-                <div class="col-xl-4 col-lg-5">
-                    <div class="featured-text text-center text-lg-left">
-                        <h2 class="text-white mb-4">Actividades</h2>
-                        <p class="text-white-50">
-                            La Comunidad Soto Zen Camino Medio (CSZCM) organiza actividades centradas en la práctica y enseñanza del budismo Soto Zen.
-                             Ofrecemos zazen online y presencial, retiros urbanos, sesiones intensivas y cursos. 
-                             Nuestro objetivo es construir una red de practicantes comprometidos​. 
-                             <br> <br>
-                            <a class="btn btn-quiet" href="https://www.caminomedio.org/agenda/">Agenda</a>
-                        
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Projects-->
-        <section class="projects-section bg-light" id="zazen">
-            <div class="container px-4 px-lg-5">
-                <!-- Featured Project Row-->
-                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <div class="col-xl-8 col-lg-7 d-flex justify-content-center"><div class="uniform-frame mb-3 mb-lg-0"><img src="assets/img/zazen.jpg" alt="Práctica de Zazen Online - Camino Medio" loading="lazy" width="1920" height="1280" /></div></div>
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="featured-text text-center text-lg-left">
-                            <h4>Zazen Online</h4>
-                            <p class="text-black-50 mb-0">Práctica diaria, accede a <a href="https://video.caminomedio.org/group/Zazen/?token=k7NkoOJdTw0">nuestra sala online las 24 h.</a>.
-                                Si necesitas más información, horarios y ayuda <a href="https://www.caminomedio.org/practica-online/">accede a este enlace.</a> 
-                            </p>
-                            <br>
-                            <a class="btn btn-quiet" href="https://video.caminomedio.org/group/Zazen/?token=k7NkoOJdTw0">Acceder</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project One Row-->
-                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center" id="temporizador">
-                    <div class="col-lg-6 d-flex justify-content-center"><div class="uniform-frame"><img src="assets/img/temporizador.jpg" alt="Temporizador de meditación zen" loading="lazy" width="1280" height="576" /></div></div>
-                        <div class="col-lg-6">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">Temporizador</h4>
-                                    <p class="mb-0 text-white-50">Un práctico temporizador para controlar el tiempo de tus meditaciones.</p>
-                                    <a class="btn btn-quiet mt-3" href="temporizador/">Acceder</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project Two Row-->
-                <div class="row gx-0 justify-content-center" id="cursos">
-                    <div class="col-lg-6 d-flex justify-content-center"><div class="uniform-frame"><img src="assets/img/mudra.jpg" alt="Mudra en meditación zen" loading="lazy" width="1000" height="677" /></div></div>
-                    <div class="col-lg-6 order-lg-first">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 class="text-white">Cursos</h4>
-                                    <p class="mb-0 text-white-50">Cursos de budismo Soto Zen para profundizar en la práctica meditativa, 
-                                        el desarrollo espiritual y el conocimiento de nuestra tradición.</p>
-                                    <a class="btn btn-quiet mt-3" href="https://www.caminomedio.org/cursos/">Acceder</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <!-- Project One Row-->
-                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center" id="dokusan">
-                    <div class="col-lg-6 d-flex justify-content-center"><div class="uniform-frame"><img src="assets/img/beach.jpg" alt="Meditación en la playa - Camino Medio" loading="lazy" width="1920" height="1281" /></div></div>
-                    <div class="col-lg-6">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">Dokusan</h4>
-                                    <p class="mb-0 text-white-50">Dokusan es un encuentro privado y profundo entre el maestro zen y su discípulo, donde se abordan las dudas, preguntas y experiencias que surgen durante la práctica</p>
-                                    <a class="btn btn-quiet mt-3" href="https://www.caminomedio.org/dharma-digital/dokusan/">Acceder</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project Two Row-->
-                <div class="row gx-0 justify-content-center" id="dharma-digital">
-                    <div class="col-lg-6 d-flex justify-content-center"><div class="uniform-frame"><img src="assets/img/demo-image-02.jpg" alt="Montañas Himalayas - Camino Medio" loading="lazy" width="1280" height="853" /></div></div>
-                    <div class="col-lg-6 order-lg-first">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 class="text-white">Blog</h4>
-                                    <p class="mb-0 text-white-50">Dharma Digital es un espacio dedicado a explorar y compartir la sabiduría atemporal del budismo a través de una mirada actualizada.</p>
-                                    <a class="btn btn-quiet mt-3" href="https://www.caminomedio.org/dharma-digital/">Acceder</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-      
-        <!-- Contact-->
-        <section class="contact-section bg-black">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-envelope text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Email</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"><a href="mailto:info.caminomedio@gmail.com">info.caminomedio@gmail.com </a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Teléfono</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"><a href="tel:+34616305406">+34616305406</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="social d-flex justify-content-center">
-                    <a class="mx-2" href="https://chat.whatsapp.com/IoojVw6I0eUJRa9VxjrXRr" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                    <a class="mx-2" href="https://t.me/caminomedio" aria-label="Telegram" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram" aria-hidden="true"></i></a>
-                    <a class="mx-2" href="https://www.instagram.com/camino.medio/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                    <a class="mx-2" href="https://www.facebook.com/profile.php?id=61571262761827" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </section>
-        <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025 <br>Versión 7.3.38</div></footer>
-
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- sb-forms removed: no form present; avoided console error -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-<script>
-// Refuerzo móvil: evita doble disparo y mantiene abierto el submenu
-(function () {
-  const toggler = document.querySelector('.navbar-toggler');
-  if (!toggler) return;
-
-  const isMobile = () => window.getComputedStyle(toggler).display !== 'none';
-  const eventType = window.PointerEvent ? 'pointerup' : ('ontouchend' in window ? 'touchend' : 'click');
-  let lastTs = 0;
-
-  document.querySelectorAll('.nav-item.dropdown .dropdown-toggle').forEach((toggleEl) => {
-    toggleEl.setAttribute('data-bs-auto-close', 'outside');
-
-    toggleEl.addEventListener(eventType, function (e) {
-      if (!isMobile()) return;
-      const now = Date.now();
-      if (now - lastTs < 300) { // Debounce para evitar abrir/cerrar inmediato
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      }
-      lastTs = now;
-      e.preventDefault();
-      e.stopPropagation();
-
-      // Cerrar otros dropdowns al abrir uno nuevo
-      document.querySelectorAll('.nav-item.dropdown.show').forEach((openItem) => {
-        if (openItem.contains(this)) return;
-        openItem.classList.remove('show');
-        const openMenu = openItem.querySelector('.dropdown-menu.show');
-        if (openMenu) openMenu.classList.remove('show');
-        const openToggle = openItem.querySelector('.dropdown-toggle[aria-expanded="true"]');
-        if (openToggle) openToggle.setAttribute('aria-expanded', 'false');
-      });
-
-      // Mostrar explícitamente (en lugar de toggle) para evitar cierre inmediato
-      const dd = bootstrap.Dropdown.getOrCreateInstance(this);
-      dd.show();
-      this.setAttribute('aria-expanded', 'true');
-    }, { passive: false });
-  });
-})();
-</script>
-<div id="external-loader" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; color: #333; z-index: 9999; justify-content: center; align-items: center; font-size: 1.5em; flex-direction: column;">
-  <img src="assets/img/logonegro.png" alt="Logo negro Camino Medio" style="max-height: 60px; width: auto; height: auto; margin-bottom: 20px;" loading="lazy">
-  Cargando...
-</div>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const loader = document.getElementById("external-loader");
-    
-    if (!loader) {
-      console.error("External loader element not found");
-      return;
-    }
-
-    document.querySelectorAll("a").forEach(link => {
-      const url = link.getAttribute("href");
-
-      // Solo mostrar loader en enlaces externos
-      if (
-        url &&
-        !url.startsWith(location.origin) &&
-        !url.startsWith("/") && // Permite rutas relativas internas
-        !url.startsWith("#") &&
-        !url.startsWith("mailto:") &&
-        !url.startsWith("tel:")
-      ) {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          loader.style.display = "flex";
-          setTimeout(() => {
-            try {
-              window.open(url, "_blank", "noopener,noreferrer"); // Abre seguro en nueva pestaña
-            } catch (error) {
-              console.error("Error opening external link:", error);
-            } finally {
-              loader.style.display = "none";
+            // Ask for version when controller becomes available
+            function requestVersion() {
+              const ctl = navigator.serviceWorker.controller || reg.active || reg.waiting || reg.installing;
+              if (ctl && typeof ctl.postMessage === 'function') {
+                ctl.postMessage({ type: 'GET_VERSION' });
+              }
             }
-          }, 500);
-        });
-      }
-    });
-  });
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Comunidad Soto Zen Camino Medio",
-  "url": "https://www.caminomedio.org/",
-  "logo": "https://www.caminomedio.org/assets/img/logocompleto.png",
-  "sameAs": [
-    "https://www.facebook.com/profile.php?id=61571262761827",
-    "https://www.instagram.com/camino.medio/",
-    "https://t.me/caminomedio"
-  ]
-}
-</script>
-
+            if (navigator.serviceWorker.controller) {
+              requestVersion();
+            } else {
+              navigator.serviceWorker.ready.then(requestVersion);
+              navigator.serviceWorker.addEventListener('controllerchange', requestVersion);
+            }
+          })
+          .catch(console.error);
+      });
+    }
+  </script>
 </body>
 </html>
