@@ -86,7 +86,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Botón de instalación PWA (con caducidad 15 días)
+  // Botón de instalación PWA (con caducidad 15 días) + avisos
   (function () {
     let deferredPrompt = null;
     const DISMISS_KEY = 'pwaInstallDismissedAt';
@@ -117,19 +117,54 @@ window.addEventListener('DOMContentLoaded', () => {
     const showBtn = () => { if (!isStandalone() && !dismissedRecently()) btn.style.display = 'inline-flex'; };
     const hideBtn = () => { btn.style.display = 'none'; };
 
+    // Aviso minimalista
+    function showToast(message) {
+      try {
+        const id = 'app-toast';
+        let t = document.getElementById(id);
+        if (!t) {
+          t = document.createElement('div');
+          t.id = id;
+          t.setAttribute('role', 'status');
+          t.setAttribute('aria-live', 'polite');
+          t.style.cssText = 'position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 14px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.18);z-index:10001;opacity:0;transition:opacity .2s ease;max-width:90%;text-align:center;';
+          document.body.appendChild(t);
+        }
+        t.textContent = message;
+        requestAnimationFrame(() => { t.style.opacity = '1'; });
+        setTimeout(() => { t.style.opacity = '0'; setTimeout(() => { t.remove(); }, 250); }, 3500);
+      } catch (_) {}
+    }
+
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
       showBtn();
     });
-    window.addEventListener('appinstalled', () => { hideBtn(); setDismissedNow(); });
+    window.addEventListener('appinstalled', () => { hideBtn(); setDismissedNow(); showToast('Aplicación instalada correctamente.'); });
     btn.addEventListener('click', async () => {
-      if (!deferredPrompt) { hideBtn(); return; }
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice; // accepted o dismissed
-      hideBtn();
-      setDismissedNow();
-      deferredPrompt = null;
+      if (!deferredPrompt) {
+        // Guía para navegadores sin beforeinstallprompt (p.ej., iOS Safari)
+        showToast('Para instalar: usa “Compartir → Añadir a pantalla de inicio”.');
+        hideBtn();
+        setDismissedNow();
+        return;
+      }
+      try {
+        deferredPrompt.prompt();
+        const choice = await deferredPrompt.userChoice; // { outcome: 'accepted' | 'dismissed' }
+        if (choice && choice.outcome === 'accepted') {
+          showToast('Aplicación instalada correctamente.');
+        } else {
+          showToast('Instalación cancelada.');
+        }
+      } catch (_) {
+        showToast('No se pudo completar la instalación.');
+      } finally {
+        hideBtn();
+        setDismissedNow();
+        deferredPrompt = null;
+      }
     });
     // Fallback por si no llega el evento en algunos navegadores
     if (!isStandalone() && !dismissedRecently()) setTimeout(showBtn, 1200);
