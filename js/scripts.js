@@ -7,116 +7,131 @@
 // Scripts
 // 
 
-window.addEventListener('DOMContentLoaded', event => {
-
-    // Navbar shrink function
-    var navbarShrink = function () {
-        const navbarCollapsible = document.body.querySelector('#mainNav');
-        if (!navbarCollapsible) {
-            return;
-        }
-        if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
-        } else {
-            navbarCollapsible.classList.add('navbar-shrink')
-        }
-
+window.addEventListener('DOMContentLoaded', () => {
+  // Navbar helpers: sólo si existe navbar en la página
+  const mainNav = document.querySelector('#mainNav');
+  if (mainNav) {
+    const navbarShrink = () => {
+      if (window.scrollY === 0) mainNav.classList.remove('navbar-shrink');
+      else mainNav.classList.add('navbar-shrink');
     };
-
-    // Shrink the navbar 
     navbarShrink();
-
-    // Shrink the navbar when page is scrolled
     document.addEventListener('scroll', navbarShrink);
 
-    // Activate Bootstrap scrollspy on the main nav element
-    const mainNav = document.body.querySelector('#mainNav');
-    if (mainNav) {
-        new bootstrap.ScrollSpy(document.body, {
-            target: '#mainNav',
-            rootMargin: '0px 0px -40%',
-        });
-    };
-
-    // Collapse responsive navbar when toggler is visible
-    const navbarToggler = document.body.querySelector('.navbar-toggler');
-    const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarNavDropdown .nav-link')
-    );
-    responsiveNavItems.map(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener('click', () => {
-            // Mantener menú abierto para dropdowns; cerrar sólo en items normales
-            const isDropdownToggle =
-                responsiveNavItem.classList.contains('dropdown-toggle') ||
-                responsiveNavItem.getAttribute('data-bs-toggle') === 'dropdown';
-            if (isDropdownToggle) return;
-
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
-            }
-        });
-    });
-
-//Forzar actualización del Service Worker
-    // Si el navegador soporta Service Workers
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-            navigator.serviceWorker.register('./service-worker.js', { scope: './' })
-                .then(function (registration) {
-                    console.log('Service Worker registrado con éxito:', registration.scope);
-    
-                    // Escucha si hay un nuevo SW en espera
-                    registration.onupdatefound = function () {
-                        const newWorker = registration.installing;
-                        newWorker.onstatechange = function () {
-                            if (newWorker.state === 'installed') {
-                                if (navigator.serviceWorker.controller) {
-                                    // Hay un SW nuevo listo para activarse
-                                    console.log('Nueva versión disponible. Recargando...');
-                                    newWorker.postMessage({ type: 'CHECK_UPDATE' });
-                                    window.location.reload(); // 🔁 fuerza recarga con la nueva caché
-                                }
-                            }
-                        };
-                    };
-                }).catch(function (error) {
-                    console.error('Error al registrar el Service Worker:', error);
-                });
-        });
+    if (window.bootstrap && typeof window.bootstrap.ScrollSpy === 'function') {
+      new window.bootstrap.ScrollSpy(document.body, { target: '#mainNav', rootMargin: '0px 0px -40%' });
     }
-    
 
-    // Solicitar permiso para notificaciones push
-    // if ('Notification' in window && Notification.permission !== 'granted') {
-     //    Notification.requestPermission().then(permission => {
-     //        if (permission === 'granted') {
-      //           console.log("Permiso para notificaciones concedido.");
-     //        }
-      //   });
-     //}
-    
-    // Mostrar notificación push para instalar
-
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-    
-        const installButton = document.createElement('button');
-        installButton.textContent = "Instalar Aplicación";
-        installButton.style.cssText = "position: fixed; bottom: 20px; right: 20px; background-color: #76c7c0; padding: 10px; border: none; cursor: pointer;";
-        
-        document.body.appendChild(installButton);
-    
-        installButton.addEventListener('click', () => {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then(choiceResult => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('Usuario instaló la aplicación');
-                }
-                installButton.remove();
-            });
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    if (navbarToggler) {
+      const items = Array.from(document.querySelectorAll('#navbarNavDropdown .nav-link'));
+      items.forEach((item) => {
+        item.addEventListener('click', () => {
+          const isDropdownToggle = item.classList.contains('dropdown-toggle') || item.getAttribute('data-bs-toggle') === 'dropdown';
+          if (isDropdownToggle) return;
+          if (window.getComputedStyle(navbarToggler).display !== 'none') navbarToggler.click();
         });
+      });
+    }
+  }
+
+  // Registrar Service Worker y pedir versión para el footer si existe #sw-version
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      // Intentar registrar el SW desde varias rutas relativas
+      (async function registerSW() {
+        const candidates = ['./service-worker.js', '../service-worker.js', '../../service-worker.js'];
+        let reg = null;
+        for (const url of candidates) {
+          try {
+            reg = await navigator.serviceWorker.register(url);
+            break;
+          } catch (e) {
+            // intenta siguiente
+          }
+        }
+        if (!reg) { console.error('No se pudo registrar el Service Worker desde rutas relativas.'); return; }
+          // Forzar activación cuando haya actualización disponible
+          reg.onupdatefound = function () {
+            const nw = reg.installing;
+            if (!nw) return;
+            nw.onstatechange = function () {
+              if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+                nw.postMessage({ type: 'CHECK_UPDATE' });
+              }
+            };
+          };
+
+          // Colocar versión en el footer
+          function attachVersionListener() {
+            navigator.serviceWorker.addEventListener('message', (e) => {
+              if (e.data && e.data.type === 'VERSION') {
+                const el = document.getElementById('sw-version');
+                if (el) el.textContent = e.data.value;
+              }
+            });
+          }
+          attachVersionListener();
+
+          function requestVersion() {
+            const ctl = navigator.serviceWorker.controller || reg.active || reg.waiting || reg.installing;
+            if (ctl && typeof ctl.postMessage === 'function') ctl.postMessage({ type: 'GET_VERSION' });
+          }
+          if (navigator.serviceWorker.controller) requestVersion();
+          else {
+            navigator.serviceWorker.ready.then(requestVersion);
+            navigator.serviceWorker.addEventListener('controllerchange', requestVersion);
+          }
+      })().catch((err) => console.error('SW register error:', err));
     });
-    
+  }
+
+  // Botón de instalación PWA (con caducidad 15 días)
+  (function () {
+    let deferredPrompt = null;
+    const DISMISS_KEY = 'pwaInstallDismissedAt';
+    const DISMISS_MS = 15 * 24 * 60 * 60 * 1000;
+
+    // Migración de clave antigua si existiera
+    if (localStorage.getItem('pwaInstallDismissed') === '1' && !localStorage.getItem(DISMISS_KEY)) {
+      localStorage.setItem(DISMISS_KEY, String(Date.now()));
+      localStorage.removeItem('pwaInstallDismissed');
+    }
+
+    // Si ya existe el botón en el DOM, reutilizarlo; si no, crearlo
+    let btn = document.getElementById('install-pwa');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.id = 'install-pwa';
+      btn.style.display = 'none';
+      btn.innerHTML = '<i class="fas fa-download" aria-hidden="true"></i> Instalar aplicación';
+      document.body.appendChild(btn);
+    }
+
+    const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    const dismissedRecently = () => {
+      const ts = parseInt(localStorage.getItem(DISMISS_KEY) || '0', 10);
+      return ts && (Date.now() - ts) < DISMISS_MS;
+    };
+    const setDismissedNow = () => localStorage.setItem(DISMISS_KEY, String(Date.now()));
+    const showBtn = () => { if (!isStandalone() && !dismissedRecently()) btn.style.display = 'inline-flex'; };
+    const hideBtn = () => { btn.style.display = 'none'; };
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      showBtn();
+    });
+    window.addEventListener('appinstalled', () => { hideBtn(); setDismissedNow(); });
+    btn.addEventListener('click', async () => {
+      if (!deferredPrompt) { hideBtn(); return; }
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice; // accepted o dismissed
+      hideBtn();
+      setDismissedNow();
+      deferredPrompt = null;
+    });
+    // Fallback por si no llega el evento en algunos navegadores
+    if (!isStandalone() && !dismissedRecently()) setTimeout(showBtn, 1200);
+  })();
 });

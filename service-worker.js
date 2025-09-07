@@ -1,7 +1,7 @@
 // PWA Service Worker (scope auto-resolves relative to script location)
 
-const SW_VERSION = "0.4.1";
-const CACHE_NAME = "pwa-cszcm-v0.4.1";
+const SW_VERSION = "0.4.3";
+const CACHE_NAME = "pwa-cszcm-v0.4.3";
 // Precarga mínima necesaria para arrancar offline (rutas relativas al scope)
 const OFFLINE_URLS = [
   // Núcleo app
@@ -15,13 +15,7 @@ const OFFLINE_URLS = [
   './assets/img/logonegro.png',
   './assets/img/apple-touch-icon.png',
 
-  // Imágenes de portada
-  './assets/img/himalayas.jpg',
-  './assets/img/oryoki.jpg',
-  './assets/img/zazen.jpg',
-  './assets/img/temporizador.jpg',
-  './assets/img/mudra.jpg',
-  './assets/img/beach.jpg',
+
 
   // Secciones clave (sin archivos pesados)
   './temporizador/index.html',

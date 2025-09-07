@@ -252,14 +252,8 @@
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('../service-worker.js')
-                .then(() => console.log('Service Worker registrado correctamente'))
-                .catch(error => console.error('Error al registrar el Service Worker:', error));
-        }
-    </script>
+    <!-- sb-forms removed (no forms in page) -->
+    <!-- SW registration handled globally by ../js/scripts.js -->
 
 </body>
 

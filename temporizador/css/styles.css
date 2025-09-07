@@ -85,11 +85,7 @@ input, button, a.button {
     box-shadow: 0 1px 2px rgba(0,0,0,0.06);
     transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease, transform .04s ease;
 }
-button:hover, a.button:hover {
-    background-color: #f6f7f8;
-    border-color: #c4c9d2;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
-}
+button:hover, a.button:hover { background-color: #f1f3f5; border-color: #c4c9d2; box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06); }
 button:active, a.button:active { transform: translateY(1px); }
 
 a#save-button {
@@ -101,7 +97,7 @@ a#save-button.hidden {
     display: none;
 }
 
-a#save-button:hover { background-color: #505050; }
+a#save-button:hover { background-color: #f1f3f5; border-color: #c4c9d2; }
 
 a#estadisticas-button {
     margin-top: 12px;
@@ -112,7 +108,7 @@ a#estadisticas-button.hidden {
     display: none;
 }
 
-a#estadisticas-button:hover { background-color: #505050; }
+a#estadisticas-button:hover { background-color: #f1f3f5; border-color: #c4c9d2; }
 
 a#caminomedio-button {
     margin-top: 12px;
@@ -123,36 +119,46 @@ a#caminomedio-button.hidden {
     display: none;
 }
 
-a#caminomedio-button:hover { background-color: #505050; }
+a#caminomedio-button:hover { background-color: #f1f3f5; border-color: #c4c9d2; }
 
 .start {
-    background-color: #ffffff;
-    border: 1px solid #d0d5dd;
+    background-color: #f8f9fa;
+    border: 1px solid #e6e7ea;
     color: #212529;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
-    padding: 16px 28px;
-    border-radius: 8px;
+    padding: 24px 12px; /* más alto que ancho */
+    border-radius: 14px;
     text-transform: none;
-    display: inline-block;
-    width: auto;
-    min-width: 240px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 80px;
+    width: auto; /* evitar ancho completo */
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    transition: background-color .15s ease, transform .12s ease, box-shadow .15s ease, border-color .15s ease;
 }
 
 .start:hover { background-color: #f6f7f8; border-color: #c4c9d2; }
 
 .stop {
-    background-color: #ffffff;
-    border: 1px solid #d0d5dd;
+    background-color: #f8f9fa;
+    border: 1px solid #e6e7ea;
     color: #212529;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
-    padding: 16px 28px;
-    border-radius: 8px;
+    padding: 24px 12px; /* más alto que ancho */
+    border-radius: 14px;
     text-transform: none;
-    display: inline-block;
-    width: auto;
-    min-width: 240px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 80px;
+    width: auto; /* evitar ancho completo */
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    transition: background-color .15s ease, transform .12s ease, box-shadow .15s ease, border-color .15s ease;
 }
 
 .stop:hover { background-color: #f6f7f8; border-color: #c4c9d2; }
