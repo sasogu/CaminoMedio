@@ -33,13 +33,78 @@
   font-size: 1rem;
 }
 
-/* Responsive dropdown behavior for mobile */
+/* Responsive dropdown behavior for mobile (reinforced) */
 @media (max-width: 991.98px) {
-  .dropdown-menu { display: none; }
-  .dropdown-menu.show {
+  .navbar-collapse.show { overflow: visible; }
+  /* Hide by default; stack within navbar when opened */
+  .navbar-nav .dropdown-menu { 
+    display: none; 
+    position: static; 
+    float: none; 
+    margin: 0; 
+  }
+  .navbar-nav .dropdown-menu.show {
     display: block;
-    position: relative;
-    float: none;
-    margin-top: 0;
+  }
+  /* sangría visual para submenús anidados */
+  .navbar-nav .dropdown-menu .dropdown-menu {
+    margin-left: 1rem;
   }
 }
+
+/* Desktop: soporte básico para submenús alineados a la derecha */
+@media (min-width: 992px) {
+  .dropdown-menu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: .1rem;
+  }
+}
+
+/* Navbar brand logo should keep aspect ratio */
+.navbar .navbar-brand img {
+  height: 40px;
+  width: auto;
+}
+
+/* External loader logo keeps aspect ratio */
+#external-loader img {
+  max-height: 60px;
+  width: auto;
+  height: auto;
+}
+
+/* Contact cards: enforce black icons and links */
+.contact-section .card-body i {
+  color: #000 !important;
+}
+.contact-section .card-body a {
+  color: #000 !important;
+  text-decoration: none;
+}
+.contact-section .card-body a:hover {
+  text-decoration: underline;
+}
+
+/* Professional, neutral quick-action buttons */
+.btn-quiet {
+  --btn-bg: #ffffff;
+  --btn-border: rgba(0, 0, 0, 0.1);
+  --btn-text: #212529;
+  --btn-hover-bg: #f6f7f8;
+  --btn-hover-border: rgba(0, 0, 0, 0.18);
+  --btn-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
+
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--btn-border);
+  box-shadow: var(--btn-shadow);
+  transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease, transform .04s ease;
+}
+.btn-quiet i { color: inherit; }
+.btn-quiet:hover, .btn-quiet:focus {
+  background-color: var(--btn-hover-bg);
+  border-color: var(--btn-hover-border);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
+}
+.btn-quiet:active { transform: translateY(1px); }

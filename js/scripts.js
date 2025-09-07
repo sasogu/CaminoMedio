@@ -45,6 +45,12 @@ window.addEventListener('DOMContentLoaded', event => {
     );
     responsiveNavItems.map(function (responsiveNavItem) {
         responsiveNavItem.addEventListener('click', () => {
+            // Mantener menú abierto para dropdowns; cerrar sólo en items normales
+            const isDropdownToggle =
+                responsiveNavItem.classList.contains('dropdown-toggle') ||
+                responsiveNavItem.getAttribute('data-bs-toggle') === 'dropdown';
+            if (isDropdownToggle) return;
+
             if (window.getComputedStyle(navbarToggler).display !== 'none') {
                 navbarToggler.click();
             }
@@ -55,7 +61,7 @@ window.addEventListener('DOMContentLoaded', event => {
     // Si el navegador soporta Service Workers
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
-            navigator.serviceWorker.register('/app/inicio/service-worker.js')
+            navigator.serviceWorker.register('./service-worker.js')
                 .then(function (registration) {
                     console.log('Service Worker registrado con éxito:', registration.scope);
     

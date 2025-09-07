@@ -1,53 +1,31 @@
-// This is the "Offline page" service worker
+// PWA Service Worker (scope auto-resolves relative to script location)
 
-const CACHE_NAME = "pwa-cszcm-v7.2.30";
+const CACHE_NAME = "pwa-cszcm-v7.3.15";
+// Precarga mínima necesaria para arrancar offline (rutas relativas al scope)
 const OFFLINE_URLS = [
-  // Páginas principales
-  '/app/inicio/',
-  '/app/inicio/index.html',
-  '/app/inicio/css/styles.css',
-  '/app/inicio/js/scripts.js',
-  '/app/inicio/manifest.json',
+  // Núcleo app
+  './',
+  './index.html',
+  './css/styles.css',
+  './js/scripts.js',
+  './manifest.json',
+  // Recursos de cabecera/nav necesarios siempre
+  './assets/img/logocompleto.png',
+  './assets/img/logonegro.png',
 
-  // Imágenes
-  // (limpiado) Imágenes de tema no presentes en el repositorio actual
+  // Secciones clave (sin archivos pesados)
+  './temporizador/index.html',
+  './temporizador/css/styles.css',
+  './temporizador/css/estilos.css',
+  './temporizador/js/script.js',
+  './temporizador/js/phrases.js',
+  './temporizador/js/estadisticas.js',
+  './temporizador/js/guardar.js',
+  './temporizador/guardar.html',
+  './temporizador/estadisticas.html',
 
-  // Temporizador
-  '/app/inicio/temporizador/css/styles.css',
-  '/app/inicio/temporizador/css/estilos.css',
-  '/app/inicio/temporizador/guardar.html',
-  '/app/inicio/temporizador/index.html',
-  '/app/inicio/temporizador/js/guardar.js',
-  '/app/inicio/temporizador/js/phrases.js',
-  '/app/inicio/temporizador/js/script.js',
-  '/app/inicio/temporizador/js/estadisticas.js',
-  '/app/inicio/temporizador/multimedia/end.mp3',
-  '/app/inicio/temporizador/multimedia/logoblanco.png',
-  '/app/inicio/temporizador/multimedia/logopeque.png',
-  '/app/inicio/temporizador/multimedia/start.mp3',
-
-  // Xinxinming
-  '/app/inicio/xinxinming/audios.html',
-  '/app/inicio/xinxinming/comentarios.html',
-  // (limpiado) Ruta inexistente en xinxinming
-  // '/app/inicio/xinxinming/estadisticas.html',
-  '/app/inicio/xinxinming/comentarios/comentarios1.html',
-  '/app/inicio/xinxinming/comentarios/comentarios2.html',
-  '/app/inicio/xinxinming/comentarios/comentarios3.html',
-  '/app/inicio/xinxinming/comentarios/comentarios4.html',
-  '/app/inicio/xinxinming/comentarios/comentarios5.html',
-  '/app/inicio/xinxinming/comentarios/comentarios6.html',
-  '/app/inicio/xinxinming/comentarios/comentarios7.html',
-  '/app/inicio/xinxinming/comentarios/comentarios8.html',
-  '/app/inicio/xinxinming/comentarios/comentarios9.html',
-  '/app/inicio/xinxinming/comentarios/comentarios10.html',
-  '/app/inicio/xinxinming/comentarios/comentarios11.html',
-  '/app/inicio/xinxinming/comentarios/comentarios12.html',
-  '/app/inicio/xinxinming/comentarios/comentarios13.html',
-  '/app/inicio/xinxinming/comentarios/comentarios14.html',
-  '/app/inicio/xinxinming/comentarios/comentarios15.html',
-  '/app/inicio/xinxinming/index.html',
-  '/app/inicio/xinxinming/traduccion.html'
+  './xinxinming/index.html',
+  './xinxinming/comentarios.html'
 ];
 
 
@@ -83,28 +61,76 @@ self.addEventListener('activate', (event) => {
 
 // Interceptar solicitudes y servir archivos desde la caché o la red
 self.addEventListener('fetch', (event) => {
-  if (event.request.url.startsWith(self.location.origin)) {
-    // Manejar solicitudes internas
+  const req = event.request;
+  const url = new URL(req.url);
+
+  // Solo gestionar peticiones del mismo origen
+  if (!url.origin.startsWith(self.location.origin)) {
     event.respondWith(
-      caches.match(event.request).then((response) => {
-        return response || fetch(event.request).then((fetchResponse) => {
-          return caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, fetchResponse.clone());
-            return fetchResponse;
-          });
-        });
-      }).catch(() => caches.match(self.registration.scope + 'index.html')) // Fallback robusto dentro del scope
+      fetch(req).catch(() => new Response('Contenido no disponible', { status: 503 }))
     );
-  } else {
-    // Manejar solicitudes externas
-    event.respondWith(
-      fetch(event.request).catch(() => {
-        console.error('Error al obtener recurso externo:', event.request.url);
-        return new Response('Contenido no disponible', { status: 503 });
-      })
-    );
+    return;
   }
+
+  // Navegación: network-first con fallback al index en caché
+  if (req.mode === 'navigate') {
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          // Actualiza caché para HTML si carga
+          const resClone = res.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(req, resClone));
+          return res;
+        })
+        .catch(async () => {
+          const cached = await caches.match(req);
+          if (cached) return cached;
+          return caches.match('./index.html');
+        })
+    );
+    return;
+  }
+
+  // Estrategias por tipo de recurso (stale-while-revalidate)
+  const dest = req.destination;
+  if (dest === 'style' || dest === 'script' || dest === 'worker') {
+    event.respondWith(staleWhileRevalidate(req));
+    return;
+  }
+  if (dest === 'image' || dest === 'font') {
+    event.respondWith(staleWhileRevalidate(req));
+    return;
+  }
+
+  // Por defecto: cache-first con actualización
+  event.respondWith(
+    caches.match(req)
+      .then((cached) => {
+        return (
+          cached ||
+          fetch(req).then((res) => {
+            const resClone = res.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(req, resClone));
+            return res;
+          })
+        );
+      })
+      .catch(() => caches.match('./index.html'))
+  );
 });
+
+function staleWhileRevalidate(request) {
+  return caches.match(request).then((cached) => {
+    const fetchPromise = fetch(request)
+      .then((res) => {
+        const resClone = res.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(request, resClone));
+        return res;
+      })
+      .catch(() => undefined);
+    return cached || fetchPromise;
+  });
+}
 
 // Escuchar cambios en la caché y notificar a la página sobre nuevas versiones
 self.addEventListener('message', (event) => {
