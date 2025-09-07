@@ -101,9 +101,7 @@ a#save-button.hidden {
     display: none;
 }
 
-a#save-button:hover, button:hover {
-    background-color: #505050;
-}
+a#save-button:hover { background-color: #505050; }
 
 a#estadisticas-button {
     margin-top: 12px;
@@ -114,9 +112,7 @@ a#estadisticas-button.hidden {
     display: none;
 }
 
-a#estadisticas-button:hover, button:hover {
-    background-color: #505050;
-}
+a#estadisticas-button:hover { background-color: #505050; }
 
 a#caminomedio-button {
     margin-top: 12px;
@@ -127,50 +123,39 @@ a#caminomedio-button.hidden {
     display: none;
 }
 
-a#caminomedio-button:hover, button:hover {
-    background-color: #505050;
-}
+a#caminomedio-button:hover { background-color: #505050; }
 
 .start {
     background-color: #ffffff;
     border: 1px solid #d0d5dd;
     color: #212529;
-    font-size: 18px;
-    padding: 14px 20px;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 16px 28px;
     border-radius: 8px;
     text-transform: none;
+    display: inline-block;
+    width: auto;
+    min-width: 240px;
 }
 
-.start:hover {
-    background-color: #505050;
-    font-size: 24px; /* Aumenta el tamaño del texto */
-    padding: 20px 40px; /* Aumenta el espacio interno */
-    width: auto; /* Permite que el ancho se ajuste automáticamente */
-    height: auto; /* Permite que la altura se ajuste automáticamente */
-    border-radius: 10px; /* Bordes redondeados */
-    text-transform: uppercase; /* Opcional: Texto en mayúsculas */
-    
-}
+.start:hover { background-color: #f6f7f8; border-color: #c4c9d2; }
 
 .stop {
     background-color: #ffffff;
     border: 1px solid #d0d5dd;
     color: #212529;
-    font-size: 18px;
-    padding: 14px 20px;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 16px 28px;
     border-radius: 8px;
     text-transform: none;
+    display: inline-block;
+    width: auto;
+    min-width: 240px;
 }
 
-.stop:hover {
-    background-color: #505050;
-    font-size: 24px; /* Aumenta el tamaño del texto */
-    padding: 20px 40px; /* Aumenta el espacio interno */
-    width: auto; /* Permite que el ancho se ajuste automáticamente */
-    height: auto; /* Permite que la altura se ajuste automáticamente */
-    border-radius: 10px; /* Bordes redondeados */
-    text-transform: uppercase; /* Opcional: Texto en mayúsculas */
-}
+.stop:hover { background-color: #f6f7f8; border-color: #c4c9d2; }
 
 
 button {
