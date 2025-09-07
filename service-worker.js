@@ -1,6 +1,6 @@
 // PWA Service Worker (scope auto-resolves relative to script location)
 
-const CACHE_NAME = "pwa-cszcm-v7.3.15";
+const CACHE_NAME = "pwa-cszcm-v7.3.18";
 // Precarga mínima necesaria para arrancar offline (rutas relativas al scope)
 const OFFLINE_URLS = [
   // Núcleo app
