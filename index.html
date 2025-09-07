@@ -20,6 +20,42 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap">
  <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" href="css/styles.css">
+        <script>
+          // Fallback CSS loader: tries alternative paths if main CSS didn't load
+          (function() {
+            function sheetHasRules(sheet) {
+              try { return sheet && sheet.cssRules && sheet.cssRules.length > 0; } catch (e) { return false; }
+            }
+            function mainSheetOk() {
+              return Array.from(document.styleSheets).some(s => (s.href||'').indexOf('css/styles.css') !== -1 && sheetHasRules(s));
+            }
+            function loadAlt(href, cb) {
+              var l = document.createElement('link');
+              l.rel = 'stylesheet';
+              l.href = href + (href.indexOf('?') === -1 ? ('?v=' + Date.now()) : '');
+              l.onload = cb;
+              l.onerror = cb;
+              document.head.appendChild(l);
+            }
+            function ensureStyles() {
+              if (mainSheetOk()) return;
+              var origin = location.origin || '';
+              var candidates = [
+                './css/styles.css',
+                '../css/styles.css',
+                origin + '/css/styles.css'
+              ];
+              (function next(i){
+                if (i >= candidates.length) return;
+                loadAlt(candidates[i], function(){
+                  // Give the browser a tick, then check again
+                  setTimeout(function(){ if (!mainSheetOk()) next(i+1); }, 0);
+                });
+              })(0);
+            }
+            window.addEventListener('load', ensureStyles);
+          })();
+        </script>
 
     
 <!-- moved responsive dropdown CSS to css/styles.css -->
@@ -379,7 +415,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025 <br>Versión 7.3.33</div></footer>
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025 <br>Versión 7.3.34</div></footer>
 
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
