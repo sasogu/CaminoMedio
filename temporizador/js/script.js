@@ -6,6 +6,18 @@ function getLocalStorageItem(key) {
     return localStorage.getItem(key) || null;
 }
 
+// Ajusta el logo según el tema guardado (oscuro -> blanco, claro -> negro)
+function setLogoByTheme() {
+    try {
+        const pref = localStorage.getItem('modoOscuro');
+        const oscuro = (pref === '1' || pref === null);
+        const logoEl = document.getElementById('logo');
+        if (logoEl) {
+            logoEl.src = oscuro ? '../assets/img/logoblanco.png' : '../assets/img/logonegro.png';
+        }
+    } catch (e) {}
+}
+
 // Wake Lock API
 let wakeLock = null;
 
@@ -152,6 +164,8 @@ function updateTime() {
         registrarFin(initialTime);
         releaseWakeLock();
         initializeProgress();
+        // Restaurar logo acorde al tema cuando termina automáticamente
+        setLogoByTheme();
     }
 }
 
@@ -213,7 +227,8 @@ function stopTimer() {
     remainingTime = 0;
     releaseWakeLock();
     initializeProgress();
-    document.getElementById('logo').src = "multimedia/logoblanco.png";
+    // Restaurar el logo acorde al tema cuando se detiene manualmente
+    setLogoByTheme();
     document.getElementById('title').classList.remove('hidden');
     document.getElementById('minutes').classList.remove('hidden');
     document.getElementById('start-button').classList.remove('hidden');
