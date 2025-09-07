@@ -52,7 +52,7 @@
          <!-- LOGO-->
         
         <div class="logo-container">
-            <img id="logo" src="multimedia/logoblanco.png" alt="Logo del Camino">
+            <img id="logo" src="../assets/img/logonegro.png" alt="Logo Camino Medio">
         </div>
         <h1 id="title">Comunidad Soto Zen Camino Medio</h1>
 
@@ -77,6 +77,19 @@
 
    
     <script type="module" src="js/script.js"></script>
+    <script>
+      // Aplicar tema desde preferencia guardada (oscuro por defecto)
+      (function() {
+        try {
+          const pref = localStorage.getItem('modoOscuro');
+          const oscuro = (pref === '1' || pref === null);
+          if (pref === null) localStorage.setItem('modoOscuro', '1');
+          document.addEventListener('DOMContentLoaded', function(){
+            document.body.classList.toggle('dark-mode', oscuro);
+          });
+        } catch (e) {}
+      })();
+    </script>
     
     <script>
         // Función para solicitar pantalla completa

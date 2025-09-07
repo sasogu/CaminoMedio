@@ -1,24 +1,23 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     text-align: center;
-    background-color: #000000;
-    color: #625f5f;
+    background-color: #f7f7f7;
+    color: #212529;
     margin: 0;
     padding: 0;
-     overflow-y: auto; /* Permitir desplazamiento vertical */
+    overflow-y: auto; /* Permitir desplazamiento vertical */
     overflow-x: hidden; /* Evitar desplazamiento horizontal */
-    margin: 0; /* Eliminar márgenes predeterminados */
-    padding: 0;
     box-sizing: border-box;
 }
 
 .timer-container {
-    margin: 10px auto;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #000000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    max-width: 400px;
+    margin: 24px auto;
+    padding: 24px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    max-width: 520px;
 }
 
 .logo-container {
@@ -29,7 +28,8 @@ body {
 }
 
 .logo-container img {
-    max-width: 100px;
+    max-height: 72px;
+    width: auto;
     height: auto;
     display: block;
 }
@@ -48,10 +48,10 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 80%; /* Asegura que el contenedor ocupe todo el ancho */
-    max-width: 60px; /* Tamaño máximo opcional */
-    margin: 0 auto; /* Centra el contenedor */
-    position: relative; /* Para posicionar el tiempo en el centro */
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    position: relative;
 }
 
 .progress-ring {
@@ -63,34 +63,37 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 84px;
-    font-weight: bold;
-    color: #e0e0e0;
+    font-size: 72px;
+    font-weight: 700;
+    color: #212529;
 }
 
 
 
-input, button, a {
-    background-color: #000000;
-    border: 1px solid #555;
-    border-radius: 5px;
-    color: #e0e0e0;
-    padding: 15px;
-    font-size: 18px;
+input, button, a.button {
+    background-color: #ffffff;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    color: #212529;
+    padding: 14px 16px;
+    font-size: 16px;
     text-align: center;
     margin: 10px 0;
     width: 100%;
     box-sizing: border-box;
     text-decoration: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease, transform .04s ease;
 }
+button:hover, a.button:hover {
+    background-color: #f6f7f8;
+    border-color: #c4c9d2;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
+}
+button:active, a.button:active { transform: translateY(1px); }
 
 a#save-button {
-    margin-top: 20px;
-    background-color: #3b3b3a;
-    color: #e0e0e0;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    margin-top: 12px;
     display: inline-block;
 }
 
@@ -103,12 +106,7 @@ a#save-button:hover, button:hover {
 }
 
 a#estadisticas-button {
-    margin-top: 20px;
-    background-color: #3b3b3a;
-    color: #e0e0e0;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    margin-top: 12px;
     display: inline-block;
 }
 
@@ -121,12 +119,7 @@ a#estadisticas-button:hover, button:hover {
 }
 
 a#caminomedio-button {
-    margin-top: 20px;
-    background-color: #3b3b3a;
-    color: #e0e0e0;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    margin-top: 12px;
     display: inline-block;
 }
 
@@ -139,13 +132,13 @@ a#caminomedio-button:hover, button:hover {
 }
 
 .start {
-    background-color: #1b6b4f;
-    font-size: 24px; /* Aumenta el tamaño del texto */
-    padding: 20px 40px; /* Aumenta el espacio interno */
-    width: auto; /* Permite que el ancho se ajuste automáticamente */
-    height: auto; /* Permite que la altura se ajuste automáticamente */
-    border-radius: 10px; /* Bordes redondeados */
-    text-transform: uppercase; /* Opcional: Texto en mayúsculas */
+    background-color: #ffffff;
+    border: 1px solid #d0d5dd;
+    color: #212529;
+    font-size: 18px;
+    padding: 14px 20px;
+    border-radius: 8px;
+    text-transform: none;
 }
 
 .start:hover {
@@ -160,13 +153,13 @@ a#caminomedio-button:hover, button:hover {
 }
 
 .stop {
-    background-color: #3b3b3b;
-    font-size: 24px; /* Aumenta el tamaño del texto */
-    padding: 20px 40px; /* Aumenta el espacio interno */
-    width: auto; /* Permite que el ancho se ajuste automáticamente */
-    height: auto; /* Permite que la altura se ajuste automáticamente */
-    border-radius: 10px; /* Bordes redondeados */
-    text-transform: uppercase; /* Opcional: Texto en mayúsculas */
+    background-color: #ffffff;
+    border: 1px solid #d0d5dd;
+    color: #212529;
+    font-size: 18px;
+    padding: 14px 20px;
+    border-radius: 8px;
+    text-transform: none;
 }
 
 .stop:hover {
@@ -181,24 +174,7 @@ a#caminomedio-button:hover, button:hover {
 
 
 button {
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-size: 24px; /* Aumenta el tamaño del texto */
-    padding: 20px 40px; /* Aumenta el espacio interno */
-    width: auto; /* Permite que el ancho se ajuste automáticamente */
-    height: auto; /* Permite que la altura se ajuste automáticamente */
-    border-radius: 10px; /* Bordes redondeados */
-    text-transform: uppercase; /* Opcional: Texto en mayúsculas */
-}
-
-button:hover {
-    background-color: #5aa9a6;
-    transform: scale(1.05);
-     font-size: 24px; /* Aumenta el tamaño del texto */
-    padding: 20px 40px; /* Aumenta el espacio interno */
-    width: auto; /* Permite que el ancho se ajuste automáticamente */
-    height: auto; /* Permite que la altura se ajuste automáticamente */
-    border-radius: 10px; /* Bordes redondeados */
-    text-transform: uppercase; /* Opcional: Texto en mayúsculas */
+    transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .04s ease;
 }
 
 .progress-ring__circle {
@@ -208,8 +184,8 @@ button:hover {
 #quote a {
     display: block;
     margin-top: 10px;
-    font-size: 1.2em;
-    color: #76c7c0;
+    font-size: 1.1em;
+    color: #212529;
     text-decoration: none;
 }
 
@@ -229,36 +205,78 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px; /* Espacio entre los botones y el input */
+    gap: 12px;
     margin: 20px 0;
 }
 
 .time-button {
-    background-color: #64a19d;
-    color: white;
-    border: none;
+    background-color: #ffffff;
+    color: #212529;
+    border: 1px solid #d0d5dd;
     border-radius: 50%;
     width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
 
-.time-button:hover {
-    background-color: #558985;
-}
+.time-button:hover { background-color: #f6f7f8; }
 
 #minutes {
-    width: 80px;
+    width: 96px;
     text-align: center;
-    font-size: 1.2rem;
-    padding: 5px;
-    border: 2px solid #64a19d;
-    border-radius: 5px;
+    font-size: 1.1rem;
+    padding: 6px 8px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    background: #fff;
+    color: #212529;
+}
+
+/* --- Dark mode overrides --- */
+body.dark-mode {
+    background-color: #0b0b0c;
+    color: #e6e6e6;
+}
+body.dark-mode .timer-container {
+    background-color: #101112;
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+body.dark-mode #time {
+    color: #e6e6e6;
+}
+body.dark-mode input,
+body.dark-mode button,
+body.dark-mode a.button {
+    background-color: #131416;
+    border-color: #3a3f45;
+    color: #e6e6e6;
+    box-shadow: none;
+}
+body.dark-mode input:hover,
+body.dark-mode button:hover,
+body.dark-mode a.button:hover,
+body.dark-mode .time-button:hover {
+    background-color: #191b1e;
+    border-color: #4a5057;
+}
+body.dark-mode .time-button {
+    background-color: #131416;
+    border-color: #3a3f45;
+    color: #e6e6e6;
+}
+body.dark-mode #minutes {
+    background-color: #131416;
+    border-color: #3a3f45;
+    color: #e6e6e6;
+}
+body.dark-mode .logo-container img {
+    filter: invert(1) grayscale(1) brightness(0.9);
 }
 
 .hidden {

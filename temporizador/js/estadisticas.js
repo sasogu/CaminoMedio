@@ -240,7 +240,10 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('El elemento con ID "importarCSV" no existe en el DOM.');
   }
 
-  if (localStorage.getItem('modoOscuro') === '1') {
+  // Tema oscuro por defecto: si no hay preferencia guardada, usar oscuro
+  const pref = localStorage.getItem('modoOscuro');
+  if (pref === null) localStorage.setItem('modoOscuro', '1');
+  if (localStorage.getItem('modoOscuro') !== '0') {
     document.body.classList.add('dark-mode');
   }
   mostrarEstadisticas();

@@ -47,6 +47,13 @@ function initializeProgress() {
 
 // Llamar a la función al iniciar la aplicación
 window.onload = function () {
+    // Aplicar tema si está guardado (oscuro por defecto en primera visita)
+    try {
+        const pref = localStorage.getItem('modoOscuro');
+        const oscuro = (pref === '1' || pref === null);
+        if (pref === null) localStorage.setItem('modoOscuro', '1');
+        document.body.classList.toggle('dark-mode', oscuro);
+    } catch (e) {}
     const savedVolume = getLocalStorageItem("soundVolume") || "0.5";
     const savedBrightness = getLocalStorageItem("screenBrightness") || "1";
     const savedTime = getLocalStorageItem("defaultTime");
