@@ -1,6 +1,6 @@
 // PWA Service Worker (scope auto-resolves relative to script location)
 
-const CACHE_NAME = "pwa-cszcm-v7.3.22";
+const CACHE_NAME = "pwa-cszcm-v7.3.24";
 // Precarga mínima necesaria para arrancar offline (rutas relativas al scope)
 const OFFLINE_URLS = [
   // Núcleo app
@@ -34,7 +34,32 @@ const OFFLINE_URLS = [
   './temporizador/estadisticas.html',
 
   './xinxinming/index.html',
-  './xinxinming/comentarios.html'
+  './xinxinming/comentarios.html',
+  './xinxinming/audios.html',
+  './xinxinming/bibliografia.html',
+  './xinxinming/historia.html',
+  './xinxinming/plantilla.html',
+  './xinxinming/presentacion.html',
+  './xinxinming/texto.html',
+  './xinxinming/traduccion.html',
+
+  // XinXinMing: comentarios (paginado)
+  './xinxinming/comentarios/comentarios1.html',
+  './xinxinming/comentarios/comentarios2.html',
+  './xinxinming/comentarios/comentarios3.html',
+  './xinxinming/comentarios/comentarios4.html',
+  './xinxinming/comentarios/comentarios5.html',
+  './xinxinming/comentarios/comentarios6.html',
+  './xinxinming/comentarios/comentarios7.html',
+  './xinxinming/comentarios/comentarios8.html',
+  './xinxinming/comentarios/comentarios9.html',
+  './xinxinming/comentarios/comentarios10.html',
+  './xinxinming/comentarios/comentarios11.html',
+  './xinxinming/comentarios/comentarios12.html',
+  './xinxinming/comentarios/comentarios13.html',
+  './xinxinming/comentarios/comentarios14.html',
+  './xinxinming/comentarios/comentarios15.html',
+  './xinxinming/comentarios/navbar.html'
 ];
 
 
@@ -81,7 +106,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Navegación: network-first con fallback al index en caché
+  // Navegación: network-first con fallback al index en caché (respetando subruta)
   if (req.mode === 'navigate') {
     event.respondWith(
       fetch(req)

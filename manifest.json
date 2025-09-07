@@ -1,11 +1,11 @@
 {
-  "id": "/",
-  "scope": "/",
+  "id": "./",
+  "scope": "./",
   "handle_links": "preferred",
   "name": "CaminoMedio",
   "display": "standalone",
   "lang": "es-ES",
-  "start_url": "/",
+  "start_url": "./",
   "short_name": "CaminoMedio",
   "theme_color": "#000",
   "description": "Aplicación de la Comunidad Soto Zen Camino Medio",
@@ -65,7 +65,7 @@
       "name": "CaminoMedio",
       "short_name": "CaminoMedio",
       "description": "Comunidad Soto Zen Camino Medio",
-      "url": "/xinxinming/",
+      "url": "./xinxinming/",
       "icons": [{ "src": "assets/img/logoblanco.png", "sizes": "192x192" }]
     }
   ]
