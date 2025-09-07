@@ -8,6 +8,24 @@
 // 
 
 window.addEventListener('DOMContentLoaded', () => {
+  // Asegurar color de la barra del sistema según tema
+  (function ensureThemeColor(){
+    try {
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      function setThemeColor(){
+        const dark = mq.matches;
+        let tag = document.querySelector('meta[name="theme-color"]');
+        if (!tag) {
+          tag = document.createElement('meta');
+          tag.setAttribute('name','theme-color');
+          document.head.appendChild(tag);
+        }
+        tag.setAttribute('content', dark ? '#0b0b0c' : '#ffffff');
+      }
+      setThemeColor();
+      if (mq.addEventListener) mq.addEventListener('change', setThemeColor); else mq.addListener(setThemeColor);
+    } catch(_) {}
+  })();
   // Navbar helpers: sólo si existe navbar en la página
   const mainNav = document.querySelector('#mainNav');
   if (mainNav) {
