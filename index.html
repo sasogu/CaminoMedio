@@ -10,7 +10,25 @@
   <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="assets/favicon.ico">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-  <link rel="manifest" href="manifest.json">
+  <script>
+    // Selecciona manifest claro/oscuro antes de que el navegador lo lea
+    (function(){
+      try {
+        var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var link = document.createElement('link');
+        link.rel = 'manifest';
+        link.href = dark ? 'manifest-dark.json' : 'manifest-light.json';
+        document.head.appendChild(link);
+      } catch(_) {
+        var fallback = document.createElement('link');
+        fallback.rel = 'manifest';
+        fallback.href = 'manifest.json';
+        document.head.appendChild(fallback);
+      }
+    })();
+  </script>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta property="og:title" content="Comunidad Soto Zen Camino Medio">
   <meta property="og:description" content="Práctica de zazen, estudio y vida sencilla.">
   <meta property="og:url" content="./">
