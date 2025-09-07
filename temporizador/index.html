@@ -54,7 +54,7 @@
         <div class="logo-container">
             <img id="logo" src="../assets/img/logonegro.png" alt="Logo Camino Medio">
         </div>
-        <h1 id="title">Comunidad Soto Zen Camino Medio</h1>
+        <h1 id="title"></h1>
 
         <!-- Botón para ir a guardar.html -->
        
@@ -78,12 +78,13 @@
    
     <script type="module" src="js/script.js"></script>
     <script>
-      // Aplicar tema desde preferencia guardada (oscuro por defecto)
+      // Aplicar tema desde preferencia guardada (por defecto según el sistema)
       (function() {
         try {
           const pref = localStorage.getItem('modoOscuro');
-          const oscuro = (pref === '1' || pref === null);
-          if (pref === null) localStorage.setItem('modoOscuro', '1');
+          const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const oscuro = (pref === '1') || (pref === null && sysDark);
+          if (pref === null) localStorage.setItem('modoOscuro', oscuro ? '1' : '0');
           document.addEventListener('DOMContentLoaded', function(){
             document.body.classList.toggle('dark-mode', oscuro);
           });

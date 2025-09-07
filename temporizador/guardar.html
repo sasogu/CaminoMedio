@@ -107,8 +107,9 @@
         (function(){
             function applyThemeFromStorage(){
                 const pref = localStorage.getItem('modoOscuro');
-                const oscuro = (pref === '1' || pref === null);
-                if (pref === null) localStorage.setItem('modoOscuro', '1');
+                const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const oscuro = (pref === '1') || (pref === null && sysDark);
+                if (pref === null) localStorage.setItem('modoOscuro', oscuro ? '1' : '0');
                 document.body.classList.toggle('dark-mode', oscuro);
                 const sel = document.getElementById('theme-select');
                 if (sel) sel.value = oscuro ? 'dark' : 'light';

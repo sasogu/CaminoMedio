@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Camino Medio • Comunidad Soto Zen</title>
   <meta name="description" content="Comunidad Soto Zen Camino Medio: práctica, estudio y vida sencilla.">
+  <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="assets/favicon.ico">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
@@ -44,6 +46,16 @@
     #install-pwa{position:fixed;right:16px;bottom:16px;background:#111;color:#fff;border:0;border-radius:999px;padding:12px 16px;box-shadow:0 6px 18px rgba(0,0,0,.15);display:none;align-items:center;gap:10px;z-index:10000}
     #install-pwa i{flex-shrink:0}
     #install-pwa:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(0,0,0,.18)}
+    /* Loader overlay */
+    #external-loader{position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:#fff;color:#333;z-index:10000}
+    #external-loader img{max-height:60px;width:auto;height:auto;margin-bottom:16px}
+    /* Dark theme */
+    @media (prefers-color-scheme: dark){
+      :root{--bg:#0b0b0c;--ink:#e6e6e6;--muted:#a3a3a3;--ring:#1f2430;--pill:#131416;--pill-b:#3a3f45;--pill-h:#191b1e}
+      #install-pwa{background:#fff;color:#111;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+      #install-pwa:hover{box-shadow:0 10px 22px rgba(0,0,0,.4)}
+      #external-loader{background:#0b0b0c;color:#e6e6e6}
+    }
   </style>
 </head>
 <body>
@@ -84,5 +96,35 @@
   </div>
 
   <script defer src="js/scripts.js"></script>
+  <!-- Loader overlay -->
+  <div id="external-loader" aria-hidden="true">
+    <img id="loader-logo" src="assets/img/logonegro.png" alt="Camino Medio">
+    Cargando...
+  </div>
+  <script>
+    // Mostrar pantalla de carga al navegar a otro destino
+    (function(){
+      const loader = document.getElementById('external-loader');
+      const logo = document.getElementById('loader-logo');
+      if (!loader) return;
+      try {
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        const setLogo = () => { if (logo) logo.src = mq.matches ? 'assets/img/logoblanco.png' : 'assets/img/logonegro.png'; };
+        setLogo(); mq.addEventListener ? mq.addEventListener('change', setLogo) : mq.addListener(setLogo);
+      } catch(_) {}
+      function shouldHandle(href){
+        if (!href) return false;
+        return !(href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:'));
+      }
+      document.addEventListener('click', function(e){
+        const a = e.target.closest('a');
+        if (!a) return;
+        const href = a.getAttribute('href');
+        if (!shouldHandle(href)) return;
+        if (a.target === '_blank') return;
+        try { e.preventDefault(); loader.style.display = 'flex'; setTimeout(() => { window.location.href = href; }, 80); } catch(_) {}
+      }, { capture: true });
+    })();
+  </script>
 </body>
 </html>
