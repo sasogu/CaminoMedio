@@ -1,11 +1,11 @@
 {
-  "id": "./",
+  "id": "./?app_id=camino_medio",
   "scope": "./",
   "handle_links": "preferred",
   "name": "CaminoMedio",
   "display": "standalone",
   "lang": "es-ES",
-  "start_url": "./",
+  "start_url": "./index.html",
   "short_name": "CaminoMedio",
   "theme_color": "#000",
   "description": "Aplicación de la Comunidad Soto Zen Camino Medio",
