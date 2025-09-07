@@ -90,6 +90,20 @@
         } catch (e) {}
       })();
     </script>
+    <script>
+      // Ajustar logo según el tema: oscuro -> logo blanco; claro -> logo negro
+      (function(){
+        function applyLogo(){
+          try {
+            var pref = localStorage.getItem('modoOscuro');
+            var oscuro = (pref === '1' || pref === null);
+            var logo = document.getElementById('logo');
+            if (logo) logo.src = oscuro ? '../assets/img/logoblanco.png' : '../assets/img/logonegro.png';
+          } catch(e) {}
+        }
+        document.addEventListener('DOMContentLoaded', applyLogo);
+      })();
+    </script>
     
     <script>
         // Función para solicitar pantalla completa

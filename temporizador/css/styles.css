@@ -276,7 +276,7 @@ body.dark-mode #minutes {
     color: #e6e6e6;
 }
 body.dark-mode .logo-container img {
-    filter: invert(1) grayscale(1) brightness(0.9);
+    filter: none;
 }
 
 .hidden {

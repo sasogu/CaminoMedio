@@ -382,7 +382,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025 <br>Versión 7.3.26</div></footer>
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; CSZCM 2025 <br>Versión 7.3.28</div></footer>
 
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
@@ -395,19 +395,27 @@
 
 
 <script>
-// Refuerzo móvil: usa la API de Bootstrap para abrir/cerrar dropdowns por clic
+// Refuerzo móvil: evita doble disparo y mantiene abierto el submenu
 (function () {
   const toggler = document.querySelector('.navbar-toggler');
   if (!toggler) return;
 
   const isMobile = () => window.getComputedStyle(toggler).display !== 'none';
+  const eventType = window.PointerEvent ? 'pointerup' : ('ontouchend' in window ? 'touchend' : 'click');
+  let lastTs = 0;
 
-  // Evitar autocierre al interactuar dentro del dropdown
   document.querySelectorAll('.nav-item.dropdown .dropdown-toggle').forEach((toggleEl) => {
     toggleEl.setAttribute('data-bs-auto-close', 'outside');
 
-    function handleToggle(e) {
-      if (!isMobile()) return; // escritorio: comportamiento estándar
+    toggleEl.addEventListener(eventType, function (e) {
+      if (!isMobile()) return;
+      const now = Date.now();
+      if (now - lastTs < 300) { // Debounce para evitar abrir/cerrar inmediato
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      lastTs = now;
       e.preventDefault();
       e.stopPropagation();
 
@@ -421,14 +429,11 @@
         if (openToggle) openToggle.setAttribute('aria-expanded', 'false');
       });
 
+      // Mostrar explícitamente (en lugar de toggle) para evitar cierre inmediato
       const dd = bootstrap.Dropdown.getOrCreateInstance(this);
-      dd.toggle();
-    }
-
-    // Compatibilidad con emulación móvil: click, pointerup y touchstart
-    toggleEl.addEventListener('click', handleToggle);
-    toggleEl.addEventListener('pointerup', handleToggle);
-    toggleEl.addEventListener('touchstart', handleToggle, { passive: false });
+      dd.show();
+      this.setAttribute('aria-expanded', 'true');
+    }, { passive: false });
   });
 })();
 </script>
