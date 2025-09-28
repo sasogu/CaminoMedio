@@ -209,6 +209,10 @@
         if (icon) icon.className = resolved === 'light' ? 'fas fa-sun' : resolved === 'dark' ? 'fas fa-moon' : 'fas fa-circle-half-stroke';
         updateThemeColor();
         try { setLogo(); } catch(_) {}
+        try {
+          const effective = resolved === 'auto' ? (computeIsDark() ? 'dark' : 'light') : resolved;
+          localStorage.setItem('modoOscuro', effective === 'dark' ? '1' : '0');
+        } catch(_) {}
       }
       function loadTheme(){
         try {

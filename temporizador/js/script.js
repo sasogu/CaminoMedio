@@ -6,18 +6,6 @@ function getLocalStorageItem(key) {
     return localStorage.getItem(key) || null;
 }
 
-// Ajusta el logo según el tema guardado (oscuro -> blanco, claro -> negro)
-function setLogoByTheme() {
-    try {
-        const pref = localStorage.getItem('modoOscuro');
-        const oscuro = (pref === '1' || pref === null);
-        const logoEl = document.getElementById('logo');
-        if (logoEl) {
-            logoEl.src = oscuro ? '../assets/img/logoblanco.png' : '../assets/img/logonegro.png';
-        }
-    } catch (e) {}
-}
-
 // Wake Lock API
 let wakeLock = null;
 
@@ -59,13 +47,6 @@ function initializeProgress() {
 
 // Llamar a la función al iniciar la aplicación
 window.onload = function () {
-    // Aplicar tema si está guardado (oscuro por defecto en primera visita)
-    try {
-        const pref = localStorage.getItem('modoOscuro');
-        const oscuro = (pref === '1' || pref === null);
-        if (pref === null) localStorage.setItem('modoOscuro', '1');
-        document.body.classList.toggle('dark-mode', oscuro);
-    } catch (e) {}
     const savedVolume = getLocalStorageItem("soundVolume") || "0.5";
     const savedBrightness = getLocalStorageItem("screenBrightness") || "1";
     const savedTime = getLocalStorageItem("defaultTime");
@@ -164,8 +145,6 @@ function updateTime() {
         registrarFin(initialTime);
         releaseWakeLock();
         initializeProgress();
-        // Restaurar logo acorde al tema cuando termina automáticamente
-        setLogoByTheme();
     }
 }
 
@@ -227,8 +206,6 @@ function stopTimer() {
     remainingTime = 0;
     releaseWakeLock();
     initializeProgress();
-    // Restaurar el logo acorde al tema cuando se detiene manualmente
-    setLogoByTheme();
     document.getElementById('title').classList.remove('hidden');
     document.getElementById('minutes').classList.remove('hidden');
     document.getElementById('start-button').classList.remove('hidden');
