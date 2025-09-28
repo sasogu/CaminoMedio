@@ -145,6 +145,10 @@
         if (a.target === '_blank') return;
         try { e.preventDefault(); loader.style.display = 'flex'; setTimeout(() => { window.location.href = href; }, 80); } catch(_) {}
       }, { capture: true });
+      const hideLoader = () => { if (loader) loader.style.display = 'none'; };
+      window.addEventListener('pageshow', hideLoader);
+      window.addEventListener('popstate', hideLoader);
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) hideLoader(); });
     })();
   </script>
 </body>
