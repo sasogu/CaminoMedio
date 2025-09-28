@@ -17,7 +17,11 @@ const OFFLINE_URLS = [
   './assets/img/logonegro.png',
   './assets/img/logoblanco.png',
   './assets/img/logo.png',
+  './assets/img/logo-maskable.png',
+  './assets/img/logo-maskable-192.png',
+  './assets/img/logo-maskable-1024.png',
   './assets/img/apple-touch-icon.png',
+  './offline.html',
 
 
 
@@ -118,7 +122,8 @@ self.addEventListener('fetch', (event) => {
         .catch(async () => {
           const cached = await caches.match(req);
           if (cached) return cached;
-          return caches.match('./index.html');
+          const offline = await caches.match('./offline.html');
+          return offline || caches.match('./index.html');
         })
     );
     return;
@@ -148,7 +153,10 @@ self.addEventListener('fetch', (event) => {
           })
         );
       })
-      .catch(() => caches.match('./index.html'))
+      .catch(async () => {
+        const offline = await caches.match('./offline.html');
+        return offline || caches.match('./index.html');
+      })
   );
 });
 
