@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html data-assets="../assets" lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)">
     <title>Temporizador de Meditación</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/icons.css">
 </head>
 <body>
 
@@ -39,13 +39,13 @@
 
         <div class="time-controls">
             <button class="time-button" id="decrease-time" onclick="adjustTime(-10)" aria-label="Restar 10 minutos">
-                <i class="fas fa-minus-circle"></i> <!-- Icono de restar -->
+                <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-minus-circle"></use></svg> <!-- Icono de restar -->
             </button>
             <label for="minutes" class="visually-hidden">Minutos</label>
             <input type="number" id="minutes" placeholder="Introduce minutos" min="1" max="60" inputmode="numeric" aria-describedby="minutes-help">
             <span id="minutes-help" class="visually-hidden">Introduce minutos entre 1 y 60</span>
             <button class="time-button" id="increase-time" onclick="adjustTime(10)" aria-label="Sumar 10 minutos">
-                <i class="fas fa-plus-circle"></i> <!-- Icono de sumar -->
+                <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-plus-circle"></use></svg> <!-- Icono de sumar -->
             </button>
         </div>
         <button class="start" id="start-button" onclick="startTimer()">Iniciar</button>
@@ -63,16 +63,16 @@
        
         <div class="quick-actions" role="group" aria-label="Acciones rápidas">
           <a href="estadisticas.html" id="estadisticas-button" class="button icon-button" aria-label="Ver estadísticas">
-            <i class="fas fa-chart-line" aria-hidden="true"></i>
+            <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-chart"></use></svg>
             <span class="visually-hidden">Estadísticas</span>
           </a>
           <a href="guardar.html" id="save-button" class="button icon-button" aria-label="Configurar temporizador">
-            <i class="fas fa-sliders" aria-hidden="true"></i>
+            <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-sliders"></use></svg>
             <span class="visually-hidden">Configurar</span>
           </a>
           <a href="../index.html" id="caminomedio-button" class="button icon-button" aria-label="Volver al inicio">
-            <i class="fas fa-arrow-left" aria-hidden="true"></i>
-            <span class="visualmente-hidden">Volver</span>
+            <svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#icon-arrow-left"></use></svg>
+            <span class="visually-hidden">Volver</span>
           </a>
         </div>
         <div id="quote"></div>

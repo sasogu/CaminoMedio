@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html data-assets="assets" lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,6 @@
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preload" as="image" href="assets/img/logonegro.png">
   <link rel="preload" as="image" href="assets/img/logoblanco.png" media="(prefers-color-scheme: dark)">
-  <link rel="preconnect" href="https://use.fontawesome.com" crossorigin>
   <script>
     // Selecciona manifest claro/oscuro antes de que el navegador lo lea
     (function(){
@@ -37,7 +36,6 @@
   <meta property="og:url" content="./">
   <meta property="og:image" content="./assets/img/logonegro.png">
   <link rel="canonical" href="./">
-  <script async src="https://use.fontawesome.com/releases/v6.5.2/js/all.js" crossorigin="anonymous"></script>
   <style>
     :root{--bg:#fff;--ink:#111;--muted:#6b7280;--ring:#e5e7eb;--pill:#f8f9fa;--pill-b:#e6e7ea;--pill-h:#f1f3f5;--max:840px}
     :root[data-theme="light"]{--bg:#fff;--ink:#111;--muted:#6b7280;--ring:#e5e7eb;--pill:#f8f9fa;--pill-b:#e6e7ea;--pill-h:#f1f3f5}
@@ -60,22 +58,22 @@
     .pill:hover{background:var(--pill-h);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
     .pill:active{transform:translateY(0);box-shadow:0 2px 6px rgba(0,0,0,.06)}
     .pill:focus-visible{outline:none;border-color:#cbd5e1;box-shadow:0 0 0 3px rgba(148,163,184,.35), 0 2px 6px rgba(0,0,0,.06)}
-    .pill i{margin:0;transition:transform .12s ease, opacity .15s ease; flex-shrink:0}
-    .pill:hover i{transform:translateY(-1px)}
+    .pill .icon{margin-right:0.4rem;transition:transform .12s ease, opacity .15s ease}
+    .pill:hover .icon{transform:translateY(-1px)}
     footer .small + .small{margin-top:12px}
     footer{padding:32px 0 16px;text-align:center;color:var(--muted);border-top:1px solid var(--ring);margin-top:32px}
     .small{font-size:.92rem}
     .contact-links{display:flex;align-items:center;justify-content:center;gap:18px}
     .contact-link{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid var(--ring);transition:background-color .15s ease, border-color .15s ease, box-shadow .15s ease}
     .contact-link:hover{background:var(--pill-h);border-color:var(--pill-b);box-shadow:0 2px 6px rgba(0,0,0,.08)}
-    .contact-link i{font-size:1.15rem}
+    .contact-link .icon{width:1.15em;height:1.15em}
     .theme-toggle{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:42px;border-radius:999px;border:1px solid var(--ring);margin:18px auto 0;padding:0 16px;gap:8px;cursor:pointer;background:none;color:inherit;font:inherit;transition:background-color .15s ease, border-color .15s ease, box-shadow .15s ease}
     .theme-toggle:hover{background:var(--pill-h);border-color:var(--pill-b);box-shadow:0 2px 6px rgba(0,0,0,.08)}
-    .theme-toggle i{font-size:1.15rem}
+    .theme-toggle .icon{width:1.15em;height:1.15em}
     .theme-label{font-size:.88rem}
     /* PWA install button */
     #install-pwa{position:fixed;right:16px;bottom:16px;background:#111;color:#fff;border:0;border-radius:999px;padding:12px 16px;box-shadow:0 6px 18px rgba(0,0,0,.15);display:none;align-items:center;gap:10px;z-index:10000}
-    #install-pwa i{flex-shrink:0}
+    #install-pwa .icon{width:1.1em;height:1.1em}
     #install-pwa:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(0,0,0,.18)}
     /* Loader overlay */
     #external-loader{position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;background:#fff;color:#333;z-index:10000}
@@ -93,9 +91,10 @@
     @media (prefers-reduced-motion: reduce){
       .pill{transition:none}
       .pill:hover{transform:none;box-shadow:0 2px 6px rgba(0,0,0,.08)}
-      .pill i{transition:none}
+      .pill .icon{transition:none}
     }
   </style>
+  <link rel="stylesheet" href="css/icons.css">
 </head>
 <body>
   <div class="wrap">
@@ -109,37 +108,36 @@
 
     <main>
       <nav class="grid" aria-label="Accesos principales">
-        <a class="pill" href="https://www.caminomedio.org/agenda/"><i class="fas fa-calendar-alt" aria-hidden="true"></i>Agenda</a>
-        <a class="pill" href="https://www.caminomedio.org/proximas-actividades/"><i class="fas fa-people-group" aria-hidden="true"></i>Actividades</a>
-        <a class="pill" href="https://video.caminomedio.org/group/Zazen/?token=k7NkoOJdTw0"><i class="fas fa-spa" aria-hidden="true"></i>Zazen Online</a>
-        <a class="pill" href="temporizador/"><i class="fas fa-clock" aria-hidden="true"></i>Temporizador</a>
-        <a class="pill" href="https://www.caminomedio.org/dharma-digital/dokusan/"><i class="fas fa-user" aria-hidden="true"></i>Dokusan</a>
-        <a class="pill" href="https://www.caminomedio.org/cursos/"><i class="fas fa-book" aria-hidden="true"></i>Cursos Online</a>
-        <a class="pill" href="https://www.caminomedio.org/dharma-digital/"><i class="fas fa-blog" aria-hidden="true"></i>Blog</a>
-        <a class="pill" href="https://www.caminomedio.org/forums/forum/general/"><i class="fas fa-comments" aria-hidden="true"></i>Foro</a>
-        <a class="pill" href="https://www.caminomedio.org/sangha-online/"><i class="fas fa-globe" aria-hidden="true"></i>Sangha Online</a>
-        <a class="pill" href="https://www.caminomedio.org/biblioteca/"><i class="fas fa-book-open" aria-hidden="true"></i>Biblioteca</a>
-        <a class="pill" href="https://caminomedio.org/app/trivial/"><i class="fas fa-circle-question" aria-hidden="true"></i>¿Cuánto sabes?</a>
-        <a class="pill" href="https://www.caminomedio.org/circulo-de-practica-estudio/tu-membresia/"><i class="fas fa-users" aria-hidden="true"></i>Miembros</a>
+        <a class="pill" href="https://www.caminomedio.org/agenda/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-calendar"></use></svg>Agenda</a>
+        <a class="pill" href="https://www.caminomedio.org/proximas-actividades/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-group"></use></svg>Actividades</a>
+        <a class="pill" href="https://video.caminomedio.org/group/Zazen/?token=k7NkoOJdTw0"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-spa"></use></svg>Zazen Online</a>
+        <a class="pill" href="temporizador/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-clock"></use></svg>Temporizador</a>
+        <a class="pill" href="https://www.caminomedio.org/dharma-digital/dokusan/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-user"></use></svg>Dokusan</a>
+        <a class="pill" href="https://www.caminomedio.org/cursos/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-book"></use></svg>Cursos Online</a>
+        <a class="pill" href="https://www.caminomedio.org/dharma-digital/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-blog"></use></svg>Blog</a>
+        <a class="pill" href="https://www.caminomedio.org/forums/forum/general/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-comments"></use></svg>Foro</a>
+        <a class="pill" href="https://www.caminomedio.org/sangha-online/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-globe"></use></svg>Sangha Online</a>
+        <a class="pill" href="https://www.caminomedio.org/biblioteca/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-book-open"></use></svg>Biblioteca</a>
+        <a class="pill" href="https://caminomedio.org/app/trivial/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-question-circle"></use></svg>¿Cuánto sabes?</a>
+        <a class="pill" href="https://www.caminomedio.org/circulo-de-practica-estudio/tu-membresia/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-users"></use></svg>Miembros</a>
       </nav>
     </main>
 
     <footer>
       <div class="small contact-links">
         <a class="contact-link" href="mailto:info.caminomedio@gmail.com" aria-label="Enviar correo a info.caminomedio@gmail.com">
-          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-envelope"></use></svg>
         </a>
         <a class="contact-link" href="tel:+34616305406" aria-label="Llamar al +34 616 305 406">
-          <i class="fas fa-phone" aria-hidden="true"></i>
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-phone"></use></svg>
         </a>
       </div>
 
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema" data-state="auto">
-        <i class="fas fa-circle-half-stroke" aria-hidden="true"></i>
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#icon-theme-auto"></use></svg>
         <span class="theme-label" id="theme-label">Tema automático</span>
       </button>
-      <br>
-      <div class="small">© 2025 Comunidad Soto Zen Camino Medio. v<span id="sw-version">—</span></div>
+      <div class="small">PWA v<span id="sw-version">—</span></div>
     </footer>
   </div>
 
@@ -163,7 +161,14 @@
         if (explicit === 'light') return false;
         return !!(prefersDark && prefersDark.matches);
       };
-      const resolveLogo = () => computeIsDark() ? 'assets/img/logoblanco.png' : 'assets/img/logonegro.png';
+      const resolveLogo = () => {
+        if (mainLogo) {
+          const darkSrc = mainLogo.getAttribute('data-dark') || 'assets/img/logoblanco.png';
+          const lightSrc = mainLogo.getAttribute('data-light') || 'assets/img/logonegro.png';
+          return computeIsDark() ? darkSrc : lightSrc;
+        }
+        return computeIsDark() ? 'assets/img/logoblanco.png' : 'assets/img/logonegro.png';
+      };
       const setLogo = () => {
         const src = resolveLogo();
         if (loaderLogo) loaderLogo.src = src;
@@ -190,6 +195,7 @@
         }
       }
       const THEME_KEY = 'cm-theme-mode';
+      const assetBase = document.documentElement.getAttribute('data-assets') || 'assets';
       function updateThemeColor(){
         if (typeof window.__cmUpdateThemeColor === 'function') { window.__cmUpdateThemeColor(); return; }
         const meta = document.querySelector('meta[name="theme-color"]');
@@ -203,10 +209,10 @@
         else root.setAttribute('data-theme', resolved);
         const btn = document.getElementById('theme-toggle');
         const label = document.getElementById('theme-label');
-        const icon = btn ? btn.querySelector('i') : null;
+        const iconUse = btn ? btn.querySelector('use') : null;
         if (btn) btn.setAttribute('data-state', resolved);
         if (label) label.textContent = resolved === 'light' ? 'Tema claro' : resolved === 'dark' ? 'Tema oscuro' : 'Tema automático';
-        if (icon) icon.className = resolved === 'light' ? 'fas fa-sun' : resolved === 'dark' ? 'fas fa-moon' : 'fas fa-circle-half-stroke';
+        if (iconUse) iconUse.setAttribute('href', `${assetBase}/icons.svg#${resolved === 'light' ? 'icon-sun' : resolved === 'dark' ? 'icon-moon' : 'icon-theme-auto'}`);
         updateThemeColor();
         try { setLogo(); } catch(_) {}
         try {

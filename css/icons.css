@@ -1,0 +1,4 @@
+.icon{width:1em;height:1em;display:inline-block;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;vertical-align:middle;overflow:visible}
+.icon--solid{fill:currentColor;stroke:none}
+.icon-sm{width:0.85em;height:0.85em}
+.icon-lg{width:1.35em;height:1.35em}

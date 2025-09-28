@@ -1,13 +1,14 @@
 // PWA Service Worker (scope auto-resolves relative to script location)
 
-const SW_VERSION = "0.6.5";
-const CACHE_NAME = "pwa-cszcm-v0.6.5";
+const SW_VERSION = "0.6.6";
+const CACHE_NAME = "pwa-cszcm-v0.6.6";
 // Precarga mínima necesaria para arrancar offline (rutas relativas al scope)
 const OFFLINE_URLS = [
   // Núcleo app
   './',
   './index.html',
   './css/styles.css',
+  './css/icons.css',
   './js/scripts.js',
   './manifest.json',
   './manifest-light.json',
@@ -21,6 +22,7 @@ const OFFLINE_URLS = [
   './assets/img/logo-maskable-192.png',
   './assets/img/logo-maskable-1024.png',
   './assets/img/apple-touch-icon.png',
+  './assets/icons.svg',
   './offline.html',
 
 

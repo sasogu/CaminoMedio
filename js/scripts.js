@@ -118,6 +118,8 @@ window.addEventListener('DOMContentLoaded', () => {
     let deferredPrompt = null;
     const DISMISS_KEY = 'pwaInstallDismissedAt';
     const DISMISS_MS = 15 * 24 * 60 * 60 * 1000;
+    const assetBase = document.documentElement.getAttribute('data-assets') || 'assets';
+    const iconHref = (symbol) => `${assetBase}/icons.svg#${symbol}`;
 
     // Migración de clave antigua si existiera
     if (localStorage.getItem('pwaInstallDismissed') === '1' && !localStorage.getItem(DISMISS_KEY)) {
@@ -131,9 +133,9 @@ window.addEventListener('DOMContentLoaded', () => {
       btn = document.createElement('button');
       btn.id = 'install-pwa';
       btn.style.display = 'none';
-      btn.innerHTML = '<i class="fas fa-download" aria-hidden="true"></i> Instalar aplicación';
       document.body.appendChild(btn);
     }
+    btn.innerHTML = `<svg class="icon" aria-hidden="true"><use href="${iconHref('icon-download')}"></use></svg> Instalar aplicación`;
 
     const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
     const dismissedRecently = () => {
