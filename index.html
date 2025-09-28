@@ -152,12 +152,28 @@
         if (!href) return false;
         return !(href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:'));
       }
+      function isSameOrigin(href){
+        try {
+          const url = new URL(href, window.location.href);
+          return url.origin === window.location.origin;
+        } catch(_) {
+          return true;
+        }
+      }
       document.addEventListener('click', function(e){
         const a = e.target.closest('a');
         if (!a) return;
         const href = a.getAttribute('href');
         if (!shouldHandle(href)) return;
         if (a.target === '_blank') return;
+        const sameOrigin = isSameOrigin(href);
+        const offline = typeof navigator !== 'undefined' && 'onLine' in navigator && navigator.onLine === false;
+        if (!sameOrigin && offline) {
+          e.preventDefault();
+          hideLoader();
+          window.location.href = 'offline.html?from=external';
+          return;
+        }
         try {
           e.preventDefault();
           loader.setAttribute('aria-hidden', 'false');

@@ -24,8 +24,8 @@
 <body>
   <main>
     <img src="assets/img/logo-maskable.png" alt="Camino Medio" class="logo">
-    <h1>No hay conexión</h1>
-    <p>No podemos cargar el contenido ahora mismo. Revisa tu conexión o vuelve a intentarlo en unos instantes.</p>
+    <h1 id="offline-title">No hay conexión</h1>
+    <p id="offline-message">No podemos cargar el contenido ahora mismo. Revisa tu conexión o vuelve a intentarlo en unos instantes.</p>
     <section class="tips" aria-label="Sugerencias para recuperar la conexión">
       <ul>
         <li>Comprueba que tienes datos o Wi-Fi activo.</li>
@@ -34,5 +34,18 @@
       </ul>
     </section>
   </main>
+  <script>
+    (function(){
+      try {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('from') === 'external') {
+          const title = document.getElementById('offline-title');
+          const message = document.getElementById('offline-message');
+          if (title) title.textContent = 'Necesitas conexión para continuar';
+          if (message) message.textContent = 'Este enlace lleva a la web principal CaminoMedio.org y requiere acceso a Internet. Vuelve cuando tengas conexión para visitarlo.';
+        }
+      } catch (_) {}
+    })();
+  </script>
 </body>
 </html>
