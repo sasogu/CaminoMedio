@@ -16,10 +16,11 @@
   "display_override": ["window-controls-overlay"],
   "launch_handler": { "client_mode": "focus-existing" },
   "icons": [
-    { "src": "assets/img/logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "assets/img/logo.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable any" },
-    { "src": "assets/img/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "assets/img/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable any" }
+    { "src": "assets/img/logo.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/img/logo-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable any" },
+    { "src": "assets/img/logo.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/img/logo-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable any" },
+    { "src": "assets/img/logo-maskable-1024.png", "sizes": "1024x1024", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
     { "name": "CaminoMedio", "short_name": "CaminoMedio", "description": "Comunidad Soto Zen Camino Medio", "url": "./xinxinming/", "icons": [{ "src": "assets/img/logoblanco.png", "sizes": "192x192" }] }
