@@ -1,7 +1,7 @@
 // PWA Service Worker (scope auto-resolves relative to script location)
 
-const SW_VERSION = "0.5.7";
-const CACHE_NAME = "pwa-cszcm-v0.5.7";
+const SW_VERSION = "0.5.9";
+const CACHE_NAME = "pwa-cszcm-v0.5.9";
 // Precarga mínima necesaria para arrancar offline (rutas relativas al scope)
 const OFFLINE_URLS = [
   // Núcleo app
@@ -100,6 +100,12 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   const url = new URL(req.url);
+
+  // Nunca cachear el propio service worker: siempre desde red
+  if (req.destination === 'serviceworker') {
+    event.respondWith(fetch(req));
+    return;
+  }
 
   // Solo gestionar peticiones del mismo origen
   if (!url.origin.startsWith(self.location.origin)) {
