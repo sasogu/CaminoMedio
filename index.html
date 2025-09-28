@@ -63,6 +63,10 @@
     footer .small + .small{margin-top:12px}
     footer{padding:32px 0 16px;text-align:center;color:var(--muted);border-top:1px solid var(--ring);margin-top:32px}
     .small{font-size:.92rem}
+    .contact-links{display:flex;align-items:center;justify-content:center;gap:18px}
+    .contact-link{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid var(--ring);transition:background-color .15s ease, border-color .15s ease, box-shadow .15s ease}
+    .contact-link:hover{background:var(--pill-h);border-color:var(--pill-b);box-shadow:0 2px 6px rgba(0,0,0,.08)}
+    .contact-link i{font-size:1.15rem}
     /* PWA install button */
     #install-pwa{position:fixed;right:16px;bottom:16px;background:#111;color:#fff;border:0;border-radius:999px;padding:12px 16px;box-shadow:0 6px 18px rgba(0,0,0,.15);display:none;align-items:center;gap:10px;z-index:10000}
     #install-pwa i{flex-shrink:0}
@@ -115,10 +119,13 @@
     </main>
 
     <footer>
-      <div class="small">
-        <a href="mailto:info.caminomedio@gmail.com" aria-label="Enviar correo a info.caminomedio@gmail.com">info.caminomedio@gmail.com</a>
-        ·
-        <a href="tel:+34616305406" aria-label="Llamar al +34 616 305 406">+34 616 305 406</a>
+      <div class="small contact-links">
+        <a class="contact-link" href="mailto:info.caminomedio@gmail.com" aria-label="Enviar correo a info.caminomedio@gmail.com">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+        </a>
+        <a class="contact-link" href="tel:+34616305406" aria-label="Llamar al +34 616 305 406">
+          <i class="fas fa-phone" aria-hidden="true"></i>
+        </a>
       </div>
       <div class="small">PWA v<span id="sw-version">—</span></div>
     </footer>
