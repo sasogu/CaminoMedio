@@ -88,38 +88,28 @@ input, button, a.button {
 button:hover, a.button:hover { background-color: #f1f3f5; border-color: #c4c9d2; box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06); }
 button:active, a.button:active { transform: translateY(1px); }
 
-a#save-button {
-    margin-top: 12px;
-    display: inline-block;
+.quick-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin: 16px auto 12px;
 }
 
-a#save-button.hidden {
-    display: none;
+.icon-button {
+    width: auto;
+    min-width: 52px;
+    padding: 12px;
+    margin: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
 }
 
-a#save-button:hover { background-color: #f1f3f5; border-color: #c4c9d2; }
-
-a#estadisticas-button {
-    margin-top: 12px;
-    display: inline-block;
+.icon-button i {
+    font-size: 1.25rem;
 }
-
-a#estadisticas-button.hidden {
-    display: none;
-}
-
-a#estadisticas-button:hover { background-color: #f1f3f5; border-color: #c4c9d2; }
-
-a#caminomedio-button {
-    margin-top: 12px;
-    display: inline-block;
-}
-
-a#caminomedio-button.hidden {
-    display: none;
-}
-
-a#caminomedio-button:hover { background-color: #f1f3f5; border-color: #c4c9d2; }
 
 .start {
     background-color: #f8f9fa;
@@ -248,6 +238,14 @@ body.dark-mode a.button {
     border-color: #3a3f45;
     color: #e6e6e6;
     box-shadow: none;
+}
+body.dark-mode .icon-button {
+    background-color: #16181c;
+    border-color: #3f454d;
+}
+body.dark-mode .icon-button:hover {
+    background-color: #1f2327;
+    border-color: #525960;
 }
 body.dark-mode input:hover,
 body.dark-mode button:hover,

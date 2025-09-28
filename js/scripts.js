@@ -11,19 +11,28 @@ window.addEventListener('DOMContentLoaded', () => {
   // Asegurar color de la barra del sistema según tema
   (function ensureThemeColor(){
     try {
-      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      const root = document.documentElement;
+      const mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+      const resolveDark = () => {
+        const explicit = root.getAttribute('data-theme');
+        if (explicit === 'dark') return true;
+        if (explicit === 'light') return false;
+        return !!(mq && mq.matches);
+      };
       function setThemeColor(){
-        const dark = mq.matches;
         let tag = document.querySelector('meta[name="theme-color"]');
         if (!tag) {
           tag = document.createElement('meta');
           tag.setAttribute('name','theme-color');
           document.head.appendChild(tag);
         }
-        tag.setAttribute('content', dark ? '#0b0b0c' : '#ffffff');
+        tag.setAttribute('content', resolveDark() ? '#0b0b0c' : '#ffffff');
       }
+      window.__cmUpdateThemeColor = setThemeColor;
       setThemeColor();
-      if (mq.addEventListener) mq.addEventListener('change', setThemeColor); else mq.addListener(setThemeColor);
+      const listener = () => { if (!root.hasAttribute('data-theme')) setThemeColor(); };
+      if (mq && mq.addEventListener) mq.addEventListener('change', listener);
+      else if (mq && mq.addListener) mq.addListener(listener);
     } catch(_) {}
   })();
   // Navbar helpers: sólo si existe navbar en la página

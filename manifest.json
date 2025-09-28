@@ -10,7 +10,7 @@
   "theme_color": "#0b0b0c",
   "description": "Aplicación de la Comunidad Soto Zen Camino Medio",
   "orientation": "portrait",
-  "background_color": "#ffffff",
+  "background_color": "#0b0b0c",
   "related_applications": [],
   "prefer_related_applications": false,
   "display_override": ["window-controls-overlay"],

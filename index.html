@@ -40,6 +40,8 @@
   <script async src="https://use.fontawesome.com/releases/v6.5.2/js/all.js" crossorigin="anonymous"></script>
   <style>
     :root{--bg:#fff;--ink:#111;--muted:#6b7280;--ring:#e5e7eb;--pill:#f8f9fa;--pill-b:#e6e7ea;--pill-h:#f1f3f5;--max:840px}
+    :root[data-theme="light"]{--bg:#fff;--ink:#111;--muted:#6b7280;--ring:#e5e7eb;--pill:#f8f9fa;--pill-b:#e6e7ea;--pill-h:#f1f3f5}
+    :root[data-theme="dark"]{--bg:#0b0b0c;--ink:#e6e6e6;--muted:#a3a3a3;--ring:#1f2430;--pill:#131416;--pill-b:#3a3f45;--pill-h:#191b1e}
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-text-size-adjust:100%}
@@ -67,6 +69,10 @@
     .contact-link{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid var(--ring);transition:background-color .15s ease, border-color .15s ease, box-shadow .15s ease}
     .contact-link:hover{background:var(--pill-h);border-color:var(--pill-b);box-shadow:0 2px 6px rgba(0,0,0,.08)}
     .contact-link i{font-size:1.15rem}
+    .theme-toggle{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:42px;border-radius:999px;border:1px solid var(--ring);margin:18px auto 0;padding:0 16px;gap:8px;cursor:pointer;background:none;color:inherit;font:inherit;transition:background-color .15s ease, border-color .15s ease, box-shadow .15s ease}
+    .theme-toggle:hover{background:var(--pill-h);border-color:var(--pill-b);box-shadow:0 2px 6px rgba(0,0,0,.08)}
+    .theme-toggle i{font-size:1.15rem}
+    .theme-label{font-size:.88rem}
     /* PWA install button */
     #install-pwa{position:fixed;right:16px;bottom:16px;background:#111;color:#fff;border:0;border-radius:999px;padding:12px 16px;box-shadow:0 6px 18px rgba(0,0,0,.15);display:none;align-items:center;gap:10px;z-index:10000}
     #install-pwa i{flex-shrink:0}
@@ -76,11 +82,14 @@
     #external-loader img{max-height:60px;width:auto;height:auto;margin-bottom:16px}
     /* Dark theme */
     @media (prefers-color-scheme: dark){
-      :root{--bg:#0b0b0c;--ink:#e6e6e6;--muted:#a3a3a3;--ring:#1f2430;--pill:#131416;--pill-b:#3a3f45;--pill-h:#191b1e}
-      #install-pwa{background:#fff;color:#111;box-shadow:0 6px 18px rgba(0,0,0,.3)}
-      #install-pwa:hover{box-shadow:0 10px 22px rgba(0,0,0,.4)}
-      #external-loader{background:#0b0b0c;color:#e6e6e6}
+      :root:not([data-theme]){--bg:#0b0b0c;--ink:#e6e6e6;--muted:#a3a3a3;--ring:#1f2430;--pill:#131416;--pill-b:#3a3f45;--pill-h:#191b1e}
+      :root:not([data-theme]) #install-pwa{background:#fff;color:#111;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+      :root:not([data-theme]) #install-pwa:hover{box-shadow:0 10px 22px rgba(0,0,0,.4)}
+      :root:not([data-theme]) #external-loader{background:#0b0b0c;color:#e6e6e6}
     }
+    :root[data-theme="dark"] #install-pwa{background:#fff;color:#111;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+    :root[data-theme="dark"] #install-pwa:hover{box-shadow:0 10px 22px rgba(0,0,0,.4)}
+    :root[data-theme="dark"] #external-loader{background:#0b0b0c;color:#e6e6e6}
     @media (prefers-reduced-motion: reduce){
       .pill{transition:none}
       .pill:hover{transform:none;box-shadow:0 2px 6px rgba(0,0,0,.08)}
@@ -92,10 +101,7 @@
   <div class="wrap">
     <header>
       <div class="logo" aria-label="Camino Medio">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="assets/img/logoblanco.png">
-          <img class="logo-img" src="assets/img/logonegro.png" alt="Camino Medio">
-        </picture>
+        <img id="main-logo" class="logo-img" src="assets/img/logonegro.png" alt="Camino Medio" data-light="assets/img/logonegro.png" data-dark="assets/img/logoblanco.png">
       </div>
       <h1>Comunidad Soto Zen <span class="nowrap">Camino Medio</span></h1>
       <p class="lead">Práctica y Estudio en Comunidad</p>
@@ -127,7 +133,13 @@
           <i class="fas fa-phone" aria-hidden="true"></i>
         </a>
       </div>
-      <div class="small">2025 v<span id="sw-version">—</span></div>
+
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema" data-state="auto">
+        <i class="fas fa-circle-half-stroke" aria-hidden="true"></i>
+        <span class="theme-label" id="theme-label">Tema automático</span>
+      </button>
+      <br>
+      <div class="small">PWA v<span id="sw-version">—</span></div>
     </footer>
   </div>
 
@@ -141,12 +153,29 @@
     // Mostrar pantalla de carga al navegar a otro destino
     (function(){
       const loader = document.getElementById('external-loader');
-      const logo = document.getElementById('loader-logo');
-      if (!loader) return;
+      const loaderLogo = document.getElementById('loader-logo');
+      const mainLogo = document.getElementById('main-logo');
+      const root = document.documentElement;
+      const prefersDark = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+      const computeIsDark = () => {
+        const explicit = root.getAttribute('data-theme');
+        if (explicit === 'dark') return true;
+        if (explicit === 'light') return false;
+        return !!(prefersDark && prefersDark.matches);
+      };
+      const resolveLogo = () => computeIsDark() ? 'assets/img/logoblanco.png' : 'assets/img/logonegro.png';
+      const setLogo = () => {
+        const src = resolveLogo();
+        if (loaderLogo) loaderLogo.src = src;
+        if (mainLogo) mainLogo.src = src;
+      };
       try {
-        const mq = window.matchMedia('(prefers-color-scheme: dark)');
-        const setLogo = () => { if (logo) logo.src = mq.matches ? 'assets/img/logoblanco.png' : 'assets/img/logonegro.png'; };
-        setLogo(); mq.addEventListener ? mq.addEventListener('change', setLogo) : mq.addListener(setLogo);
+        setLogo();
+        if (prefersDark) {
+          const mqHandler = () => setLogo();
+          if (prefersDark.addEventListener) prefersDark.addEventListener('change', mqHandler);
+          else if (prefersDark.addListener) prefersDark.addListener(mqHandler);
+        }
       } catch(_) {}
       function shouldHandle(href){
         if (!href) return false;
@@ -159,6 +188,43 @@
         } catch(_) {
           return true;
         }
+      }
+      const THEME_KEY = 'cm-theme-mode';
+      function updateThemeColor(){
+        if (typeof window.__cmUpdateThemeColor === 'function') { window.__cmUpdateThemeColor(); return; }
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (!meta) return;
+        const dark = computeIsDark();
+        meta.setAttribute('content', dark ? '#0b0b0c' : '#ffffff');
+      }
+      function applyTheme(mode){
+        const resolved = mode === 'light' || mode === 'dark' ? mode : 'auto';
+        if (resolved === 'auto') root.removeAttribute('data-theme');
+        else root.setAttribute('data-theme', resolved);
+        const btn = document.getElementById('theme-toggle');
+        const label = document.getElementById('theme-label');
+        const icon = btn ? btn.querySelector('i') : null;
+        if (btn) btn.setAttribute('data-state', resolved);
+        if (label) label.textContent = resolved === 'light' ? 'Tema claro' : resolved === 'dark' ? 'Tema oscuro' : 'Tema automático';
+        if (icon) icon.className = resolved === 'light' ? 'fas fa-sun' : resolved === 'dark' ? 'fas fa-moon' : 'fas fa-circle-half-stroke';
+        updateThemeColor();
+        try { setLogo(); } catch(_) {}
+      }
+      function loadTheme(){
+        try {
+          const saved = localStorage.getItem(THEME_KEY);
+          if (saved === 'light' || saved === 'dark') return saved;
+        } catch(_) {}
+        return 'auto';
+      }
+      function saveTheme(mode){
+        try {
+          if (mode === 'auto') localStorage.removeItem(THEME_KEY);
+          else localStorage.setItem(THEME_KEY, mode);
+        } catch(_) {}
+      }
+      function cycleMode(current){
+        return current === 'auto' ? 'light' : current === 'light' ? 'dark' : 'auto';
       }
       document.addEventListener('click', function(e){
         const a = e.target.closest('a');
@@ -176,8 +242,10 @@
         }
         try {
           e.preventDefault();
-          loader.setAttribute('aria-hidden', 'false');
-          loader.style.display = 'flex';
+          if (loader) {
+            loader.setAttribute('aria-hidden', 'false');
+            loader.style.display = 'flex';
+          }
           setTimeout(() => { window.location.href = href; }, 80);
         } catch(_) {}
       }, { capture: true });
@@ -189,6 +257,23 @@
       window.addEventListener('pageshow', hideLoader);
       window.addEventListener('popstate', hideLoader);
       document.addEventListener('visibilitychange', () => { if (!document.hidden) hideLoader(); });
+
+      // Theme toggle setup
+      try {
+        applyTheme(loadTheme());
+        const handleSchemeChange = () => { if (!root.hasAttribute('data-theme')) { updateThemeColor(); setLogo(); } };
+        if (prefersDark && prefersDark.addEventListener) prefersDark.addEventListener('change', handleSchemeChange);
+        else if (prefersDark && prefersDark.addListener) prefersDark.addListener(handleSchemeChange);
+        const btn = document.getElementById('theme-toggle');
+        if (btn) {
+          btn.addEventListener('click', () => {
+            const current = btn.getAttribute('data-state') || 'auto';
+            const next = cycleMode(current);
+            saveTheme(next);
+            applyTheme(next);
+          });
+        }
+      } catch (_) {}
     })();
   </script>
 </body>

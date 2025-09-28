@@ -54,17 +54,27 @@
         <br>
          <!-- LOGO-->
         
-        <div class="logo-container">
-            <img id="logo" src="../assets/img/logonegro.png" alt="Logo Camino Medio">
+    <div class="logo-container">
+            <img id="logo" src="../assets/img/logonegro.png" alt="Logo Camino Medio" data-light="../assets/img/logonegro.png" data-dark="../assets/img/logoblanco.png">
         </div>
         <h1 id="title"></h1>
 
         <!-- Botón para ir a guardar.html -->
        
-        <div> <a href="estadisticas.html" id="estadisticas-button" class="button">Estadísticas</a></div>
-        <a href="guardar.html" id="save-button" class="button">Configurar</a>
-        <br>
-        <div> <a href="../index.html" id="caminomedio-button" class="button">Volver</a></div>
+        <div class="quick-actions" role="group" aria-label="Acciones rápidas">
+          <a href="estadisticas.html" id="estadisticas-button" class="button icon-button" aria-label="Ver estadísticas">
+            <i class="fas fa-chart-line" aria-hidden="true"></i>
+            <span class="visually-hidden">Estadísticas</span>
+          </a>
+          <a href="guardar.html" id="save-button" class="button icon-button" aria-label="Configurar temporizador">
+            <i class="fas fa-sliders" aria-hidden="true"></i>
+            <span class="visually-hidden">Configurar</span>
+          </a>
+          <a href="../index.html" id="caminomedio-button" class="button icon-button" aria-label="Volver al inicio">
+            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+            <span class="visualmente-hidden">Volver</span>
+          </a>
+        </div>
         <div id="quote"></div>
         
     </div>
@@ -79,35 +89,8 @@
     <audio id="end-sound" src="multimedia/end.mp3" preload="auto"></audio>
 
    
+    <script defer src="js/theme-sync.js"></script>
     <script type="module" src="js/script.js"></script>
-    <script>
-      // Aplicar tema desde preferencia guardada (por defecto según el sistema)
-      (function() {
-        try {
-          const pref = localStorage.getItem('modoOscuro');
-          const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-          const oscuro = (pref === '1') || (pref === null && sysDark);
-          if (pref === null) localStorage.setItem('modoOscuro', oscuro ? '1' : '0');
-          document.addEventListener('DOMContentLoaded', function(){
-            document.body.classList.toggle('dark-mode', oscuro);
-          });
-        } catch (e) {}
-      })();
-    </script>
-    <script>
-      // Ajustar logo según el tema: oscuro -> logo blanco; claro -> logo negro
-      (function(){
-        function applyLogo(){
-          try {
-            var pref = localStorage.getItem('modoOscuro');
-            var oscuro = (pref === '1' || pref === null);
-            var logo = document.getElementById('logo');
-            if (logo) logo.src = oscuro ? '../assets/img/logoblanco.png' : '../assets/img/logonegro.png';
-          } catch(e) {}
-        }
-        document.addEventListener('DOMContentLoaded', applyLogo);
-      })();
-    </script>
     
     <script>
         // Función para solicitar pantalla completa

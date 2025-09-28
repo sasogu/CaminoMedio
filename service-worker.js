@@ -1,7 +1,7 @@
 // PWA Service Worker (scope auto-resolves relative to script location)
 
-const SW_VERSION = "0.5.9";
-const CACHE_NAME = "pwa-cszcm-v0.5.9";
+const SW_VERSION = "0.6.4";
+const CACHE_NAME = "pwa-cszcm-v0.6.4";
 // Precarga mínima necesaria para arrancar offline (rutas relativas al scope)
 const OFFLINE_URLS = [
   // Núcleo app
@@ -30,6 +30,7 @@ const OFFLINE_URLS = [
   './temporizador/css/styles.css',
   './temporizador/css/estilos.css',
   './temporizador/js/script.js',
+  './temporizador/js/theme-sync.js',
   './temporizador/js/phrases.js',
   './temporizador/js/estadisticas.js',
   './temporizador/js/guardar.js',
