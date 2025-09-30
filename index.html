@@ -6,8 +6,8 @@
   <title>Camino Medio • Comunidad Soto Zen</title>
   <meta name="description" content="Comunidad Soto Zen Camino Medio: práctica, estudio y vida sencilla.">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#0b0b0c">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="assets/favicon.ico">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preload" as="image" href="assets/img/logonegro.png">
@@ -37,15 +37,15 @@
   <meta property="og:image" content="./assets/img/logonegro.png">
   <link rel="canonical" href="./">
   <style>
-    :root{--bg:#fff;--ink:#111;--muted:#6b7280;--ring:#e5e7eb;--pill:#f8f9fa;--pill-b:#e6e7ea;--pill-h:#f1f3f5;--max:840px}
-    @media (prefers-color-scheme: dark){
-      :root:not([data-theme]){--bg:#0b0b0c;--ink:#e6e6e6;--muted:#a3a3a3;--ring:#1f2430;--pill:#131416;--pill-b:#3a3f45;--pill-h:#191b1e}
+    :root{--bg:#0b0b0c;--ink:#e6e6e6;--muted:#a3a3a3;--ring:#1f2430;--pill:#131416;--pill-b:#3a3f45;--pill-h:#191b1e;--max:840px}
+    @media (prefers-color-scheme: light){
+      :root:not([data-theme]){--bg:#fff;--ink:#111;--muted:#6b7280;--ring:#e5e7eb;--pill:#f8f9fa;--pill-b:#e6e7ea;--pill-h:#f1f3f5}
     }
     :root[data-theme="light"]{--bg:#fff;--ink:#111;--muted:#6b7280;--ring:#e5e7eb;--pill:#f8f9fa;--pill-b:#e6e7ea;--pill-h:#f1f3f5}
     :root[data-theme="dark"]{--bg:#0b0b0c;--ink:#e6e6e6;--muted:#a3a3a3;--ring:#1f2430;--pill:#131416;--pill-b:#3a3f45;--pill-h:#191b1e}
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-text-size-adjust:100%}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-text-size-adjust:100%}
     a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--max);margin:0 auto;padding:24px}
     header{padding:56px 0 24px;text-align:center}
