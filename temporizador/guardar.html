@@ -104,33 +104,9 @@
     </div>
     <audio id="bell-sound" rc="multimedia/start.mp3"></audio>
 
+    <script defer src="js/theme-sync.js"></script>
     <script src="js/guardar.js"></script>
     <script defer src="../js/scripts.js"></script>
-    <script>
-        // Aplicar tema al cargar y al cambiar selección
-        (function(){
-            function applyThemeFromStorage(){
-                const pref = localStorage.getItem('modoOscuro');
-                const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const oscuro = (pref === '1') || (pref === null && sysDark);
-                if (pref === null) localStorage.setItem('modoOscuro', oscuro ? '1' : '0');
-                document.body.classList.toggle('dark-mode', oscuro);
-                const sel = document.getElementById('theme-select');
-                if (sel) sel.value = oscuro ? 'dark' : 'light';
-            }
-            document.addEventListener('DOMContentLoaded', function(){
-                applyThemeFromStorage();
-                const sel = document.getElementById('theme-select');
-                if (sel) {
-                    sel.addEventListener('change', function(){
-                        const oscuro = sel.value === 'dark';
-                        localStorage.setItem('modoOscuro', oscuro ? '1' : '0');
-                        document.body.classList.toggle('dark-mode', oscuro);
-                    });
-                }
-            });
-        })();
-    </script>
 
 </body>
 </html>
