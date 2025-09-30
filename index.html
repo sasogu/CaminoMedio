@@ -15,18 +15,36 @@
   <script>
     // Selecciona manifest claro/oscuro antes de que el navegador lo lea
     (function(){
-      try {
-        var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var appended = false;
+      function appendManifest(href){
         var link = document.createElement('link');
         link.rel = 'manifest';
-        link.href = dark ? 'manifest-dark.json' : 'manifest-light.json';
+        link.href = href;
+        link.setAttribute('data-dynamic-manifest', 'true');
         document.head.appendChild(link);
-      } catch(_) {
-        var fallback = document.createElement('link');
-        fallback.rel = 'manifest';
-        fallback.href = 'manifest.json';
-        document.head.appendChild(fallback);
+        appended = true;
       }
+      function resolveStoredMode(){
+        try {
+          var stored = localStorage.getItem('cm-theme-mode');
+          if (stored === 'dark' || stored === 'light') return stored;
+        } catch(_) {}
+        try {
+          var legacy = localStorage.getItem('modoOscuro');
+          if (legacy === '1') return 'dark';
+          if (legacy === '0') return 'light';
+        } catch(_) {}
+        return 'auto';
+      }
+      try {
+        var mode = resolveStoredMode();
+        if (mode === 'auto') {
+          var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+          mode = mq && mq.matches ? 'dark' : 'light';
+        }
+        appendManifest(mode === 'dark' ? 'manifest-dark.json' : 'manifest-light.json');
+      } catch(_) {}
+      if (!appended) appendManifest('manifest.json');
     })();
   </script>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -206,6 +224,15 @@
         const dark = computeIsDark();
         meta.setAttribute('content', dark ? '#0b0b0c' : '#ffffff');
       }
+      function syncManifest(mode){
+        try {
+          const link = document.querySelector('link[rel="manifest"][data-dynamic-manifest]');
+          if (!link) return;
+          const effective = mode === 'auto' ? (computeIsDark() ? 'dark' : 'light') : mode;
+          const target = effective === 'dark' ? 'manifest-dark.json' : 'manifest-light.json';
+          if (link.getAttribute('href') !== target) link.setAttribute('href', target);
+        } catch(_) {}
+      }
       function applyTheme(mode){
         const resolved = mode === 'light' || mode === 'dark' ? mode : 'auto';
         if (resolved === 'auto') root.removeAttribute('data-theme');
@@ -217,6 +244,7 @@
         if (label) label.textContent = resolved === 'light' ? 'Tema claro' : resolved === 'dark' ? 'Tema oscuro' : 'Tema automático';
         if (iconUse) iconUse.setAttribute('href', `${assetBase}/icons.svg#${resolved === 'light' ? 'icon-sun' : resolved === 'dark' ? 'icon-moon' : 'icon-theme-auto'}`);
         updateThemeColor();
+        syncManifest(resolved);
         try { setLogo(); } catch(_) {}
         try {
           const effective = resolved === 'auto' ? (computeIsDark() ? 'dark' : 'light') : resolved;
